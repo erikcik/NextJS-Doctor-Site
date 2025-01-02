@@ -1,0 +1,24 @@
+{
+  "navbar": {
+    "search": {
+      "placeholder": "Where are you going?",
+      "button": "Search"
+    },
+    "auth": {
+      "signIn": "Sign In",
+      "signUp": "Sign Up"
+    }
+  },
+  "HomePage": {
+    "title": "Home",
+    "about": "About",
+    "notFound": "Not Found"
+  },
+  "NotFound": {
+    "title": "Page Not Found",
+    "description": "Sorry, the page you are looking for does not exist.",
+    "backHome": "Back to Home"
+  },
+  "hello": "Hello",
+  "welcome": "Welcome to our app"
+} 

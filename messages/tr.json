@@ -1,0 +1,24 @@
+{
+  "navbar": {
+    "search": {
+      "placeholder": "Nereye gidiyorsun?",
+      "button": "Ara"
+    },
+    "auth": {
+      "signIn": "Giriş Yap",
+      "signUp": "Kayıt Ol"
+    }
+  },
+  "HomePage": {
+    "title": "Anasayfa",
+    "about": "Hakkımızda",
+    "notFound": "Sayfa Bulunamadı"
+  },
+  "NotFound": {
+    "title": "Sayfa Bulunamadı",
+    "description": "Üzgünüz, aradığınız sayfa mevcut değil.",
+    "backHome": "Ana Sayfaya Dön"
+  },
+  "hello": "Merhaba",
+  "welcome": "Uygulamamıza hoş geldiniz"
+} 
