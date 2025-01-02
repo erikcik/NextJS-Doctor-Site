@@ -2,7 +2,7 @@
 import Image from "next/image"
 import { useState, useEffect } from "react"
 import { Link } from "~/i18n/routing"
-
+import { SiteHeader } from "./site-header"
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -19,6 +19,7 @@ export function Navigation() {
   }, [isOpen])
 
   return (
+    
     <nav className="top-0 w-full border-b bg-white shadow-sm z-[100]">
       <div className="container mx-auto flex justify-between items-center py-4 px-4">
         <Link href="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">

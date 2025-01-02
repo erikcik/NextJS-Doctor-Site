@@ -1,8 +1,30 @@
 import Image from "next/image"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { GlareCard } from "@/components/ui/glare-card"
 
 export function BlogSection() {
+  const blogPosts = [
+    {
+      image: "https://images.unsplash.com/photo-1584362917165-526a968579e8?q=80&w=500",
+      title: "Basic Acupuncture Points",
+      content: "In the world we live in currently, the field of practice called alternative medicine, especially acupuncture...",
+      alt: "Acupuncture"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1576671081837-49000212a370?q=80&w=500",
+      title: "Psychoneuro Immunology",
+      content: "Psychoneuroimmunology studies the interaction between psychological processes and bodily functions...",
+      alt: "Psychoneuro Immunology"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?q=80&w=500",
+      title: "Advanced Neural Therapy",
+      content: "Exploring the latest developments in neural therapy and its applications in modern medicine...",
+      alt: "Neural Therapy"
+    }
+  ]
+
   return (
     <section className="bg-gray-50 py-16">
       <div className="container mx-auto px-4">
@@ -10,66 +32,32 @@ export function BlogSection() {
           <h2 className="text-3xl font-bold">Blog</h2>
           <Button variant="outline">More</Button>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <Card>
-            <div className="relative h-48">
-              <Image
-                src="https://images.unsplash.com/photo-1584362917165-526a968579e8?q=80&w=500"
-                alt="Acupuncture"
-                fill
-                className="object-cover rounded-t-lg"
-              />
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {blogPosts.map((post, index) => (
+            <div className="flex justify-center" key={index}>
+              <GlareCard className="bg-slate-900">
+                <div className="h-full flex flex-col">
+                  <div className="relative h-64">
+                    <Image
+                      src={post.image}
+                      alt={post.alt}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-8 flex-1 flex flex-col">
+                    <h3 className="text-2xl font-bold text-white mb-4">{post.title}</h3>
+                    <p className="text-base text-gray-300 mb-6 flex-1 leading-relaxed">
+                      {post.content}
+                    </p>
+                    <Button variant="link" className="p-0 text-white hover:text-gray-300">
+                      Read More →
+                    </Button>
+                  </div>
+                </div>
+              </GlareCard>
             </div>
-            <CardHeader>
-              <CardTitle className="text-xl">Basic Acupuncture Points</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground mb-4">
-                In the world we live in currently, the field of practice called alternative medicine, especially acupuncture...
-              </p>
-              <Button variant="link" className="p-0">Read More →</Button>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <div className="relative h-48">
-              <Image
-                src="https://images.unsplash.com/photo-1576671081837-49000212a370?q=80&w=500"
-                alt="Psychoneuro Immunology"
-                fill
-                className="object-cover rounded-t-lg"
-              />
-            </div>
-            <CardHeader>
-              <CardTitle className="text-xl">Psychoneuro Immunology</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground mb-4">
-                Psychoneuroimmunology studies the interaction between psychological processes and bodily functions...
-              </p>
-              <Button variant="link" className="p-0">Read More →</Button>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <div className="relative h-48">
-              <Image
-                src="https://images.unsplash.com/photo-1666214280557-f1b5022eb634?q=80&w=500"
-                alt="Neural Therapy"
-                fill
-                className="object-cover rounded-t-lg"
-              />
-            </div>
-            <CardHeader>
-              <CardTitle className="text-xl">Advanced Neural Therapy</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground mb-4">
-                Exploring the latest developments in neural therapy and its applications in modern medicine...
-              </p>
-              <Button variant="link" className="p-0">Read More →</Button>
-            </CardContent>
-          </Card>
+          ))}
         </div>
       </div>
     </section>

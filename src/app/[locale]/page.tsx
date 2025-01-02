@@ -1,135 +1,316 @@
-import { Navigation } from "@/components/navigation"
-import { AboutSection } from "@/components/about-section"
-import { TreatmentCard } from "@/components/treatment-card"
-import { TestimonialsAnnouncements } from "@/components/testimonials-announcements"
-import { BlogSection } from "@/components/blog-section"
-import { SiteHeader } from "@/components/site-header"
-import { CarouselComponent } from "~/components/carousel"
-import { Link } from "~/i18n/routing"
+"use client";
+import { Navigation } from "@/components/navigation";
+import { AboutSection } from "@/components/about-section";
+import { TreatmentCard } from "@/components/treatment-card";
+import { TestimonialsAnnouncements } from "@/components/testimonials-announcements";
+import { BlogSection } from "@/components/blog-section";
+import { SiteHeader } from "@/components/site-header";
+import { CarouselComponent } from "~/components/carousel";
+import { Link } from "~/i18n/routing";
+import { motion } from "framer-motion";
+import { Button } from "~/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <>
       <SiteHeader />
+
       <Navigation />
-      <CarouselComponent />
-      
-      <main>
-        <AboutSection />
-        
-        {/* Orthopedics Section */}
-        <section id="orthopedics" className="bg-gray-50 py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold mb-12 text-primary text-center">Orthopedics and Traumatology</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <TreatmentCard
-                title="Arthroscopic Surgery"
-                description="Minimally invasive diagnostic and treatment procedure for joint conditions."
-                imageSrc="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=500"
-                learnMoreHref="/orthopedics/arthroscopic-surgery"
-              />
-              <TreatmentCard
-                title="Stem Cell Therapy"
-                description="Innovative treatment using the body's natural healing mechanisms."
-                imageSrc="https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=500"
-                learnMoreHref="/orthopedics/stem-cell"
-              />
-              <TreatmentCard
-                title="Cytokine Therapy"
-                description="Targeted treatment to modulate the immune response and reduce inflammation."
-                imageSrc="https://images.unsplash.com/photo-1582560474992-385ebb9b71c3?q=80&w=500"
-                learnMoreHref="/orthopedics/cytokine-therapy"
-              />
-            </div>
-            <div className="text-center mt-8">
-              <Link
-                href="/orthopedics"
-                className="inline-block px-6 py-3 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors"
+
+      <div className="min-h-screen">
+        <CarouselComponent />
+
+        <main>
+          <AboutSection />
+
+          {/* Orthopedics Section */}
+          <motion.section
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            id="orthopedics"
+            className="bg-gray-50 py-16"
+          >
+            <div className="container mx-auto px-4">
+              <motion.h2
+                initial={{ y: -30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="mb-12 text-center text-4xl font-bold text-primary"
               >
-                View More Treatments
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Complementary Medicine Section */}
-        <section id="complementary" className="py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold mb-12 text-primary text-center">Complementary Medicine</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <TreatmentCard
-                title="Neural Therapy"
-                description="Targeted injections to alleviate pain and restore proper nervous system function."
-                imageSrc="https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?q=80&w=500"
-                learnMoreHref="/complementary/neural-therapy"
-                />
-              <TreatmentCard
-                title="Acupuncture"
-                description="Ancient Chinese healing practice to balance the body's energy flow."
-                imageSrc="https://images.unsplash.com/photo-1512678080530-7760d81faba6?q=80&w=500"
-                learnMoreHref="/complementary/acupuncture"
-              />
-              <TreatmentCard
-                title="Prolotherapy"
-                description="Regenerative injection therapy to strengthen ligaments and tendons."
-                imageSrc="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=500"
-                learnMoreHref="/complementary/prolotherapy"
-              />
-            </div>
-            <div className="text-center mt-8">
-              <Link
-                href="/complementary"
-                className="inline-block px-6 py-3 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors"
+                Orthopedics and Traumatology
+              </motion.h2>
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <motion.div
+                  initial={{ x: -50, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+                >
+                  <TreatmentCard
+                    title="Arthroscopic Surgery"
+                    description="Minimally invasive diagnostic and treatment procedure for joint conditions."
+                    imageSrc="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=500"
+                    learnMoreHref="/orthopedics/arthroscopic-surgery"
+                  />
+                </motion.div>
+                <motion.div
+                  initial={{ y: -50, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                >
+                  <TreatmentCard
+                    title="Stem Cell Therapy"
+                    description="Innovative treatment using the body's natural healing mechanisms."
+                    imageSrc="https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=500"
+                    learnMoreHref="/orthopedics/stem-cell"
+                  />
+                </motion.div>
+                <motion.div
+                  initial={{ x: 50, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
+                >
+                  <TreatmentCard
+                    title="Cytokine Therapy"
+                    description="Targeted treatment to modulate the immune response and reduce inflammation."
+                    imageSrc="https://images.unsplash.com/photo-1582560474992-385ebb9b71c3?q=80&w=500"
+                    learnMoreHref="/orthopedics/cytokine-therapy"
+                  />
+                </motion.div>
+              </div>
+              <motion.div
+                initial={{ y: 30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+                className="mt-8 text-center"
               >
-                View More Treatments
-              </Link>
+                <Link
+                  href="/orthopedics"
+                  className="inline-block rounded-md bg-primary px-6 py-3 text-white transition-colors hover:bg-primary/90"
+                >
+                  View More Treatments
+                </Link>
+              </motion.div>
             </div>
-          </div>
-        </section>
+          </motion.section>
 
-        <TestimonialsAnnouncements />
-        <BlogSection />
-      </main>
+          {/* Complementary Medicine Section */}
+          <motion.section
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            id="complementary"
+            className="py-16"
+          >
+            <div className="container mx-auto px-4">
+              <motion.h2
+                initial={{ y: -30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="mb-12 text-center text-4xl font-bold text-primary"
+              >
+                Complementary Medicine
+              </motion.h2>
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <motion.div
+                  initial={{ x: -50, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+                >
+                  <TreatmentCard
+                    title="Neural Therapy"
+                    description="Targeted injections to alleviate pain and restore proper nervous system function."
+                    imageSrc="https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?q=80&w=500"
+                    learnMoreHref="/complementary/neural-therapy"
+                  />
+                </motion.div>
+                <motion.div
+                  initial={{ y: -50, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                >
+                  <TreatmentCard
+                    title="Acupuncture"
+                    description="Ancient Chinese healing practice to balance the body's energy flow."
+                    imageSrc="https://images.unsplash.com/photo-1512678080530-7760d81faba6?q=80&w=500"
+                    learnMoreHref="/complementary/acupuncture"
+                  />
+                </motion.div>
+                <motion.div
+                  initial={{ x: 50, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
+                >
+                  <TreatmentCard
+                    title="Prolotherapy"
+                    description="Regenerative injection therapy to strengthen ligaments and tendons."
+                    imageSrc="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=500"
+                    learnMoreHref="/complementary/prolotherapy"
+                  />
+                </motion.div>
+              </div>
+              <motion.div
+                initial={{ y: 30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+                className="mt-8 text-center"
+              >
+                <Link
+                  href="/complementary"
+                  className="inline-block rounded-md bg-primary px-6 py-3 text-white transition-colors hover:bg-primary/90"
+                >
+                  View More Treatments
+                </Link>
+              </motion.div>
+            </div>
+          </motion.section>
 
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-secondary">About Dr. Name</h3>
-              <p className="text-sm text-gray-400">Orthopedics and Traumatology Specialist, Complementary Medicine Practitioner</p>
+          <TestimonialsAnnouncements />
+          <section className="mx-auto w-full bg-[#47afe2] bg-opacity-50 px-48 py-8 ">
+            <h2 className="mb-8 text-3xl font-bold">Announcements</h2>
+            <Card className="max-w-2xl">
+              <CardHeader >
+                <CardTitle className="text-xl text-red-600">
+                  IX. INTERNATIONAL CONGRESS OF NEURAL THERAPY
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <p className="text-muted-foreground">
+                    Congress Center: Hotel Name Here
+                    <br />
+                    Date: 17 - 20 June 2024
+                  </p>
+                  <div className="space-y-2">
+                    <p className="font-semibold">
+                      For detailed information, please contact:
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      Congress Organization:
+                      <br />
+                      +90 (850) 333 33 33
+                      <br />
+                      info@congress.com
+                    </p>
+                  </div>
+                  <Button variant="outline" size="sm">
+                    Learn More
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </section>  
+          <BlogSection />
+        </main>
+
+        <footer className="bg-gray-900 py-12 text-white">
+          <div className="container mx-auto px-4">
+            <div className="grid gap-8 md:grid-cols-4">
+              <div>
+                <h3 className="mb-4 text-xl font-bold text-secondary">
+                  About Dr. Name
+                </h3>
+                <p className="text-sm text-gray-400">
+                  Orthopedics and Traumatology Specialist, Complementary
+                  Medicine Practitioner
+                </p>
+              </div>
+              <div>
+                <h3 className="mb-4 text-xl font-bold text-secondary">
+                  Quick Links
+                </h3>
+                <ul className="space-y-2 text-sm text-gray-400">
+                  <li>
+                    <a
+                      href="#"
+                      className="hover:text-tertiary transition-colors"
+                    >
+                      Blog
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="hover:text-tertiary transition-colors"
+                    >
+                      Privacy Policy
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="hover:text-tertiary transition-colors"
+                    >
+                      Terms of Service
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="mb-4 text-xl font-bold text-secondary">
+                  Recent Posts
+                </h3>
+                <ul className="space-y-2 text-sm text-gray-400">
+                  <li>
+                    <a
+                      href="#"
+                      className="hover:text-tertiary transition-colors"
+                    >
+                      Basic Acupuncture Points
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="hover:text-tertiary transition-colors"
+                    >
+                      Psychoneuro Immunology
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="hover:text-tertiary transition-colors"
+                    >
+                      Advances in Orthopedic Care
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="mb-4 text-xl font-bold text-secondary">
+                  Contact
+                </h3>
+                <address className="text-sm not-italic text-gray-400">
+                  123 Medical Plaza, Suite 100
+                  <br />
+                  Cityville, State 12345
+                  <br />
+                  Phone: (+90) 224 453 31 53
+                  <br />
+                  Email: info@drname.com
+                </address>
+              </div>
             </div>
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-secondary">Quick Links</h3>
-              <ul className="text-sm text-gray-400 space-y-2">
-                <li><a href="#" className="hover:text-tertiary transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-tertiary transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-tertiary transition-colors">Terms of Service</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-secondary">Recent Posts</h3>
-              <ul className="text-sm text-gray-400 space-y-2">
-                <li><a href="#" className="hover:text-tertiary transition-colors">Basic Acupuncture Points</a></li>
-                <li><a href="#" className="hover:text-tertiary transition-colors">Psychoneuro Immunology</a></li>
-                <li><a href="#" className="hover:text-tertiary transition-colors">Advances in Orthopedic Care</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-secondary">Contact</h3>
-              <address className="text-sm text-gray-400 not-italic">
-                123 Medical Plaza, Suite 100<br />
-                Cityville, State 12345<br />
-                Phone: (+90) 224 453 31 53<br />
-                Email: info@drname.com
-              </address>
+            <div className="mt-8 border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
+              © {new Date().getFullYear()} Dr. Name. All rights reserved.
             </div>
           </div>
-          <div className="mt-8 pt-8 border-t border-gray-800 text-center text-sm text-gray-400">
-            © {new Date().getFullYear()} Dr. Name. All rights reserved.
-          </div>
-        </div>
-      </footer>
-    </div>
-  )
+        </footer>
+      </div>
+    </>
+  );
 }
-
