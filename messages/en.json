@@ -20,5 +20,153 @@
     "backHome": "Back to Home"
   },
   "hello": "Hello",
-  "welcome": "Welcome to our app"
+  "welcome": "Welcome to our app",
+  "Navigation": {
+    "about": "About",
+    "orthopedics": "Orthopedics",
+    "complementary_medicine": "Complementary Medicine",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "Carousel": {
+    "slides": {
+      "orthopedic": {
+        "title": "Advanced Orthopedic Care",
+        "subtitle": "Experience cutting-edge orthopedic treatments tailored to your needs. Our comprehensive approach combines advanced technology with expert care to address joint pain, sports injuries, and musculoskeletal conditions, helping you regain mobility and improve your quality of life."
+      },
+      "complementary": {
+        "title": "Complementary Medicine",
+        "subtitle": "Discover the perfect harmony of traditional healing wisdom and modern medical science. Our integrative approach combines evidence-based complementary therapies with conventional treatments, offering you a holistic path to wellness that addresses both symptoms and root causes."
+      },
+      "personalized": {
+        "title": "Personalized Treatment Plans",
+        "subtitle": "Your health journey is unique, and so should be your treatment. We develop comprehensive, individualized care plans that consider your specific conditions, lifestyle, and goals. Our patient-centered approach ensures you receive the most effective and appropriate care for your situation."
+      }
+    },
+    "learnMore": "Learn More"
+  },
+  "AboutSection": {
+    "title": "About Dr. Cüneyt Tamam",
+    "introduction": "Born in Mersin in 1971, I have dedicated over two decades to the field of Orthopedics and Traumatology. My career has been focused on integrating traditional medical practices with cutting-edge complementary therapies to provide comprehensive care for my patients.",
+    "education": {
+      "title": "Education",
+      "items": [
+        "Tarsus American High School (1989)",
+        "Hacettepe University Faculty of Medicine",
+        "Gülhane Military Medical Academy (1995)"
+      ]
+    },
+    "specialization": {
+      "title": "Specialization",
+      "items": [
+        "GATA Haydarpaşa Training Hospital",
+        "Orthopedics and Traumatology Specialist (2001)",
+        "Complementary Medicine Expert"
+      ]
+    },
+    "certifications": {
+      "title": "Additional Certifications",
+      "items": [
+        "Neural Therapy Certification",
+        "Advanced Acupuncture Training",
+        "Prolotherapy Specialist Certification"
+      ]
+    },
+    "moreDetails": "More Details"
+  },
+  "Testimonials": {
+    "title": "What Our Patients Say",
+    "items": [
+      {
+        "quote": "I have been going to a doctor regularly for 3 weeks, a brother, a friend, I can say with all my sincerity that he is one of the best doctors in Mersin, his vision is health first, then money, thank you very much for your interest and concern (functional medicine)",
+        "name": "Canan Yılmaz",
+        "date": "a year ago"
+      },
+      {
+        "quote": "After years of chronic back pain and trying various treatments, I finally found relief with Dr. Tamam. His approach was different - he took the time to understand my lifestyle, work habits, and medical history. The combination of traditional orthopedic treatment with complementary therapies made all the difference. It's been 8 months now, and I can finally play with my grandchildren again!",
+        "name": "Mehmet Aydın",
+        "date": "6 months ago"
+      },
+      {
+        "quote": "I was skeptical about acupuncture at first, but after a sports injury that wouldn't heal properly, I decided to give it a try. Dr. Tamam explained everything so clearly and made me feel at ease. Three sessions in, and the improvement was remarkable. His holistic approach to treatment really works. I'm back to playing football with no pain!",
+        "name": "Ali Kaya",
+        "date": "3 months ago"
+      },
+      {
+        "quote": "Following a car accident, I had severe neck pain that traditional treatments couldn't fix. A friend recommended Dr. Tamam, and it was the best medical advice I've ever received. His neural therapy sessions, combined with his expertise in orthopedics, helped me recover completely. What stands out is how he treats you like family, not just another patient.",
+        "name": "Zeynep Demir",
+        "date": "2 months ago"
+      }
+    ]
+  },
+  "About": {
+    "doctorName": "Dr. Cuneyt Tamam",
+    "position": "Associate Professor at Toros University",
+    "specialty": "Orthopedic Surgery Specialist",
+    "imageAltText": "Dr. Cuneyt Tamam",
+    "aboutTitle": "About Me",
+    "bornInMersin": "I was born in Mersin in 1971.",
+    "graduatedFromTarsus": "I graduated from Tarsus American High School in 1989 and continued my education at Gülhane Military Medical Academy Faculty of Medicine.",
+    "graduatedFromGulhane": "I graduated from Gülhane Military Medical Academy Faculty of Medicine in 1996. In 2003, I completed my specialization training at GATA Haydarpaşa Training Hospital Orthopedics and Traumatology Clinic and started working as an orthopedics and traumatology specialist.",
+    "interestedInComplementaryMedicine": "I became interested in Complementary Medicine starting in 2010. I received training in the fields of neural therapy, prolotherapy, acupuncture and microsystem acupuncture (Ear, Yamamato Siener).",
+      "receivedInternationalNeuralTherapyCertificate": "In 2013, I received the International Neural Therapy certificate from the International Federation of Medical Associations of Neural Therapy.",
+      "workedWithProfPoehling": "After working in different hospitals of the Turkish Armed Forces, I had the opportunity to work with Prof. Dr. G. Gary Poehling on arthroscopic surgery and robotic surgery at Wake Forest University School of Medicine in the USA for one year with a scholarship from the Land Forces Command in 2012. I received training in microsurgery, arthroscopic surgery (shoulder, knee, hip and ankle) and robotic surgery at Wake Forest University.",
+      "completedMakoPlastyTraining": "In June of 2012, I completed training for MAKOplasty (Robotic Knee and Hip Replacement) in Ft. Laurdale, Florida.",
+      "workedAtHarvard": "After retiring from the Turkish Armed Forces with the rank of Tbp. Colonel in February 2016, I worked at Harvard University/ Harris Orthopaedic Biomechanics and Biomaterials Laboratory, Massachusetts General Hospital until December 2016.",
+      "completedCertificatesAtYildirimBeyazit": "I completed the Prolotherapy, Mesotherapy, Cupping, Ozonetherapy, Phytotherapy and Acupuncture Certificate programs at Yıldırım Beyazıt University Traditional and Complementary Medicine Application and Research Center.",
+      "currentlyWorkingAtToros": "I am currently working as a faculty member at Toros University.",
+      "providesHealingInPrivatePractice": "I provide healing to my patients in my private practice.",
+      "coursesAttended": "Courses Attended",
+      "internationalCourses": "International Courses",
+      "musculoskeletalUltrasoundCourse": "Musculoskeletal Ultrasound at the Point-of-Care: Diagnostic and Procedural Applications (May 21, 2016, Massachusetts General Hospital, Boston, MA,USA)",
+      "zimmerBiometCourse": "Zimmer Biomet Institute Knee Arthroscopy Instructional Course (May 20, 2016, Atlanta, GA,USA)",
+      "wakeForestMicrosurgeryCourse": "Wake Forest University School of Medicine, Microsurgery Training Course (November, 19 2013 NC USA)",
+      "makoplastyHipCourse": "MAKOplasty Hip Clinical Training Program Course (July,30 2013 Ft. Laurdale,FL USA)",
+      "makoplastyKneeCourse": "MAKOplasty Knee Clinical Training Program Course (July,29 2013 Ft. Laurdale,FL USA)",
+      "aanaHipArthroscopyCourse": "AANA Hip Arthroscopy Course (July, 16-19 2013 Rosemont, IL USA)",
+      "arthrexKneeCourse": "Arthrex Knee Course (March 04-05,2011 Munich, Germany)",
+      "aoPediatricTraumaCourse": "AO Pediatric Trauma Course (April 18-19, 2009 Izmir, Turkey)",
+      "aoHandCourse": "AO Hand Course (June 18-22, 2007 Antalya, Turkey)",
+      "ircadShoulderCourse": "IRCAD Shoulder Arthroscopy Course (November 29-30, 2005 Strasbourg/France)",
+      "ircadKneeCourse": "IRCAD Knee Arthroscopy Course (December 1-2, 2005 Strasbourg/France )",
+      "aoDavosCourse": "AO Davos Course Principles of Operative Fracture Treatment (December 12-17, 2004 Davos, Switzerland)",
+      "nationalCourses": "National Courses",
+      "expertWitnessTraining": "Expert Witness Basic Training (September 26-29, 2019 ,Ankara )",
+      "stemCellCourse": "XXVI Stem Cell and Tissue Engineering Course (10-14 June 2019, Kocaeli )",
+      "kinesioTapingCourse": "Kinesio Taping Basic (KT 1-2) ( 24-25 October 2015, Izmir )",
+      "advancedLifeSupportCourse": "Advanced Life Support Course (11-15 April 2011, Istanbul )",
+      "footAndAnkleSurgeryCourse": "5th Foot and Ankle Surgery Course (18-19 September 2010, Istanbul )",
+      "basicAdvancedLifeSupportCourse": "Basic/ Advanced Life Support Course (02-06, March 2009, Istanbul)",
+      "intramedullaryNailingCourse": "1st Intramedullary Nailing Course (17-20 January 2008, Cesme/Izmir)",
+      "gulhaneArthroscopicSurgeryCourse": "Gulhane Military Medical Academy Arthroscopic Surgery Course (4-29 June 2007, Ankara)",
+      "firstFootAndAnkleSurgeryCourse": "1st Foot and Ankle Surgery Course (September 23-24, 2005, Istanbul)",
+      "advancedArthroscopicSurgeryCourse": "8th Advanced Arthroscopic Surgery Course (June 23-25) 2005, Ankara)",
+      "ankleBasicArthroscopyCourse": "2nd Ankle Basic Arthroscopy Course (September 25-27, 2003, Antalya)",
+      "advancedIlizarovCourse": "8th Advanced Ilizarov Course (April 25-27, 2003, Köyceğiz /Mugla)",
+      "gulhaneMicrosurgeryCourse": "Gülhane Military Medical Academy Microsurgery Course (April 28 -02 May 2003, Ankara)",
+      "infantileHipUltrasonographyCourse": "9th Infantile Hip Ultrasonography Course (28 February 2003, Bursa)",
+      "basicIlizarovCourse": "8th Basic Ilizarov Course (11-12 April 2002, Adana)",
+      "pediatricOrthopedicsCourse": "3rd Pediatric Orthopedics Course (13-15 October 2000, Istanbul )",
+      "certifiedTrainingPrograms": "Certified Training Programs",
+       "acupunctureCertifiedProgram": "ACUPUNCTURE CERTIFIED EDUCATION PROGRAM – Ankara Yıldırım Beyazıt University Traditional and Complementary Medicine Application and Research Center",
+        "phytotherapyCertifiedProgram": "PHYTOTHERAPY CERTIFIED EDUCATION PROGRAM – Ankara Yıldırım Beyazıt University Traditional and Complementary Medicine Application and Research Center",
+        "cuppingCertifiedProgram": "CUP APPLICATION CERTIFIED EDUCATION PROGRAM – KAYSERI TRAINING AND RESEARCH HOSPITAL",
+        "mesotherapyCertifiedProgram": "MESOTHERAPY CERTIFIED EDUCATION PROGRAM – Ankara Yıldırım Beyazıt University Traditional and Complementary Medicine Application and Research Center",
+        "ozoneCertifiedProgram": "OZONE APPLICATION CERTIFIED EDUCATION PROGRAM – Ankara Yıldırım Beyazıt University Traditional and Complementary Medicine Application and Research Center",
+        "prolotherapyCertifiedProgram": "PROLOTHERAPY CERTIFIED EDUCATION PROGRAM – Ankara Yıldırım Beyazıt University Traditional and Complementary Medicine Application and Research Center",
+        "education": "Education",
+        "torosUniversityAssociateProfessorship": "Toros University – Associate Professorship – May 2019",
+        "haydarpasaGataSpecialist": "Haydarpasa GATA Training Hospital – Orthopedics and Traumatology Specialist – October 1999-May 2003",
+        "gulhaneMilitaryMedicalAcademy": "Gülhane Military Medical Academy Faculty of Medicine – MD – October 1989 - August 1996",
+        "tarsusAmericanHighSchool": "Tarsus American High School -1982-1989",
+        "awards": "Awards",
+        "turkishOrthopedicsAward2017": "2017 – Turkish Orthopedics and Traumatology Association Bone and Soft Tissue Tumors Best Oral Presentation Award – 27th National Turkish Orthopedics and Traumatology Congress – Prognostic Significance of Maximum Standardized Uptake Value in FDG PET/CT in Bone and Soft Tissue Sarcomas",
+        "turkishOrthopedicsAward2014": "2014 – Turkish Orthopedics and Traumatology Association Foot and Ankle Best Poster Award – 24th National Turkish Orthopedics and Traumatology Congress – Impact on Diagnostic Value of Single-Photon Emission Computed Tomography Combined with Computed Tomography on Osteochondral Lesions of the Talus",
+        "turkishOrthopedicsAward2011": "2011 – Turkish Orthopedics and Traumatology Association General Orthopedics Best Oral Presentation Award – 22nd National Turkish Orthopedics and Traumatology Congress – The Diagnostic Effiency of Dynamic Doppler Ultrasound in Chronic Exertional Compartment Syndrome",
+        "sicotAward2007": "2007 – Poster Presentation Award 2nd – 5. SİCOT/SİROT Annual International Conference – The incidence of accessory bones of the foot and their clinical significance",
+        "publications": "Publications",
+        "clickToSeePublications": "Click to See Publications",
+        "viewCompleteListOfPublications": "View Complete List of Publications",
+        "coursesAndTraining": "Courses and Training"
+  }
 } 

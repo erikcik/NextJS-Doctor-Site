@@ -2,7 +2,7 @@ this is a example doctor site i have done with v0 and with mutlilang template an
 
 Things to do:
 - formatting the overall structure a bit more beatiful [ X ]
-- changing the format famaily to something more good []
+- changing the format famaily to something more good [ X]
 - putting all of the original text into site []
 - implementing language support []
 - creating database integeration and creating example route []

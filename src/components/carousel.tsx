@@ -1,7 +1,6 @@
 'use client'
 
 import * as React from 'react'
-import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import {
   Carousel,
@@ -11,26 +10,29 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay"
+import { useTranslations } from 'next-intl'
+import { Link } from "~/i18n/routing"
 
 const slides = [
   {
     url: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=2070',
-    title: 'Advanced Orthopedic Care',
-    subtitle: 'State-of-the-art treatments for your musculoskeletal health'
+    translationKey: 'orthopedic',
+    href: '/orthopedics'
   },
   {
     url: 'https://images.unsplash.com/photo-1666214280557-f1b5022eb634?auto=format&fit=crop&q=80&w=2070',
-    title: 'Complementary Medicine',
-    subtitle: 'Integrating traditional wisdom with modern science'
+    translationKey: 'complementary',
+    href: '/complementary-medicine'
   },
   {
     url: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=2070',
-    title: 'Personalized Treatment Plans',
-    subtitle: 'Tailored care for your unique health needs'
+    translationKey: 'personalized',
+    href: '/about'
   }
 ]
 
 export function CarouselComponent() {
+  const t = useTranslations('Carousel')
   const plugin = React.useRef(
     Autoplay({ delay: 10000, stopOnInteraction: true })
   )
@@ -52,12 +54,18 @@ export function CarouselComponent() {
                 className="w-full h-full bg-center bg-cover duration-500"
               >
                 <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                  <div className="text-center text-white px-4">
-                    <h2 className="text-5xl md:text-6xl font-bold mb-4">{slide.title}</h2>
-                    <p className="text-xl md:text-2xl mb-8">{slide.subtitle}</p>
-                    <Button size="lg" className="bg-tertiary hover:bg-tertiary/90 text-white text-lg px-8 py-3">
-                      Learn More
-                    </Button>
+                  <div className="text-center text-white px-4 max-w-4xl mx-auto">
+                    <h2 className="text-5xl md:text-6xl font-bold mb-4 font-display">
+                      {t(`slides.${slide.translationKey}.title`)}
+                    </h2>
+                    <p className="text-lg md:text-xl mb-8 font-body leading-relaxed">
+                      {t(`slides.${slide.translationKey}.subtitle`)}
+                    </p>
+                    <Link href={slide.href}>
+                      <Button size="lg" className="bg-tertiary hover:bg-tertiary/90 text-white text-lg px-8 py-3 font-body">
+                        {t('learnMore')}
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </div>

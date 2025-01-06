@@ -1,182 +1,276 @@
-import Image from "next/image"
-import { SiteHeader } from "@/components/site-header"
-import { Navigation } from "@/components/navigation"
-import { 
-  Accordion, 
-  AccordionContent, 
-  AccordionItem, 
-  AccordionTrigger 
-} from "@/components/ui/accordion"
+"use client";
+import { useTranslations } from "next-intl";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
+import Image from "next/image";
+import { CanvasRevealEffect } from "~/components/ui/canvas-reveal-effect";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
 
 export default function AboutPage() {
+  const t = useTranslations("About");
+
   return (
-    <div className="min-h-screen">
-      <SiteHeader />
-      <Navigation />
-      
-      <main className="container mx-auto px-4 py-16">
-        <h1 className="text-4xl font-bold mb-12 text-[#47afe2] text-center">About Dr. Cuneyt Tamam</h1>
-        
-        <div className="flex flex-col lg:flex-row gap-12 items-start mb-16">
-          <div className="relative w-full lg:w-1/2 h-[400px] rounded-lg overflow-hidden shadow-lg">
+    <div className="container mx-auto px-4 py-10">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4">
+        <div className="md:col-span-3 lg:col-span-4">
+          <div className="relative h-[400px] w-full overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10" />
             <Image
               src="https://drcuneyttamam.com/wp-content/uploads/2023/02/hakkimda.png"
-              alt="Doctor portrait"
+              alt="Dr. John Doe"
+              layout="fill"
               objectFit="contain"
-              fill
-              className="object-cover"
+              className="rounded-xl transition-transform duration-700 hover:scale-105"
+              priority
             />
           </div>
-          
-          <div className="w-full lg:w-1/2 space-y-6">
-            <p className="text-lg leading-relaxed">
-              Born in Mersin in 1971, I have dedicated over two decades to the field of Orthopedics and Traumatology. 
-              My career has been focused on integrating traditional medical practices with cutting-edge complementary 
-              therapies to provide comprehensive care for my patients.
+          <div className="mt-8 text-center">
+            <h1 className="mb-3 text-4xl font-bold text-[#47afe2] transition-colors duration-300 hover:text-[#3890c0]">
+              {t("doctorName")}
+            </h1>
+            <p className="mb-2 text-xl font-medium text-muted-foreground">
+              {t("position")}
             </p>
-            
-            <div className="space-y-4">
-              <h2 className="text-2xl font-semibold text-[#47afe2]">Current Position</h2>
-              <p className="text-muted-foreground">
-                Currently working as a faculty member at Tarsus University, specializing in Orthopedics and 
-                Traumatology with a focus on Complementary Medicine.
-              </p>
-            </div>
+            <p className="text-lg text-muted-foreground/80">
+              Orthopedic Surgery Specialist
+            </p>
           </div>
         </div>
 
-        <div className="space-y-12 mb-16">
-          <section>
-            <h2 className="text-2xl font-semibold text-[#47afe2] mb-6">Education & Background</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Academic Education</h3>
-                <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                  <li>Tarsus American High School (1989)</li>
-                  <li>Hacettepe University Faculty of Medicine</li>
-                  <li>Gülhane Military Medical Academy Faculty of Medicine (1995)</li>
-                  <li>Orthopedics and Traumatology Specialization, GATA Haydarpaşa Training Hospital (2001)</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Specializations</h3>
-                <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                  <li>Neural Therapy Certification (2010)</li>
-                  <li>Advanced Acupuncture Training (2011)</li>
-                  <li>Prolotherapy Specialist Certification (2012)</li>
-                  <li>Musculoskeletal Ultrasound Certification (2018)</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-semibold text-[#47afe2] mb-6">Professional Achievements</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Awards & Recognition</h3>
-                <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                  <li>Best Research Paper Award - Turkish Orthopedic Association (2015)</li>
-                  <li>Excellence in Medical Education Award - Military Medical Academy (2010)</li>
-                  <li>Distinguished Service Award - Turkish Medical Association (2008)</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Key Publications</h3>
-                <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                  <li>"Innovation in Orthopedic Surgery" - Journal of Medicine (2020)</li>
-                  <li>"Advanced Techniques in Traumatology" - Medical Science Review (2019)</li>
-                  <li>"Complementary Medicine in Modern Orthopedics" - Health Sciences Journal (2018)</li>
-                </ul>
-              </div>
-            </div>
-          </section>
+        <div className="md:col-span-2 lg:col-span-3">
+          <BiographySection />
         </div>
-
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-[#47afe2] mb-6">Additional Information</h2>
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="courses" className="border rounded-lg mb-4">
-              <AccordionTrigger className="px-6 text-xl font-semibold text-[#47afe2]">
-                Detailed Course History
-              </AccordionTrigger>
-              <AccordionContent className="px-6 pt-2 pb-4">
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="font-semibold text-[#47afe2] mb-2">International Courses</h3>
-                    <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                      <li>Musculoskeletal Ultrasound at the Point-of-Care: Diagnostic and Procedural Applications (May 21, 2018, Massachusetts General Hospital, Boston, MA,USA)</li>
-                      <li>Wake Forest University School of Medicine, Microsurgery Training Course (November, 19 2013 NC USA)</li>
-                      <li>MAKROplasty Hip Clinical Training Program Course (July,30 2013 Ft. Lauderdale,FL,USA)</li>
-                      <li>AMIS Hip Arthroscopy Course (July 15-19, 2013 Swannanoa, IL USA)</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-[#47afe2] mb-2">National Courses</h3>
-                    <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                      <li>Expert Witness Basic Training (September 26-29, 2019, Ankara)</li>
-                      <li>5th Foot and Ankle Surgery Course (18-19 September 2010, Istanbul)</li>
-                      <li>Advanced Life Support Course (11-12 April 2011, Istanbul)</li>
-                    </ul>
-                  </div>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="publications" className="border rounded-lg mb-4">
-              <AccordionTrigger className="px-6 text-xl font-semibold text-[#47afe2]">
-                Complete Publication List
-              </AccordionTrigger>
-              <AccordionContent className="px-6 pt-2 pb-4">
-                <div className="space-y-4 text-muted-foreground">
-                  <p>Selected publications in peer-reviewed journals:</p>
-                  <ul className="list-disc list-inside space-y-2">
-                    <li>Author A., Author B., Your Name. (2020). "Title of the research paper about orthopedics." Journal Name, 15(2), 123-130.</li>
-                    <li>Your Name, Author C. (2019). "Another research paper about traumatology." Different Journal, 8(4), 445-452.</li>
-                    <li>Author D., Your Name, Author E. (2018). "Study about complementary medicine in orthopedics." Medical Journal, 25(1), 78-85.</li>
-                  </ul>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+        <div className="md:col-span-1 lg:col-span-1">
+          <EducationSection />
         </div>
-      </main>
-
-      <footer className="bg-gray-900 text-white py-12 mt-16">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-[#47afe2]">Contact Information</h3>
-              <address className="text-sm text-gray-400 not-italic">
-                123 Medical Plaza, Suite 100<br />
-                Cityville, State 12345<br />
-                Phone: (+90) 224 453 31 53<br />
-                Email: info@drname.com
-              </address>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-[#47afe2]">Office Hours</h3>
-              <ul className="text-sm text-gray-400 space-y-2">
-                <li>Monday - Friday: 9:00 AM - 5:00 PM</li>
-                <li>Saturday: 9:00 AM - 1:00 PM</li>
-                <li>Sunday: Closed</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-[#47afe2]">Quick Links</h3>
-              <ul className="text-sm text-gray-400 space-y-2">
-                <li><a href="#" className="hover:text-[#47afe2] transition-colors">Book Appointment</a></li>
-                <li><a href="#" className="hover:text-[#47afe2] transition-colors">Patient Resources</a></li>
-                <li><a href="#" className="hover:text-[#47afe2] transition-colors">Emergency Contact</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t border-gray-800 text-center text-sm text-gray-400">
-            © {new Date().getFullYear()} Dr. Name. All rights reserved.
-          </div>
+        <div className="md:col-span-3 lg:col-span-2">
+          <CoursesSection />
         </div>
-      </footer>
+        <div className="md:col-span-3 lg:col-span-2">
+          <AchievementsSection />
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
+function BiographySection() {
+  const t = useTranslations("About");
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="relative h-full w-full overflow-hidden rounded-lg bg-black"
+    >
+      {/* Content */}
+      <div className="relative z-20 space-y-6 p-6">
+        <h2 className="text-3xl font-bold text-white">{t("aboutTitle")}</h2>
+        <div className="space-y-4 text-white/95">
+          <p>{t("bornInMersin")}</p>
+          <p>{t("graduatedFromTarsus")} {t("graduatedFromGulhane")}</p>
+          <p>{t("interestedInComplementaryMedicine")}</p>
+          <p>
+            {t("receivedInternationalNeuralTherapyCertificate")}{" "}
+            {t("workedWithProfPoehling")} {t("completedMakoPlastyTraining")}
+          </p>
+          <p>
+            {t("workedAtHarvard")} {t("completedCertificatesAtYildirimBeyazit")}
+          </p>
+          <p>
+            {t("currentlyWorkingAtToros")} {t("providesHealingInPrivatePractice")}
+          </p>
+        </div>
+      </div>
+
+      {/* Canvas Effect */}
+      <AnimatePresence>
+        {hovered && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0"
+          >
+            <CanvasRevealEffect
+              animationSpeed={5}
+              containerClassName="bg-transparent"
+              colors={[
+                [71, 175, 226], // #47afe2
+              ]}
+              opacities={[0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.4, 0.4, 0.4, 1]}
+              dotSize={3}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Radial gradient overlay */}
+      <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50" />
+    </div>
+  );
+}
+
+function EducationSection() {
+
+  const t = useTranslations("About");
+  const education = [
+    t("torosUniversityAssociateProfessorship"),
+    t("haydarpasaGataSpecialist"),
+    t("gulhaneMilitaryMedicalAcademy"),
+    t("tarsusAmericanHighSchool"),
+  ];
+
+  return (
+    <Card className="h-full border-[#47afe2] bg-[#47afe2]/5">
+      <CardHeader>
+        <CardTitle className="text-2xl font-semibold text-[#47afe2]">
+          {t("education")}
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <ul className="list-inside list-disc space-y-2">
+          {education.map((item, index) => (
+            <li key={index} className="text-[#47afe2]">
+              <span className="text-foreground">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </CardContent>
+    </Card>
+  );
+}
+
+function CoursesSection() {
+  const t = useTranslations("About");
+  const courses = {
+    [t("internationalCourses")]: [
+      t("musculoskeletalUltrasoundCourse"),
+      t("zimmerBiometCourse"),
+      t("wakeForestMicrosurgeryCourse"),
+      t("makoplastyHipCourse"),
+      t("makoplastyKneeCourse"),
+      t("aanaHipArthroscopyCourse"),
+      t("arthrexKneeCourse"),
+      t("aoPediatricTraumaCourse"),
+      t("aoHandCourse"),
+      t("ircadShoulderCourse"),
+      t("ircadKneeCourse"),
+      t("aoDavosCourse"),
+    ],
+    [t("nationalCourses")]: [
+      t("expertWitnessTraining"),
+      t("stemCellCourse"),
+      t("kinesioTapingCourse"),
+      t("advancedLifeSupportCourse"),
+      t("footAndAnkleSurgeryCourse"),
+      t("basicAdvancedLifeSupportCourse"),
+      t("intramedullaryNailingCourse"),
+      t("gulhaneArthroscopicSurgeryCourse"),
+      t("firstFootAndAnkleSurgeryCourse"),
+      t("advancedArthroscopicSurgeryCourse"),
+      t("ankleBasicArthroscopyCourse"),
+      t("advancedIlizarovCourse"),
+      t("gulhaneMicrosurgeryCourse"),
+      t("infantileHipUltrasonographyCourse"),
+      t("basicIlizarovCourse"),
+      t("pediatricOrthopedicsCourse"),
+    ],
+    [t("certifiedTrainingPrograms")]: [
+      t("acupunctureCertifiedProgram"),
+      t("phytotherapyCertifiedProgram"),
+      t("cuppingCertifiedProgram"),
+      t("mesotherapyCertifiedProgram"),
+      t("ozoneCertifiedProgram"),
+      t("prolotherapyCertifiedProgram"),
+    ],
+  };
+
+  return (
+    <Card className="h-full bg-[#47afe2]/10">
+      <CardHeader>
+        <CardTitle className="text-2xl font-semibold text-[#47afe2]">
+          {t("coursesAndTraining")}
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Accordion type="single" collapsible className="w-full">
+          {Object.entries(courses).map(([category, courseList], index) => (
+            <AccordionItem value={`item-${index}`} key={index}>
+              <AccordionTrigger className="text-xl font-semibold text-[#47afe2]">
+                {category}
+              </AccordionTrigger>
+              <AccordionContent>
+                <ul className="list-inside list-disc space-y-1">
+                  {courseList.map((course, courseIndex) => (
+                    <li key={courseIndex}>{course}</li>
+                  ))}
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </CardContent>
+    </Card>
+  );
+}
+
+function AchievementsSection() {
+  const t = useTranslations("About");
+  const awards = [
+    t("turkishOrthopedicsAward2017"),
+    t("turkishOrthopedicsAward2014"),
+    t("turkishOrthopedicsAward2011"),
+    t("sicotAward2007"),
+  ];
+
+  return (
+    <Card className="h-full bg-gradient-to-tl from-[#47afe2] via-[#ffd700]/20 to-[#47afe2]/10 shadow-lg hover:shadow-[#ffd700]/20">
+      <CardHeader className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#ffd700]/20 via-transparent to-transparent" />
+        <CardTitle className="relative text-2xl font-semibold ">
+          {t("awards")} 
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="item-0">
+            <AccordionTrigger className="text-xl font-semibold  hover:text-[#ffd700]">
+              {t("awards")}
+            </AccordionTrigger>
+            <AccordionContent className="">
+              <ul className="list-inside list-[square] space-y-2 marker:text-[#ffd700]">
+                {awards.map((award, index) => (
+                  <li key={index} className="hover:text-[#ffd700]/90 transition-colors">
+                    {award}
+                  </li>
+                ))}
+              </ul>
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-1">
+            <AccordionTrigger className="text-xl font-semibold  hover:text-[#ffd700]">
+              {t("publications")}
+            </AccordionTrigger>
+            <AccordionContent className="">
+              <p>{t("clickToSeePublications")}</p>
+              <a
+                href="#"
+                className="mt-2 inline-block text-[#ffd700] hover:text-[#ffd700]/80 hover:underline transition-colors"
+              >
+                {t("viewCompleteListOfPublications")}
+              </a>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </CardContent>
+    </Card>
+  );
+}

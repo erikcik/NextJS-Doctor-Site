@@ -1,21 +1,21 @@
 "use client";
 import Image from "next/image";
 import { Button } from "~/components/ui/button";
-import { useRouter } from "next/navigation";
 import { Link } from "~/i18n/routing";
 import { BackgroundBeams } from "~/components/ui/background-beams";
 import { CardSpotlight } from "~/components/ui/card-spotlight";
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { useTranslations } from 'next-intl';
 
 export function AboutSection() {
-  const router = useRouter();
+  const t = useTranslations('AboutSection');
+
   return (
     <section className="container relative mx-auto px-4 py-12">
       <BackgroundBeams />
       <div className="relative z-10 mx-auto max-w-6xl">
-        <h2 className="mb-16 text-center text-4xl font-bold text-primary">
-          About Dr. Cüneyt Tamam
+        <h2 className="mb-16 text-center text-4xl font-bold text-primary font-display">
+          {t('title')}
         </h2>
 
         <div className="grid items-start gap-12 lg:grid-cols-12">
@@ -33,7 +33,7 @@ export function AboutSection() {
             <div className="relative aspect-[4/3] overflow-hidden rounded-xl shadow-xl">
               <Image
                 src="https://drcuneyttamam.com/wp-content/uploads/2023/02/hakkimda.png"
-                alt="Dr. Name - Orthopedics and Traumatology Specialist"
+                alt="Dr. Cüneyt Tamam - Orthopedics and Traumatology Specialist"
                 fill
                 objectFit="contain"
                 className="object-cover object-center"
@@ -55,12 +55,8 @@ export function AboutSection() {
               }}
             >
               <CardSpotlight className="mb-4">
-                <p className="text-lg leading-relaxed ">
-                  Born in Mersin in 1971, I have dedicated over two decades to the
-                  field of Orthopedics and Traumatology. My career has been focused
-                  on integrating traditional medical practices with cutting-edge
-                  complementary therapies to provide comprehensive care for my
-                  patients.
+                <p className="text-lg leading-relaxed">
+                  {t('introduction')}
                 </p>
               </CardSpotlight>
             </motion.div>
@@ -80,42 +76,30 @@ export function AboutSection() {
               {/* Education */}
               <CardSpotlight>
                 <h3 className="mb-4 text-2xl font-semibold text-primary">
-                  Education
+                  {t('education.title')}
                 </h3>
                 <ul className="space-y-3 text-gray-600">
-                  <li className="flex items-start">
-                    <span className="mr-2 text-primary">•</span>
-                    Tarsus American High School (1989)
-                  </li>
-                  <li className="flex items-start">
-                    <span className="mr-2 text-primary">•</span>
-                    Hacettepe University Faculty of Medicine
-                  </li>
-                  <li className="flex items-start">
-                    <span className="mr-2 text-primary">•</span>
-                    Gülhane Military Medical Academy (1995)
-                  </li>
+                  {t.raw('education.items').map((item: string, index: number) => (
+                    <li key={index} className="flex items-start">
+                      <span className="mr-2 text-primary">•</span>
+                      {item}
+                    </li>
+                  ))}
                 </ul>
               </CardSpotlight>
 
               {/* Specialization */}
               <CardSpotlight>
                 <h3 className="mb-4 text-2xl font-semibold text-primary">
-                  Specialization
+                  {t('specialization.title')}
                 </h3>
                 <ul className="space-y-3 text-gray-600">
-                  <li className="flex items-start">
-                    <span className="mr-2 text-primary">•</span>
-                    GATA Haydarpaşa Training Hospital
-                  </li>
-                  <li className="flex items-start">
-                    <span className="mr-2 text-primary">•</span>
-                    Orthopedics and Traumatology Specialist (2001)
-                  </li>
-                  <li className="flex items-start">
-                    <span className="mr-2 text-primary">•</span>
-                    Complementary Medicine Expert
-                  </li>
+                  {t.raw('specialization.items').map((item: string, index: number) => (
+                    <li key={index} className="flex items-start">
+                      <span className="mr-2 text-primary">•</span>
+                      {item}
+                    </li>
+                  ))}
                 </ul>
               </CardSpotlight>
             </motion.div>
@@ -133,21 +117,15 @@ export function AboutSection() {
             >
               <CardSpotlight className="mt-4">
                 <h3 className="mb-4 text-2xl font-semibold text-primary">
-                  Additional Certifications
+                  {t('certifications.title')}
                 </h3>
                 <ul className="space-y-3 text-gray-600">
-                  <li className="flex items-start">
-                    <span className="mr-2 text-primary">•</span>
-                    Neural Therapy Certification
-                  </li>
-                  <li className="flex items-start">
-                    <span className="mr-2 text-primary">•</span>
-                    Advanced Acupuncture Training
-                  </li>
-                  <li className="flex items-start">
-                    <span className="mr-2 text-primary">•</span>
-                    Prolotherapy Specialist Certification
-                  </li>
+                  {t.raw('certifications.items').map((item: string, index: number) => (
+                    <li key={index} className="flex items-start">
+                      <span className="mr-2 text-primary">•</span>
+                      {item}
+                    </li>
+                  ))}
                 </ul>
               </CardSpotlight>
             </motion.div>
@@ -165,7 +143,7 @@ export function AboutSection() {
             >
               <Link href="/about" className="w-full">
                 <button className="w-full translate-y-4 rounded-lg bg-primary px-8 py-3 text-white transition-colors hover:bg-primary/90 md:w-auto">
-                  More Details
+                  {t('moreDetails')}
                 </button>
               </Link>
             </motion.div>

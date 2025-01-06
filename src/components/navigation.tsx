@@ -2,9 +2,19 @@
 import Image from "next/image"
 import { useState, useEffect } from "react"
 import { Link } from "~/i18n/routing"
-import { SiteHeader } from "./site-header"
+import { useTranslations } from 'next-intl'
+
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
+  const t = useTranslations('Navigation')
+
+  const navigationItems = [
+    { key: "about", href: "/about" },
+    { key: "orthopedics", href: "/orthopedics" },
+    { key: "complementary_medicine", href: "/complementary-medicine" },
+    { key: "blog", href: "/blog" },
+    { key: "contact", href: "/contact" }
+  ]
 
   // Prevent scrolling when mobile menu is open
   useEffect(() => {
@@ -28,13 +38,13 @@ export function Navigation() {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
-          {["About", "Orthopedics", "Complementary Medicine", "Blog", "Contact"].map((item) => (
+          {navigationItems.map(({ key, href }) => (
             <Link
-              key={item}
-              href={`/${item.toLowerCase().replace(" ", "-")}`}
+              key={key}
+              href={href}
               className="relative py-2 text-gray-700 hover:text-primary transition-colors duration-300 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full"
             >
-              {item}
+              {t(key)}
             </Link>
           ))}
         </div>
@@ -57,14 +67,14 @@ export function Navigation() {
           } md:hidden`}
         >
           <div className="flex flex-col items-center justify-center h-full space-y-8 text-xl">
-            {["About", "Orthopedics", "Complementary Medicine", "Blog", "Contact"].map((item) => (
+            {navigationItems.map(({ key, href }) => (
               <Link
-                key={item}
-                href={`/${item.toLowerCase().replace(" ", "-")}`}
+                key={key}
+                href={href}
                 className="text-gray-700 hover:text-primary transition-colors duration-300"
                 onClick={() => setIsOpen(false)}
               >
-                {item}
+                {t(key)}
               </Link>
             ))}
           </div>

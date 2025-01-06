@@ -8,9 +8,17 @@ export default {
   	extend: {
   		fontFamily: {
   			sans: [
-  				'var(--font-geist-sans)',
+  				'Inter',
                     ...fontFamily.sans
-                ]
+                ],
+  			display: [
+  				'Plus Jakarta Sans',
+                    ...fontFamily.sans
+                ],
+  			body: [
+  				'Source Sans Pro',
+                    ...fontFamily.sans
+                ],
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

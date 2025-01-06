@@ -29,8 +29,8 @@ export function BlogSection() {
     <section className="bg-gray-50 py-16">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-bold">Blog</h2>
-          <Button variant="outline">More</Button>
+          <h2 className="text-3xl font-bold font-display">Blog</h2>
+          <Button variant="outline" className="text-lg px-6 py-2">More</Button>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogPosts.map((post, index) => (
@@ -46,7 +46,7 @@ export function BlogSection() {
                     />
                   </div>
                   <div className="p-8 flex-1 flex flex-col">
-                    <h3 className="text-2xl font-bold text-white mb-4">{post.title}</h3>
+                    <h3 className="text-2xl font-bold text-white mb-4 font-body">{post.title}</h3>
                     <p className="text-base text-gray-300 mb-6 flex-1 leading-relaxed">
                       {post.content}
                     </p>

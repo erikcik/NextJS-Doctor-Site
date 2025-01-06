@@ -1,14 +1,24 @@
 import "~/styles/globals.css";
-
-import { GeistSans } from "geist/font/sans";
-import { type Metadata } from "next";
-
 import { TRPCReactProvider } from "~/trpc/react";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "~/i18n/routing";
 import { NextIntlClientProvider } from "next-intl";
 import { Toaster } from "~/components/ui/toaster";
+import { Inter, Plus_Jakarta_Sans } from 'next/font/google'
+
+const inter = Inter({ 
+  subsets: ['latin'],
+  variable: '--font-inter',
+})
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-jakarta',
+})
+
+import { type Metadata } from "next";
+
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -20,8 +30,9 @@ export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode;}>) {
   return (
-    <html className={GeistSans.variable}>
+    <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
       <body className="min-h-screen ">
+        
         <TRPCReactProvider>
           {children}
           <Toaster />

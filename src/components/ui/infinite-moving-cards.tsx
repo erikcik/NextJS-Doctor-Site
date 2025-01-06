@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "~/lib/utils";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export const InfiniteMovingCards = ({
   items,
@@ -20,8 +20,8 @@ export const InfiniteMovingCards = ({
   pauseOnHover?: boolean;
   className?: string;
 }) => {
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const scrollerRef = React.useRef<HTMLUListElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const scrollerRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
     addAnimation();
@@ -87,7 +87,7 @@ export const InfiniteMovingCards = ({
       >
         {items.map((item, idx) => (
           <li
-            className="w-[350px] max-w-full relative rounded-2xl border-0 flex-shrink-0 px-8 py-16 md:w-[450px] shadow-xl"
+            className="w-[280px] md:w-[350px] lg:w-[450px] max-w-full relative rounded-2xl border-0 flex-shrink-0 px-4 md:px-8 py-8 md:py-16 shadow-xl"
             style={{
               background: "linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.06))",
               backdropFilter: "blur(10px)",
@@ -103,7 +103,7 @@ export const InfiniteMovingCards = ({
                 {item.quote}
               </span>
               <div className="relative z-20 mt-8 flex flex-row items-center">
-                <div className="h-12 w-12 rounded-full bg-gradient-to-br from-purple-400 to-blue-500 mr-4 flex items-center justify-center text-white font-bold text-lg">
+                <div className="h-12 w-12 font-body rounded-full bg-gradient-to-br from-purple-400 to-blue-500 mr-4 flex items-center justify-center text-white font-bold text-lg">
                   {item.name[0]}
                 </div>
                 <span className="flex flex-col gap-1">

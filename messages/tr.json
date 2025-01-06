@@ -20,5 +20,153 @@
     "backHome": "Ana Sayfaya Dön"
   },
   "hello": "Merhaba",
-  "welcome": "Uygulamamıza hoş geldiniz"
+  "welcome": "Uygulamamıza hoş geldiniz",
+  "Navigation": {
+    "about": "Hakkında",
+    "orthopedics": "Ortopedi",
+    "complementary_medicine": "Tamamlayıcı Tıp",
+    "blog": "Blog",
+    "contact": "İletişim"
+  },
+  "Carousel": {
+    "slides": {
+      "orthopedic": {
+        "title": "İleri Ortopedik Bakım",
+        "subtitle": "İhtiyaçlarınıza göre özelleştirilmiş en son ortopedik tedavileri deneyimleyin. Kapsamlı yaklaşımımız, eklem ağrısı, spor yaralanmaları ve kas-iskelet sistemi rahatsızlıklarını ele almak için ileri teknolojiyi uzman bakımıyla birleştirerek hareketliliğinizi yeniden kazanmanıza ve yaşam kalitenizi artırmanıza yardımcı olur."
+      },
+      "complementary": {
+        "title": "Tamamlayıcı Tıp",
+        "subtitle": "Geleneksel şifa bilgeliği ile modern tıp biliminin mükemmel uyumunu keşfedin. Bütünleyici yaklaşımımız, kanıta dayalı tamamlayıcı terapileri geleneksel tedavilerle birleştirerek, hem semptomları hem de kök nedenleri ele alan bütünsel bir sağlık yolu sunar."
+      },
+      "personalized": {
+        "title": "Kişiselleştirilmiş Tedavi Planları",
+        "subtitle": "Sağlık yolculuğunuz benzersizdir ve tedaviniz de öyle olmalıdır. Özel durumlarınızı, yaşam tarzınızı ve hedeflerinizi göz önünde bulundurarak kapsamlı, kişiselleştirilmiş bakım planları geliştiriyoruz. Hasta odaklı yaklaşımımız, durumunuz için en etkili ve uygun bakımı almanızı sağlar."
+      }
+    },
+    "learnMore": "Daha Fazla Bilgi"
+  },
+  "AboutSection": {
+    "title": "Dr. Cüneyt Tamam Hakkında",
+    "introduction": "1971 yılında Mersin'de doğdum ve 20 yılı aşkın süredir Ortopedi ve Travmatoloji alanına kendimi adadım. Kariyerim, hastalarıma kapsamlı bakım sağlamak için geleneksel tıp uygulamalarını en son tamamlayıcı tedavilerle bütünleştirmeye odaklandı.",
+    "education": {
+      "title": "Eğitim",
+      "items": [
+        "Tarsus Amerikan Lisesi (1989)",
+        "Hacettepe Üniversitesi Tıp Fakültesi",
+        "Gülhane Askeri Tıp Akademisi (1995)"
+      ]
+    },
+    "specialization": {
+      "title": "Uzmanlık",
+      "items": [
+        "GATA Haydarpaşa Eğitim Hastanesi",
+        "Ortopedi ve Travmatoloji Uzmanı (2001)",
+        "Tamamlayıcı Tıp Uzmanı"
+      ]
+    },
+    "certifications": {
+      "title": "Ek Sertifikalar",
+      "items": [
+        "Nöral Terapi Sertifikası",
+        "İleri Akupunktur Eğitimi",
+        "Proloterapi Uzman Sertifikası"
+      ]
+    },
+    "moreDetails": "Daha Fazla Bilgi"
+  },
+  "Testimonials": {
+    "title": "Hastalarımız Ne Diyor?",
+    "items": [
+      {
+        "quote": "3 haftadır düzenli olarak bir doktora gidiyorum, bir abi, bir arkadaş, tüm samimiyetimle söyleyebilirim ki Mersin'in en iyi doktorlarından biri, vizyonu önce sağlık, sonra para, ilgi ve alakanız için çok teşekkür ederim (fonksiyonel tıp)",
+        "name": "Canan Yılmaz",
+        "date": "1 yıl önce"
+      },
+      {
+        "quote": "Yıllarca süren kronik sırt ağrısı ve çeşitli tedavileri denemeden sonra, sonunda Dr. Tamam ile rahatlama buldum. Yaklaşımı farklıydı - yaşam tarzımı, çalışma alışkanlıklarımı ve tıbbi geçmişimi anlamak için zaman ayırdı. Geleneksel ortopedik tedavinin tamamlayıcı terapilerle kombinasyonu fark yarattı. 8 ay oldu ve artık torunlarımla tekrar oynayabiliyorum!",
+        "name": "Mehmet Aydın",
+        "date": "6 ay önce"
+      },
+      {
+        "quote": "Başta akupunktura şüpheyle yaklaşıyordum, ancak düzgün iyileşmeyen bir spor yaralanmasından sonra denemeye karar verdim. Dr. Tamam her şeyi çok net açıkladı ve kendimi rahat hissettirdi. Üç seanstan sonra iyileşme dikkat çekiciydi. Bütünsel tedavi yaklaşımı gerçekten işe yarıyor. Artık ağrısız futbol oynayabiliyorum!",
+        "name": "Ali Kaya",
+        "date": "3 ay önce"
+      },
+      {
+        "quote": "Bir araba kazasından sonra, geleneksel tedavilerin çözemediği şiddetli boyun ağrım vardı. Bir arkadaşım Dr. Tamam'ı önerdi ve bu aldığım en iyi tıbbi tavsiyeydi. Nöral terapi seansları ve ortopedi uzmanlığı ile tamamen iyileşmeme yardımcı oldu. Öne çıkan şey, size sadece başka bir hasta değil, aile gibi davranması.",
+        "name": "Zeynep Demir",
+        "date": "2 ay önce"
+      }
+    ]
+  },
+  "About": {
+    "doctorName": "Dr. Cuneyt Tamam",
+    "position": "Toros Üniversitesi'nde Doçent",
+    "specialty": "Ortopedi ve Travmatoloji Uzmanı",
+    "imageAltText": "Dr. Cuneyt Tamam",
+    "aboutTitle": "Hakkımda",
+    "bornInMersin": "1971 yılında Mersin'de doğdum.",
+    "graduatedFromTarsus": "1989 yılında Tarsus Amerikan Lisesi'nden mezun oldum ve eğitimime Gülhane Askeri Tıp Akademisi Tıp Fakültesi'nde devam ettim.",
+    "graduatedFromGulhane": "1996 yılında Gülhane Askeri Tıp Akademisi Tıp Fakültesi'nden mezun oldum. 2003 yılında GATA Haydarpaşa Eğitim Hastanesi Ortopedi ve Travmatoloji Kliniği'nde uzmanlık eğitimimi tamamlayarak ortopedi ve travmatoloji uzmanı olarak çalışmaya başladım.",
+    "interestedInComplementaryMedicine": "2010 yılından itibaren Tamamlayıcı Tıp ile ilgilenmeye başladım. Nöral terapi, proloterapi, akupunktur ve mikrosistem akupunkturu (Kulak, Yamamato Siener) alanlarında eğitimler aldım.",
+    "receivedInternationalNeuralTherapyCertificate": "2013 yılında Uluslararası Tıbbi Nöralterapi Dernekleri Federasyonu'ndan Uluslararası Nöral Terapi sertifikası aldım.",
+    "workedWithProfPoehling": "Türk Silahlı Kuvvetleri'nin farklı hastanelerinde görev yaptıktan sonra, 2012 yılında Kara Kuvvetleri Komutanlığı'ndan aldığım burs ile bir yıl süreyle ABD'de Wake Forest Üniversitesi Tıp Fakültesi'nde artroskopik cerrahi ve robotik cerrahi konusunda Prof. Dr. G. Gary Poehling ile çalışma fırsatı buldum. Wake Forest Üniversitesi'nde mikrocerrahi, artroskopik cerrahi (omuz, diz, kalça ve ayak bileği) ve robotik cerrahi konularında eğitim aldım.",
+    "completedMakoPlastyTraining": "2012 Haziran ayında Ft. Laurdale, Florida'da MAKOplasty (Robotik Diz ve Kalça Protezi) eğitimi aldım.",
+    "workedAtHarvard": "Şubat 2016'da Tbp. Albay rütbesiyle Türk Silahlı Kuvvetleri'nden emekli olduktan sonra, Aralık 2016'ya kadar Harvard Üniversitesi/ Harris Ortopedik Biyomekanik ve Biyomateryaller Laboratuvarı, Massachusetts Genel Hastanesi'nde çalıştım.",
+    "completedCertificatesAtYildirimBeyazit": "Yıldırım Beyazıt Üniversitesi Geleneksel ve Tamamlayıcı Tıp Uygulama ve Araştırma Merkezi'nde Proloterapi, Mezoterapi, Kupa, Ozonterapi, Fitoterapi ve Akupunktur Sertifika programlarını tamamladım.",
+    "currentlyWorkingAtToros": "Halen Toros Üniversitesi'nde öğretim üyesi olarak çalışmaktayım.",
+    "providesHealingInPrivatePractice": "Özel muayenehanemde hastalarıma şifa vermekteyim.",
+    "coursesAttended": "Katıldığı Kurslar",
+    "internationalCourses": "Uluslararası Kurslar",
+    "musculoskeletalUltrasoundCourse": "Musculoskeletal Ultrasound at the Point-of-Care: Diagnostic and Procedural Applications (21 Mayıs 2016, Massachusetts General Hospital, Boston, MA,USA)",
+    "zimmerBiometCourse": "Zimmer Biomet Institute Knee Arthroscopy Instructional Course (20 Mayıs 2016, Atlanta, GA,USA)",
+    "wakeForestMicrosurgeryCourse": "Wake Forest University School of Medicine, Microsurgery Training Course (19 Kasım 2013 NC USA)",
+    "makoplastyHipCourse": "MAKOplasty Hip Clinical Training Program Course (30 Temmuz 2013 Ft. Laurdale,FL USA)",
+    "makoplastyKneeCourse": "MAKOplasty Knee Clinical Training Program Course (29 Temmuz 2013 Ft. Laurdale,FL USA)",
+    "aanaHipArthroscopyCourse": "AANA Hip Arthroscopy Course (16-19 Temmuz 2013 Rosemont, IL USA)",
+    "arthrexKneeCourse": "Arthrex Knee Course (04-05 Mart 2011 Münih, Almanya)",
+    "aoPediatricTraumaCourse": "AO Pediatric Trauma Course (18-19 Nisan 2009 İzmir, Türkiye)",
+    "aoHandCourse": "AO Hand Course (18-22 Haziran 2007 Antalya, Türkiye)",
+    "ircadShoulderCourse": "IRCAD Shoulder Arthroscopy Course (29-30 Kasım 2005 Strasbourg/Fransa)",
+    "ircadKneeCourse": "IRCAD Knee Arthroscopy Course (1-2 Aralık 2005 Strasbourg/Fransa )",
+    "aoDavosCourse": "AO Davos Course Principles of Operative Fracture Treatment (12-17 Aralık 2004 Davos, İsviçre)",
+    "nationalCourses": "Ulusal Kurslar",
+    "expertWitnessTraining": "Bilirkişi Temel Eğitimi (26-29 Eylül 2019, Ankara)",
+    "stemCellCourse": "XXVI Kök Hücre ve Doku Mühendisliği Kursu (10-14 Haziran 2019, Kocaeli)",
+    "kinesioTapingCourse": "Kinesio Taping Basic (KT 1-2) (24-25 Ekim 2015, İzmir)",
+    "advancedLifeSupportCourse": "İleri Yaşam Desteği Kursu (11-15 Nisan 2011, İstanbul)",
+    "footAndAnkleSurgeryCourse": "5. Ayak ve Ayak Bileği Cerrahisi Kursu (18-19 Eylül 2010, İstanbul)",
+    "basicAdvancedLifeSupportCourse": "Temel/İleri Yaşam Desteği Kursu (02-06 Mart 2009, İstanbul)",
+    "intramedullaryNailingCourse": "1. İntramedüller Çivileme Kursu (17-20 Ocak 2008, Çeşme/İzmir)",
+    "gulhaneArthroscopicSurgeryCourse": "Gülhane Askeri Tıp Akademisi Artroskopik Cerrahi Kursu (4-29 Haziran 2007, Ankara)",
+    "firstFootAndAnkleSurgeryCourse": "1. Ayak ve Ayak Bileği Cerrahisi Kursu (23-24 Eylül 2005, İstanbul)",
+    "advancedArthroscopicSurgeryCourse": "8. İleri Artroskopik Cerrahi Kursu (23-25 Haziran 2005, Ankara)",
+    "ankleBasicArthroscopyCourse": "2. Ayak Bileği Temel Artroskopisi Kursu (25-27 Eylül 2003, Antalya)",
+    "advancedIlizarovCourse": "8. İleri İlizarov Kursu (25-27 Nisan 2003, Köyceğiz /Muğla)",
+    "gulhaneMicrosurgeryCourse": "Gülhane Askeri Tıp Akademisi Mikrocerrahi Kursu (28 Nisan -02 Mayıs 2003, Ankara)",
+    "infantileHipUltrasonographyCourse": "9. İnfantil Kalça Ultrasonografisi Kursu (28 Şubat 2003, Bursa)",
+    "basicIlizarovCourse": "8. Temel İlizarov Kursu (11-12 Nisan 2002, Adana)",
+    "pediatricOrthopedicsCourse": "3. Pediatrik Ortopedi Kursu (13-15 Ekim 2000, İstanbul)",
+    "certifiedTrainingPrograms": "Sertifikalı Eğitim Programları",
+    "acupunctureCertifiedProgram": "AKUPUNKTUR SERTİFİKALI EĞİTİM PROGRAMI – Ankara Yıldırım Beyazıt Üniversitesi Geleneksel ve Tamamlayıcı Tıp Uygulama ve Araştırma Merkezi",
+    "phytotherapyCertifiedProgram": "FİTOTERAPİ SERTİFİKALI EĞİTİM PROGRAMI – Ankara Yıldırım Beyazıt Üniversitesi Geleneksel ve Tamamlayıcı Tıp Uygulama ve Araştırma Merkezi",
+    "cuppingCertifiedProgram": "KUPA UYGULAMASI SERTİFİKALI EĞİTİM PROGRAMI – KAYSERİ EĞİTİM VE ARAŞTIRMA HASTANESİ",
+    "mesotherapyCertifiedProgram": "MEZOTERAPİ SERTİFİKALI EĞİTİM PROGRAMI – Ankara Yıldırım Beyazıt Üniversitesi Geleneksel ve Tamamlayıcı Tıp Uygulama ve Araştırma Merkezi",
+    "ozoneCertifiedProgram": "OZON UYGULAMASI SERTİFİKALI EĞİTİM PROGRAMI – Ankara Yıldırım Beyazıt Üniversitesi Geleneksel ve Tamamlayıcı Tıp Uygulama ve Araştırma Merkezi",
+    "prolotherapyCertifiedProgram": "PROLOTERAPİ SERTİFİKALI EĞİTİM PROGRAMI – Ankara Yıldırım Beyazıt Üniversitesi Geleneksel ve Tamamlayıcı Tıp Uygulama ve Araştırma Merkezi",
+    "education": "Eğitim",
+    "torosUniversityAssociateProfessorship": "Toros Üniversitesi – Doçentlik – Mayıs 2019",
+    "haydarpasaGataSpecialist": "Haydarpaşa GATA Eğitim Hastanesi – Ortopedi ve Travmatoloji Uzmanı – Ekim 1999-Mayıs 2003",
+    "gulhaneMilitaryMedicalAcademy": "Gülhane Askeri Tıp Akademisi Tıp Fakültesi – MD – Ekim 1989 - Ağustos 1996",
+    "tarsusAmericanHighSchool": "Tarsus Amerikan Lisesi -1982-1989",
+    "awards": "Ödüller",
+    "turkishOrthopedicsAward2017": "2017 – Türk Ortopedi ve Travmatoloji Birliği Kemik ve Yumuşak Doku Tümörleri En İyi Sözlü Sunum Ödülü – 27. Ulusal Türk Ortopedi ve Travmatoloji Kongresi – Kemik ve Yumuşak Doku Sarkomlarında FDG PET/BT'de Maksimum Standartize Tutulum Değerinin Prognostik Önemi",
+    "turkishOrthopedicsAward2014": "2014 – Türk Ortopedi ve Travmatoloji Birliği Ayak ve Ayak Bileği En İyi Poster Ödülü – 24. Ulusal Türk Ortopedi ve Travmatoloji Kongresi – Talus'un Osteokondral Lezyonlarında Bilgisayarlı Tomografi ile Kombine Edilmiş Tek Foton Emisyonlu Bilgisayarlı Tomografinin Tanısal Değeri Üzerindeki Etkisi",
+    "turkishOrthopedicsAward2011": "2011 – Türk Ortopedi ve Travmatoloji Birliği Genel Ortopedi En İyi Sözlü Sunum Ödülü – 22. Ulusal Türk Ortopedi ve Travmatoloji Kongresi – Kronik Egzersiz Kompartman Sendromunda Dinamik Doppler Ultrasonun Tanısal Verimliliği",
+    "sicotAward2007": "2007 – Poster Sunum Ödülü 2. – 5. SİCOT/SİROT Yıllık Uluslararası Konferansı – Ayak Aksesuar Kemiklerinin İnsidansı ve Klinik Önemi",
+    "publications": "Yayınlar",
+    "clickToSeePublications": "Yayınları Görmek İçin Tıklayın",
+    "viewCompleteListOfPublications": "Tüm Yayınları Görüntüle",
+    "coursesAndTraining": "Kurslar ve Eğitimler"
+  }
 } 

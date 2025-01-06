@@ -10,13 +10,11 @@ import { Link } from "~/i18n/routing";
 import { motion } from "framer-motion";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import Footer from "~/components/footer";
 
 export default function Home() {
   return (
     <>
-      <SiteHeader />
-
-      <Navigation />
 
       <div className="min-h-screen">
         <CarouselComponent />
@@ -39,7 +37,7 @@ export default function Home() {
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
-                className="mb-12 text-center text-4xl font-bold text-primary"
+                className="mb-12 text-center text-4xl font-bold text-primary font-display"
               >
                 Orthopedics and Traumatology
               </motion.h2>
@@ -116,7 +114,7 @@ export default function Home() {
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
-                className="mb-12 text-center text-4xl font-bold text-primary"
+                className="mb-12 text-center text-4xl font-bold text-primary font-display"
               >
                 Complementary Medicine
               </motion.h2>
@@ -179,8 +177,8 @@ export default function Home() {
           </motion.section>
 
           <TestimonialsAnnouncements />
-          <section className="mx-auto w-full bg-[#47afe2] bg-opacity-50 px-48 py-8 ">
-            <h2 className="mb-8 text-3xl font-bold">Announcements</h2>
+          <section className="mx-auto w-full bg-[#47afe2] bg-opacity-50 lg:px-48 px-4 mt-12 py-8 ">
+            <h2 className="mb-8 text-3xl font-bold font-display">Announcements</h2>
             <Card className="max-w-2xl">
               <CardHeader >
                 <CardTitle className="text-xl text-red-600">
@@ -216,100 +214,6 @@ export default function Home() {
           <BlogSection />
         </main>
 
-        <footer className="bg-gray-900 py-12 text-white">
-          <div className="container mx-auto px-4">
-            <div className="grid gap-8 md:grid-cols-4">
-              <div>
-                <h3 className="mb-4 text-xl font-bold text-secondary">
-                  About Dr. Name
-                </h3>
-                <p className="text-sm text-gray-400">
-                  Orthopedics and Traumatology Specialist, Complementary
-                  Medicine Practitioner
-                </p>
-              </div>
-              <div>
-                <h3 className="mb-4 text-xl font-bold text-secondary">
-                  Quick Links
-                </h3>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>
-                    <a
-                      href="#"
-                      className="hover:text-tertiary transition-colors"
-                    >
-                      Blog
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="hover:text-tertiary transition-colors"
-                    >
-                      Privacy Policy
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="hover:text-tertiary transition-colors"
-                    >
-                      Terms of Service
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="mb-4 text-xl font-bold text-secondary">
-                  Recent Posts
-                </h3>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>
-                    <a
-                      href="#"
-                      className="hover:text-tertiary transition-colors"
-                    >
-                      Basic Acupuncture Points
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="hover:text-tertiary transition-colors"
-                    >
-                      Psychoneuro Immunology
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="hover:text-tertiary transition-colors"
-                    >
-                      Advances in Orthopedic Care
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="mb-4 text-xl font-bold text-secondary">
-                  Contact
-                </h3>
-                <address className="text-sm not-italic text-gray-400">
-                  123 Medical Plaza, Suite 100
-                  <br />
-                  Cityville, State 12345
-                  <br />
-                  Phone: (+90) 224 453 31 53
-                  <br />
-                  Email: info@drname.com
-                </address>
-              </div>
-            </div>
-            <div className="mt-8 border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
-              © {new Date().getFullYear()} Dr. Name. All rights reserved.
-            </div>
-          </div>
-        </footer>
       </div>
     </>
   );
