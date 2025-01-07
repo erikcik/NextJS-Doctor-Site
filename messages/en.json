@@ -168,5 +168,73 @@
         "clickToSeePublications": "Click to See Publications",
         "viewCompleteListOfPublications": "View Complete List of Publications",
         "coursesAndTraining": "Courses and Training"
+  },
+  "MarkdownEditor": {
+    "tooltips": {
+      "undo": "Undo",
+      "redo": "Redo",
+      "bold": "Bold",
+      "italic": "Italic",
+      "h1": "Heading 1",
+      "h2": "Heading 2",
+      "h3": "Heading 3",
+      "h4": "Heading 4",
+      "h5": "Heading 5",
+      "h6": "Heading 6",
+      "bulletList": "Bullet List",
+      "image": "Insert Image"
+    }
+  },
+  "ContactInfo": {
+    "title": "Contact Information",
+    "address": {
+      "label": "Address",
+      "line1": "Hürriyet Mah. 1792 Sok",
+      "line2": "Özgüzel Apt. K3 D6 Yenişehir",
+      "line3": "Mersin, Turkey"
+    },
+    "phone": {
+      "label": "Phone",
+      "number1": "(+90) 324 422 91 52",
+      "number2": "(+90) 543 599 85 69"
+    },
+    "email": {
+      "label": "Email",
+      "address": "info@cuneyttamam.com"
+    },
+    "hours": {
+      "label": "Working Hours",
+      "weekdays": "Monday - Friday: 9:00 AM - 5:00 PM",
+      "saturday": "Saturday: 9:00 AM - 1:00 PM",
+      "sunday": "Sunday: Closed"
+    }
+  },
+  "ContactPage": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch with us for appointments and inquiries"
+  },
+  "Footer": {
+    "about": {
+      "title": "About Me",
+      "description": "Orthopedics and Traumatology Specialist, Complementary Medicine Practitioner, Faculty Member"
+    },
+    "corporate": {
+      "title": "Corporate",
+      "about": "About",
+      "blog": "Blog",
+      "contact": "Contact",
+      "privacy": "Privacy Policy"
+    },
+    "blog": {
+      "title": "Blog",
+      "acupuncture": "Basic Acupuncture Points",
+      "psychoneuro": "Psychoneuro Immunology"
+    },
+    "contact": {
+      "title": "Contact",
+      "address": "Address: Hürriyet Mah. 1792 Sok Özgüzel Apt. K3 D6 Yenişehir / Mersin",
+      "phone": "Phone: +90 543 599 85 69",
+      "email": "Email: info@cuneyttamam.com"
+    }
   }
 } 

@@ -1,24 +1,19 @@
 import "~/styles/globals.css";
-import { TRPCReactProvider } from "~/trpc/react";
-import { getMessages } from "next-intl/server";
-import { notFound } from "next/navigation";
-import { routing } from "~/i18n/routing";
-import { NextIntlClientProvider } from "next-intl";
 import { Toaster } from "~/components/ui/toaster";
-import { Inter, Plus_Jakarta_Sans } from 'next/font/google'
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import "@uploadthing/react/styles.css";
 
-const inter = Inter({ 
-  subsets: ['latin'],
-  variable: '--font-inter',
-})
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
 const jakarta = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  variable: '--font-jakarta',
-})
+  subsets: ["latin"],
+  variable: "--font-jakarta",
+});
 
 import { type Metadata } from "next";
-
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -28,15 +23,12 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode;}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
-      <body className="min-h-screen ">
-        
-        <TRPCReactProvider>
-          {children}
-          <Toaster />
-        </TRPCReactProvider>
+      <body className="min-h-screen">
+        {children}
+        <Toaster />
       </body>
     </html>
   );

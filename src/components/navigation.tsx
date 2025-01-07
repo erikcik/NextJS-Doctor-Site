@@ -16,7 +16,17 @@ export function Navigation() {
     { key: "contact", href: "/contact" }
   ]
 
-  // Prevent scrolling when mobile menu is open
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsOpen(false)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden'
@@ -29,29 +39,33 @@ export function Navigation() {
   }, [isOpen])
 
   return (
-    
     <nav className="top-0 w-full border-b bg-white shadow-sm z-[100]">
       <div className="container mx-auto flex justify-between items-center py-4 px-4">
         <Link href="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
-          <Image src="https://drcuneyttamam.com/wp-content/uploads/2023/03/AnyConv.com__DRCT_-LOGO-810X197-2.png" alt="Logo" width={300} height={100} />
+          <Image 
+            src="https://drcuneyttamam.com/wp-content/uploads/2023/03/AnyConv.com__DRCT_-LOGO-810X197-2.png" 
+            alt="Logo" 
+            width={300} 
+            height={100} 
+          />
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="desktop-nav items-center space-x-8">
           {navigationItems.map(({ key, href }) => (
             <Link
               key={key}
               href={href}
-              className="relative py-2 text-gray-700 hover:text-primary transition-colors duration-300 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full"
+              className="relative py-2 text-gray-700 hover:text-primary transition-colors duration-300 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
             >
               {t(key)}
             </Link>
           ))}
         </div>
 
-        {/* Mobile Hamburger Button */}
+        {/* Mobile Navigation Button */}
         <button
-          className="md:hidden flex flex-col space-y-1.5 z-[110]"
+          className="mobile-nav-button"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
@@ -61,17 +75,13 @@ export function Navigation() {
         </button>
 
         {/* Mobile Menu */}
-        <div 
-          className={`fixed inset-0 bg-white z-[105] transform transition-transform duration-300 ease-in-out ${
-            isOpen ? 'translate-x-0' : 'translate-x-full'
-          } md:hidden`}
-        >
+        <div className={`mobile-menu ${isOpen ? 'open' : ''}`}>
           <div className="flex flex-col items-center justify-center h-full space-y-8 text-xl">
             {navigationItems.map(({ key, href }) => (
               <Link
                 key={key}
                 href={href}
-                className="text-gray-700 hover:text-primary transition-colors duration-300"
+                className="relative text-gray-700 hover:text-primary transition-colors duration-300 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
                 onClick={() => setIsOpen(false)}
               >
                 {t(key)}

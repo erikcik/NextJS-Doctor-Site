@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl'
 import { SiteHeader } from "@/components/site-header"
 import { Navigation } from "@/components/navigation"
 import { ContactForm } from "@/components/contact-form"
@@ -6,17 +7,17 @@ import { GoogleMap } from "@/components/google-map"
 import { Toaster } from "~/components/ui/toaster"
 
 export default function ContactPage() {
+  const t = useTranslations()
+
   return (
     <div className="min-h-screen">
-
-      
       <main className="container mx-auto px-4 py-12">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-[#47afe2] mb-4 font-display">
-            Contact Us
+            {t('ContactPage.title')}
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-body">
-            Get in touch with us for appointments and inquiries
+            {t('ContactPage.subtitle')}
           </p>
         </div>
 
@@ -27,7 +28,6 @@ export default function ContactPage() {
           <ContactForm />
           <ContactInfo />
         </div>
-
       </main>
 
       <Toaster />

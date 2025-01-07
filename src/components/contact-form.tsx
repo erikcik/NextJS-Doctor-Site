@@ -39,8 +39,18 @@ export function ContactForm() {
     });
     setIsSubmitting(true);
     try {
-      // Here you would typically send the data to your backend
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API call
+      const response = await fetch('/api/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send email');
+      }
+
       toast({
         title: "Success!",
         description: "Your message has been sent. We'll get back to you soon.",
@@ -49,8 +59,7 @@ export function ContactForm() {
     } catch (error) {
       toast({
         title: "Error",
-        description:
-          "There was a problem sending your message. Please try again.",
+        description: "There was a problem sending your message. Please try again.",
         variant: "destructive",
       });
     } finally {

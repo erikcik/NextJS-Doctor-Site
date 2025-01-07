@@ -167,6 +167,98 @@
     "publications": "Yayınlar",
     "clickToSeePublications": "Yayınları Görmek İçin Tıklayın",
     "viewCompleteListOfPublications": "Tüm Yayınları Görüntüle",
-    "coursesAndTraining": "Kurslar ve Eğitimler"
+    "coursesAndTraining": "Kurslar ve Eğitimler",
+    "ContactInfo": {
+      "title": "İletişim Bilgileri",
+      "address": {
+        "label": "Adres",
+        "line1": "Hürriyet Mah. 1792 Sok",
+        "line2": "Özgüzel Apt. K3 D6 Yenişehir",
+        "line3": "Mersin, Türkiye"
+      },
+      "phone": {
+        "label": "Telefon",
+        "number1": "(+90) 324 422 91 52",
+        "number2": "(+90) 543 599 85 69"
+      },
+      "email": {
+        "label": "E-posta",
+        "address": "info@cuneyttamam.com"
+      },
+      "hours": {
+        "label": "Çalışma Saatleri",
+        "weekdays": "Pazartesi - Cuma: 09:00 - 17:00",
+        "saturday": "Cumartesi: 09:00 - 13:00",
+        "sunday": "Pazar: Kapalı"
+      }
+    }
+  },
+  "MarkdownEditor": {
+    "tooltips": {
+      "undo": "Geri Al",
+      "redo": "İleri Al",
+      "bold": "Kalın",
+      "italic": "İtalik",
+      "h1": "Başlık 1",
+      "h2": "Başlık 2",
+      "h3": "Başlık 3",
+      "h4": "Başlık 4",
+      "h5": "Başlık 5",
+      "h6": "Başlık 6",
+      "bulletList": "Madde İşaretli Liste",
+      "image": "Resim Ekle"
+    }
+  },
+  "ContactInfo": {
+    "title": "İletişim Bilgileri",
+    "address": {
+      "label": "Adres",
+      "line1": "Hürriyet Mah. 1792 Sok",
+      "line2": "Özgüzel Apt. K3 D6 Yenişehir",
+      "line3": "Mersin, Türkiye"
+    },
+    "phone": {
+      "label": "Telefon",
+      "number1": "(+90) 324 422 91 52",
+      "number2": "(+90) 543 599 85 69"
+    },
+    "email": {
+      "label": "E-posta",
+      "address": "info@cuneyttamam.com"
+    },
+    "hours": {
+      "label": "Çalışma Saatleri",
+      "weekdays": "Pazartesi - Cuma: 09:00 - 17:00",
+      "saturday": "Cumartesi: 09:00 - 13:00",
+      "sunday": "Pazar: Kapalı"
+    }
+  },
+  "ContactPage": {
+    "title": "İletişim",
+    "subtitle": "Randevu ve sorularınız için bizimle iletişime geçin"
+  },
+  "Footer": {
+    "about": {
+      "title": "Hakkımda",
+      "description": "Ortopedi ve Travmatoloji Uzmanı, Tamamlayıcı Tıp Uygulayıcısı, Öğretim Üyesi"
+    },
+    "corporate": {
+      "title": "Kurumsal",
+      "about": "Hakkımda",
+      "blog": "Blog",
+      "contact": "İletişim",
+      "privacy": "Gizlilik Politikası"
+    },
+    "blog": {
+      "title": "Blog",
+      "acupuncture": "Temel Akupunktur Noktaları",
+      "psychoneuro": "Psikonöro İmmünoloji"
+    },
+    "contact": {
+      "title": "İletişim",
+      "address": "Adres: Hürriyet Mah. 1792 Sok Özgüzel Apt. K3 D6 Yenişehir / Mersin",
+      "phone": "Telefon: +90 543 599 85 69",
+      "email": "E-Posta: info@cuneyttamam.com"
+    }
   }
 } 

@@ -1,9 +1,7 @@
 import "~/styles/globals.css";
 
-import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 
-import { TRPCReactProvider } from "~/trpc/react";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "~/i18n/routing";
@@ -11,6 +9,9 @@ import { NextIntlClientProvider } from "next-intl";
 import { SiteHeader } from "~/components/site-header";
 import { Navigation } from "~/components/navigation";
 import Footer from "~/components/footer";
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { extractRouterConfig } from "uploadthing/server";
+import { ourFileRouter } from "~/app/api/uploadthing/core";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -31,11 +32,14 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <NextIntlClientProvider messages={messages} locale={locale}>
-      <SiteHeader />
-      <Navigation />
-      {children}
-      <Footer />
-    </NextIntlClientProvider>
+    <>
+      <NextIntlClientProvider messages={messages} locale={locale}>
+        <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
+        <SiteHeader />
+        <Navigation />
+        {children}
+        <Footer />
+      </NextIntlClientProvider>
+    </>
   );
 }

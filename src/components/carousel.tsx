@@ -70,11 +70,12 @@ export function CarouselComponent() {
                 </div>
               </div>
             </div>
+            
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="absolute left-5 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/30 text-white border-none h-12 w-12" />
-      <CarouselNext className="absolute right-5 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/30 text-white border-none h-12 w-12" />
+      <CarouselPrevious className="absolute left-5 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 text-black border-none h-12 w-12 rounded-full shadow-md" />
+      <CarouselNext className="absolute right-5 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 text-black border-none h-12 w-12 rounded-full shadow-md" />
     </Carousel>
   )
 }

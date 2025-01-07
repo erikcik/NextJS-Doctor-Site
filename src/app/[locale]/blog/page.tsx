@@ -5,8 +5,24 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { BlogPost } from "~/components/blog-post";
 import Footer from "~/components/footer";
+import { db } from "~/server/db";
+import { blogEntries } from "~/server/db/schema";
+import { desc } from "drizzle-orm";
+import { getExcerpt } from "~/utils/getExcerpt";
+import { formatDate } from "~/lib/utils";
+import { LocalizedTitle } from "~/components/localized-title";
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  // Fetch all blog entries
+  const entries = await db
+    .select()
+    .from(blogEntries)
+    .orderBy(desc(blogEntries.createdAt));
+
+  // Split entries into featured and recent
+  const featuredEntries = entries.slice(0, 2);
+  const recentEntries = entries.slice(2, 5);
+
   return (
     <div className="min-h-screen">
       <main className="container mx-auto px-4 py-16">
@@ -33,26 +49,26 @@ export default function BlogPage() {
 
         {/* Featured Posts */}
         <div className="mb-16 grid gap-8 lg:grid-cols-2">
-          <BlogPost
-            featured
-            title="Basic Acupuncture Points"
-            description="A comprehensive guide to understanding the fundamental acupuncture points and their significance in traditional medicine. Learn about the most important points and their therapeutic applications."
-            image="/placeholder.svg?height=400&width=600"
-            category="Complementary Medicine"
-            date="January 2, 2025"
-            readTime="8 min read"
-            href="/blog/basic-acupuncture-points"
-          />
-          <BlogPost
-            featured
-            title="Psychoneuro Immunology"
-            description="Explore the fascinating intersection of psychology, neurology, and immunology. Discover how mental states influence physical health and immune system function."
-            image="/placeholder.svg?height=400&width=600"
-            category="Research"
-            date="January 1, 2025"
-            readTime="10 min read"
-            href="/blog/psychoneuro-immunology"
-          />
+          {featuredEntries.map((entry) => (
+            <BlogPost
+              key={entry.id}
+              featured
+              title={
+                <LocalizedTitle
+                  turkishTitle={entry.turkishTitle}
+                  englishTitle={entry.englishTitle}
+                />
+              }
+              description={getExcerpt(entry.turkishContent, entry.englishContent)}
+              image={entry.coverImage}
+              category="Blog"
+              date={formatDate(entry.createdAt)}
+              readTime={`${entry.minutesToRead} min read`}
+              href={`/blog/${entry.id}`}
+              author={entry.author}
+              linkToBook={entry.linkToBook}
+            />
+          ))}
         </div>
 
         {/* Recent Posts */}
@@ -61,33 +77,25 @@ export default function BlogPage() {
             Recent Articles
           </h2>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <BlogPost
-              title="Advances in Arthroscopic Surgery"
-              description="Latest developments in minimally invasive surgical techniques for joint conditions."
-              image="/placeholder.svg?height=300&width=400"
-              category="Orthopedics"
-              date="December 30, 2024"
-              readTime="6 min read"
-              href="/blog/advances-arthroscopic-surgery"
-            />
-            <BlogPost
-              title="Stem Cell Therapy in Orthopedics"
-              description="Understanding the role of stem cells in regenerative medicine and orthopedic treatments."
-              image="/placeholder.svg?height=300&width=400"
-              category="Research"
-              date="December 28, 2024"
-              readTime="7 min read"
-              href="/blog/stem-cell-therapy"
-            />
-            <BlogPost
-              title="Neural Therapy Fundamentals"
-              description="An introduction to neural therapy and its applications in pain management."
-              image="/placeholder.svg?height=300&width=400"
-              category="Complementary Medicine"
-              date="December 25, 2024"
-              readTime="5 min read"
-              href="/blog/neural-therapy-fundamentals"
-            />
+            {recentEntries.map((entry) => (
+              <BlogPost
+                key={entry.id}
+                title={
+                  <LocalizedTitle
+                    turkishTitle={entry.turkishTitle}
+                    englishTitle={entry.englishTitle}
+                  />
+                }
+                description={getExcerpt(entry.turkishContent, entry.englishContent)}
+                image={entry.coverImage}
+                category="Blog"
+                date={formatDate(entry.createdAt)}
+                readTime={`${entry.minutesToRead} min read`}
+                href={`/blog/${entry.id}`}
+                author={entry.author}
+                linkToBook={entry.linkToBook}
+              />
+            ))}
           </div>
         </div>
 
