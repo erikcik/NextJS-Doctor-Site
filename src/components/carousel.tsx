@@ -55,10 +55,10 @@ export function CarouselComponent() {
               >
                 <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
                   <div className="text-center text-white px-4 max-w-4xl mx-auto">
-                    <h2 className="text-5xl md:text-6xl font-bold mb-4 font-display">
+                    <h2 className="text-5xl md:text-6xl font-bold mb-4 font-display line-clamp-2 md:line-clamp-none">
                       {t(`slides.${slide.translationKey}.title`)}
                     </h2>
-                    <p className="text-lg md:text-xl mb-8 font-body leading-relaxed">
+                    <p className="text-lg md:text-xl mb-8 font-body leading-relaxed line-clamp-3 md:line-clamp-none">
                       {t(`slides.${slide.translationKey}.subtitle`)}
                     </p>
                     <Link href={slide.href}>

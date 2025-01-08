@@ -151,7 +151,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
 
           <ComplementaryShow entries={allComplementaryEntries} />
 
-          <section className=" my-32 py-16">
+          <section className=" my-32 mb-16 py-16">
             <div className="container mx-auto px-4">
               {/* Section Header */}
               <div className="mb-12 text-center">

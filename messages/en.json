@@ -335,5 +335,9 @@
     "viewAll": "View All Books",
     "minutesToRead": "min read",
     "by": "By"
+  },
+  "Pages": {
+    "complementaryMedicine": "Complementary Medicine Treatments",
+    "orthopedics": "Orthopedics Treatments"
   }
 } 

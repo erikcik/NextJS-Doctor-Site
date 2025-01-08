@@ -24,13 +24,15 @@ interface ComplementaryShowProps {
   entries: ComplementaryEntry[];
 }
 
+const minHeight = "min-h-[max(600px,100%)]";
+
 const ComplementaryShow = ({ entries }: ComplementaryShowProps) => {
   const params = useParams();
   const locale = params?.locale as string;
 
   return (
-    <div className="relative my-16">
-      <div className="absolute inset-0">
+    <div className="relative my-8 sm:my-12 md:my-16 w-full">
+      <div className="absolute inset-0 w-full h-full">
         <BackgroundGradientAnimation
           gradientBackgroundStart="#0ea5e9"
           gradientBackgroundEnd="black"
@@ -42,25 +44,26 @@ const ComplementaryShow = ({ entries }: ComplementaryShowProps) => {
           pointerColor="140, 100, 255"
           size="80%"
           blendingValue="hard-light"
+          className="!absolute !w-full !h-full"
         />
       </div>
       <motion.section
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="relative z-10 py-12"
+        className="relative z-10 py-6 sm:py-8 md:py-12"
       >
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-3xl font-bold text-center mb-8 text-white"
+            className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-6 sm:mb-8 text-white"
           >
             {locale === 'tr' ? 'Tamamlayıcı Tıp' : 'Complementary Medicine'}
           </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {entries.slice(0, 3).map((entry) => (
               <motion.div
                 key={entry.id}
@@ -88,11 +91,11 @@ const ComplementaryShow = ({ entries }: ComplementaryShowProps) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="text-center mt-8"
+            className="text-center mt-6 sm:mt-8"
           >
             <Link
               href="/complementary-medicine"
-              className="inline-block bg-white text-black px-6 py-3 rounded-lg hover:bg-white/90 transition-colors"
+              className="inline-block bg-black text-white px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-lg hover:bg-black/50 transition-colors"
             >
               {locale === 'tr' ? 'Tümünü Gör' : 'View All'}
             </Link>

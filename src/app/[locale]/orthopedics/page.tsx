@@ -19,7 +19,10 @@ export default async function OrthopedicsPage() {
     <div className="min-h-screen">
       <main className="container mx-auto px-4 py-16">
         <h1 className="text-4xl font-bold text-center mb-12">
-          Orthopedics Treatments
+          <LocalizedTitle
+            turkishTitle="Ortopedi Tedavileri"
+            englishTitle="Orthopedics Treatments"
+          />
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
