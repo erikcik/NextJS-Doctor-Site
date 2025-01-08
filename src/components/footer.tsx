@@ -5,7 +5,7 @@ const Footer = () => {
   const t = useTranslations("Footer");
 
   return (
-    <footer className="mt-16 bg-gray-900 py-12 text-white">
+    <footer className=" bg-gray-900 py-12 text-white">
       <div className="container mx-auto px-4 flex flex-col items-center">
         <div className="grid gap-8 md:grid-cols-3 text-center max-w-4xl">
           {/* About Section */}

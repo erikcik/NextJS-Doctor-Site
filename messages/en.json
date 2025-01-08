@@ -25,6 +25,7 @@
     "about": "About",
     "orthopedics": "Orthopedics",
     "complementary_medicine": "Complementary Medicine",
+    "books": "Books",
     "blog": "Blog",
     "contact": "Contact"
   },
@@ -51,9 +52,10 @@
     "education": {
       "title": "Education",
       "items": [
-        "Tarsus American High School (1989)",
-        "Hacettepe University Faculty of Medicine",
-        "Gülhane Military Medical Academy (1995)"
+        "Toros University - Associate Professorship - May 2019",
+        "Haydarpasa GATA Training Hospital - Orthopedics and Traumatology Specialist - October 1999-May 2003",
+        "Gülhane Military Medical Academy Faculty of Medicine - MD - October 1989 - August 1996",
+        "Tarsus American High School - 1982-1989"
       ]
     },
     "specialization": {
@@ -67,9 +69,8 @@
     "certifications": {
       "title": "Additional Certifications",
       "items": [
-        "Neural Therapy Certification",
-        "Advanced Acupuncture Training",
-        "Prolotherapy Specialist Certification"
+        "Neural Therapy Certificate",
+        "Advanced Acupuncture and Prolotherapy Specialist Certificate"
       ]
     },
     "moreDetails": "More Details"
@@ -216,11 +217,12 @@
   "Footer": {
     "about": {
       "title": "About Me",
-      "description": "Orthopedics and Traumatology Specialist, Complementary Medicine Practitioner, Faculty Member"
+      "description": "Orthopedics and Traumatology Specialist, Complementary Medicine Practitioner"
     },
     "corporate": {
       "title": "Corporate",
       "about": "About",
+      "books": "Books",
       "blog": "Blog",
       "contact": "Contact",
       "privacy": "Privacy Policy"
@@ -236,5 +238,102 @@
       "phone": "Phone: +90 543 599 85 69",
       "email": "Email: info@cuneyttamam.com"
     }
+  },
+  "BooksPage": {
+    "title": "Medical Books",
+    "subtitle": "Explore Dr. Cüneyt Tamam's published works and recommended readings",
+    "readMore": "Read More",
+    "viewBook": "View Book",
+    "minutesToRead": "min read"
+  },
+  "BlogPage": {
+    "title": "Medical Blog",
+    "subtitle": "Latest insights and research in orthopedics and complementary medicine",
+    "categories": {
+      "orthopedics": "Orthopedics",
+      "complementary": "Complementary Medicine",
+      "research": "Research",
+      "treatment": "Treatment Methods",
+      "wellness": "Wellness"
+    },
+    "readMore": "Read More",
+    "minutesToRead": "min read",
+    "author": "By",
+    "relatedPosts": "Related Posts",
+    "searchPlaceholder": "Search articles..."
+  },
+  "BookPage": {
+    "backToBooks": "Back to Books",
+    "bookContent": "Book Content",
+    "viewBook": "View Book",
+    "minutesToRead": "min read",
+    "preview": "Preview",
+    "fullContent": "Full Content"
+  },
+  "BlogPostPage": {
+    "minutesToRead": "min read",
+    "relatedPosts": "Related Posts",
+    "category": "Category",
+    "share": "Share",
+    "copyLink": "Copy Link",
+    "by": "By"
+  },
+  "VideoReels": {
+    "title": "Video Reels",
+    "subtitle": "Watch our latest medical insights and procedures",
+    "viewAll": "View All Videos",
+    "watchVideo": "Watch video",
+    "noVideos": "No videos available yet",
+    "minutesAgo": "minutes ago",
+    "hoursAgo": "hours ago",
+    "daysAgo": "days ago"
+  },
+  "AdminVideo": {
+    "title": "Video Reels",
+    "createNew": "Create New Video",
+    "edit": "Edit Video",
+    "form": {
+      "turkishTitle": "Turkish Title",
+      "englishTitle": "English Title",
+      "turkishDescription": "Turkish Description",
+      "englishDescription": "English Description",
+      "videoUpload": "Video Upload",
+      "thumbnailUpload": "Thumbnail Image",
+      "translateTitle": "Translate Title",
+      "translateDescription": "Translate Description",
+      "save": "Save Changes",
+      "create": "Create Video",
+      "cancel": "Cancel",
+      "uploading": "Uploading...",
+      "processing": "Processing..."
+    },
+    "messages": {
+      "createSuccess": "Video created successfully",
+      "updateSuccess": "Video updated successfully",
+      "deleteSuccess": "Video deleted successfully",
+      "error": {
+        "titleRequired": "Please enter a Turkish title first",
+        "descriptionRequired": "Please enter a Turkish description first",
+        "videoRequired": "Please upload a video",
+        "thumbnailRequired": "Please upload a thumbnail image",
+        "translationFailed": "Translation failed",
+        "uploadFailed": "Upload failed"
+      }
+    },
+    "placeholders": {
+      "turkishTitle": "Enter Turkish title",
+      "englishTitle": "Enter English title",
+      "turkishDescription": "Enter Turkish description",
+      "englishDescription": "Enter English description"
+    }
+  },
+  "Books": {
+    "title": "Medical Books",
+    "subtitle": "Explore our collection of medical publications and recommended readings",
+    "readMore": "Read More",
+    "viewBook": "View Book",
+    "viewAll": "View All Books",
+    "minutesToRead": "min read",
+    "by": "By"
   }
 } 

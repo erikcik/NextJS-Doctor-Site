@@ -1,145 +1,137 @@
-import { SiteHeader } from "@/components/site-header";
-import { Navigation } from "@/components/navigation";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
-import { BlogPost } from "~/components/blog-post";
-import Footer from "~/components/footer";
 import { db } from "~/server/db";
 import { blogEntries } from "~/server/db/schema";
 import { desc } from "drizzle-orm";
-import { getExcerpt } from "~/utils/getExcerpt";
-import { formatDate } from "~/lib/utils";
 import { LocalizedTitle } from "~/components/localized-title";
-import { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { Clock, Tag, ChevronRight, User } from "lucide-react";
+import { Badge } from "~/components/ui/badge";
+import { unstable_setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
+import { cn } from "~/lib/utils";
 
-export const generateMetadata = async ({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> => {
-  return {
-    title: locale === 'tr' ? 'Blog Yazıları | Ortopedi ve Travmatoloji' : 'Blog Posts | Orthopedics & Traumatology',
-    description: locale === 'tr' 
-      ? 'Ortopedi, travmatoloji ve tamamlayıcı tıp alanlarında en son araştırmalar ve bilgiler.'
-      : 'Latest research and insights in orthopedics, traumatology, and complementary medicine.',
-    alternates: {
-      canonical: '/blog',
-      languages: {
-        'tr': '/tr/blog',
-        'en': '/en/blog',
-      },
-    },
-    openGraph: {
-      title: locale === 'tr' ? 'Blog Yazıları' : 'Blog Posts',
-      description: locale === 'tr' 
-        ? 'Ortopedi ve tamamlayıcı tıp hakkında güncel bilgiler'
-        : 'Latest updates on orthopedics and complementary medicine',
-      images: [
-        {
-          url: '/og-blog.jpg',
-          width: 1200,
-          height: 630,
-          alt: 'Blog Posts'
-        }
-      ],
-    }
-  };
-};
+export default async function BlogPage({ params: { locale } }: { params: { locale: 'tr' | 'en' } }) {
+  unstable_setRequestLocale(locale);
+  const t = await getTranslations('BlogPage');
 
-export default async function BlogPage() {
-  // Fetch all blog entries
   const entries = await db
     .select()
     .from(blogEntries)
     .orderBy(desc(blogEntries.createdAt));
 
-  // Split entries into featured and recent
-  const featuredEntries = entries.slice(0, 2);
-  const recentEntries = entries.slice(2, 5);
-
   return (
-    <div className="min-h-screen">
-      <main className="container mx-auto px-4 py-16">
-        <div className="mb-12 text-center">
-          <h1 className="font-display mb-4 text-4xl font-bold text-[#47afe2]">
-            Medical Blog
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-white">
+      <div className="container mx-auto px-4 py-16">
+        {/* Header Section */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 relative inline-block">
+            {t('title')}
+            <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-2/3 h-1 bg-gradient-to-r from-transparent via-blue-600/30 to-transparent"></div>
           </h1>
-          <p className="font-body mx-auto max-w-2xl text-lg text-muted-foreground">
-            Explore the latest research and insights in orthopedics,
-            traumatology, and complementary medicine
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            {t('subtitle')}
           </p>
         </div>
 
-        {/* Search and Filter Section */}
-        <div className="mx-auto mb-12 max-w-xl">
-          <div className="relative">
-            <Input
-              placeholder="Search articles..."
-              className="border-[#47afe2]/20 pl-10 focus:border-[#47afe2] focus:ring-[#47afe2]"
-            />
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-          </div>
-        </div>
+        {/* Blog Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {entries.map((blog, index) => (
+            <Link 
+              key={blog.id} 
+              href={`/${locale}/blog/${blog.id}`}
+              className={cn(
+                "group relative bg-white rounded-xl overflow-hidden",
+                "transform-gpu transition-all duration-300 hover:-translate-y-1",
+                "before:absolute before:inset-0 before:z-10 before:border before:border-black/5 before:rounded-xl",
+                "after:absolute after:inset-0 after:z-0 after:translate-x-1 after:translate-y-1 after:bg-gradient-to-br after:from-blue-600/10 after:to-transparent after:rounded-xl",
+                "shadow-sm hover:shadow-xl"
+              )}
+            >
+              <article className="relative z-20">
+                {/* Image Container */}
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10"/>
+                  <Image
+                    src={blog.coverImage}
+                    alt={locale === 'tr' ? blog.turkishTitle : blog.englishTitle}
+                    fill
+                    className="object-cover transform transition-transform duration-500 group-hover:scale-105"
+                  />
+                  {/* Category Badge - Positioned over image */}
+                  <Badge 
+                    variant="secondary" 
+                    className="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-sm"
+                  >
+                    {blog.category}
+                  </Badge>
+                </div>
 
-        {/* Featured Posts */}
-        <div className="mb-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {featuredEntries.map((entry) => (
-            <BlogPost
-              key={entry.id}
-              featured
-              title={
-                <LocalizedTitle
-                  turkishTitle={entry.turkishTitle}
-                  englishTitle={entry.englishTitle}
-                />
-              }
-              description={getExcerpt(entry.turkishContent, entry.englishContent)}
-              image={entry.coverImage}
-              category="Blog"
-              date={formatDate(entry.createdAt)}
-              readTime={`${entry.minutesToRead} min read`}
-              href={`/blog/${entry.id}`}
-              author={entry.author}
-              linkToBook={entry.linkToBook}
-            />
+                {/* Content Section */}
+                <div className="p-6">
+                  {/* Title */}
+                  <div className="relative mb-4">
+                    <h2 className="text-xl font-semibold leading-tight group-hover:text-blue-600 transition-colors line-clamp-2">
+                      <LocalizedTitle
+                        turkishTitle={blog.turkishTitle}
+                        englishTitle={blog.englishTitle}
+                      />
+                    </h2>
+                    <div className="absolute -left-4 top-0 bottom-0 w-0.5 bg-blue-600 transform origin-bottom transition-transform duration-300 group-hover:scale-y-110"/>
+                  </div>
+
+                  {/* Author and Reading Time */}
+                  <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+                    <div className="flex items-center gap-2">
+                      <User className="h-4 w-4 text-blue-600" />
+                      <span>{blog.author}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Clock className="h-4 w-4 text-blue-600" />
+                      <span>{blog.minutesToRead} {t('minutesToRead')}</span>
+                    </div>
+                  </div>
+
+                  {/* Keywords */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {blog.keywords.split(',').slice(0, 3).map((keyword, index) => (
+                      <Badge 
+                        key={index} 
+                        variant="outline" 
+                        className="text-xs bg-transparent border-blue-600/20 text-blue-700"
+                      >
+                        {keyword.trim()}
+                      </Badge>
+                    ))}
+                    {blog.keywords.split(',').length > 3 && (
+                      <span className="text-xs text-muted-foreground">+{blog.keywords.split(',').length - 3} more</span>
+                    )}
+                  </div>
+
+                  {/* Read More Link */}
+                  <div className="flex items-center justify-end text-sm text-blue-600 font-medium group/link">
+                    <span className="mr-2 group-hover/link:mr-3 transition-all">
+                      {t('readMore')}
+                    </span>
+                    <ChevronRight className="h-4 w-4 transform group-hover/link:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </article>
+            </Link>
           ))}
         </div>
 
-        {/* Recent Posts */}
-        <div className="mb-12">
-          <h2 className="font-display mb-8 text-2xl font-semibold text-[#47afe2]">
-            Recent Articles
-          </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {recentEntries.map((entry) => (
-              <BlogPost
-                key={entry.id}
-                title={
-                  <LocalizedTitle
-                    turkishTitle={entry.turkishTitle}
-                    englishTitle={entry.englishTitle}
-                  />
-                }
-                description={getExcerpt(entry.turkishContent, entry.englishContent)}
-                image={entry.coverImage}
-                category="Blog"
-                date={formatDate(entry.createdAt)}
-                readTime={`${entry.minutesToRead} min read`}
-                href={`/blog/${entry.id}`}
-                author={entry.author}
-                linkToBook={entry.linkToBook}
-              />
-            ))}
+        {/* Empty State */}
+        {entries.length === 0 && (
+          <div className="text-center py-12">
+            <div className="inline-block p-8 bg-white rounded-xl shadow-md">
+              <Tag className="h-12 w-12 text-blue-600/50 mx-auto mb-4" />
+              <p className="text-xl text-muted-foreground">
+                No blog posts available yet.
+              </p>
+            </div>
           </div>
-        </div>
-
-        {/* Load More Button */}
-        <div className="text-center">
-          <Button
-            variant="outline"
-            className="border-[#47afe2] text-[#47afe2] hover:bg-[#47afe2] hover:text-white"
-          >
-            Load More Articles
-          </Button>
-        </div>
-      </main>
+        )}
+      </div>
     </div>
   );
 }

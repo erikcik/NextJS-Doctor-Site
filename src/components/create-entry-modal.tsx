@@ -3,7 +3,7 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "~/components/ui/dialog";
 import { Button } from "~/components/ui/button";
 import { useRouter } from "next/navigation";
-import { FileText, Heart, Activity, Bell } from "lucide-react";
+import { Book, FileText, Heart, Activity, Video } from "lucide-react";
 
 interface CreateEntryModalProps {
   isOpen: boolean;
@@ -15,10 +15,16 @@ export function CreateEntryModal({ isOpen, onClose }: CreateEntryModalProps) {
 
   const entryTypes = [
     {
-      title: "Blog Entry",
+      title: "Book Entry",
+      icon: Book,
+      type: "book",
+      description: "Add a new book with details and review"
+    },
+    {
+      title: "Blog Post",
       icon: FileText,
       type: "blog",
-      description: "Create a new blog post"
+      description: "Create a new blog article with categories and keywords"
     },
     {
       title: "Complementary Medicine",
@@ -33,10 +39,10 @@ export function CreateEntryModal({ isOpen, onClose }: CreateEntryModalProps) {
       description: "Create new orthopedics content"
     },
     {
-      title: "Announcement",
-      icon: Bell,
-      type: "announcement",
-      description: "Post a new announcement"
+      title: "Video Reel",
+      icon: Video,
+      type: "video",
+      description: "Upload a video reel with bilingual titles and descriptions"
     }
   ];
 
@@ -47,23 +53,25 @@ export function CreateEntryModal({ isOpen, onClose }: CreateEntryModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[525px] w-[95vw]">
         <DialogHeader>
-          <DialogTitle>Create New Entry</DialogTitle>
+          <DialogTitle className="text-xl font-semibold">Create New Entry</DialogTitle>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
+        <div className="grid gap-3 py-4">
           {entryTypes.map((entry) => (
             <Button
               key={entry.type}
               variant="outline"
-              className="flex items-center justify-start gap-3 h-auto p-4"
+              className="w-full p-0 h-auto hover:bg-accent/50 transition-colors"
               onClick={() => handleSelect(entry.type)}
             >
-              <entry.icon className="h-5 w-5" />
-              <div className="text-left">
-                <div className="font-semibold">{entry.title}</div>
-                <div className="text-sm text-muted-foreground">
-                  {entry.description}
+              <div className="flex items-start w-full p-3 text-left">
+                <entry.icon className="h-5 w-5 shrink-0 mt-0.5 mr-3" />
+                <div className="min-w-0 flex-1">
+                  <div className="font-semibold truncate">{entry.title}</div>
+                  <div className="text-sm text-muted-foreground line-clamp-2">
+                    {entry.description}
+                  </div>
                 </div>
               </div>
             </Button>

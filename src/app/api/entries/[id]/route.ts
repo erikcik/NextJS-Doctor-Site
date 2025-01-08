@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "~/server/db";
 import { 
+  bookEntries,
   blogEntries, 
   complementaryEntries, 
   orthopedicsEntries, 
-  announcementEntries 
+  videoEntries,
 } from "~/server/db/schema";
 import { eq } from "drizzle-orm";
 import { cookies } from "next/headers";
@@ -12,14 +13,16 @@ import { verifyAuth } from "~/server/auth";
 
 const getTableForType = (type: string) => {
   switch (type) {
+    case "book":
+      return bookEntries;
     case "blog":
       return blogEntries;
     case "complementary":
       return complementaryEntries;
     case "orthopedics":
       return orthopedicsEntries;
-    case "announcement":
-      return announcementEntries;
+    case "video":
+      return videoEntries;
     default:
       throw new Error("Invalid entry type");
   }
@@ -30,7 +33,7 @@ export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const id = await params.id; // Await the params
+  const id = await params.id;
 
   try {
     const searchParams = request.nextUrl.searchParams;
@@ -69,7 +72,7 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const id = await params.id; // Await the params
+  const id = await params.id;
 
   // Verify authentication
   const cookiesStore = await cookies();
@@ -90,18 +93,20 @@ export async function PUT(
     }
 
     // Validate required fields
-    const requiredFields = ["turkishTitle", "englishTitle", "turkishContent", "englishContent"];
-    if (type !== "announcement") {
-      requiredFields.push("author", "coverImage");
+    try {
+      validateRequiredFields(type, updateData);
+    } catch (error) {
+      return NextResponse.json(
+        { error: error instanceof Error ? error.message : "Validation failed" },
+        { status: 400 }
+      );
     }
 
-    for (const field of requiredFields) {
-      if (!updateData[field]) {
-        return NextResponse.json(
-          { error: `${field} is required` },
-          { status: 400 }
-        );
-      }
+    // Calculate minutesToRead for non-video content types
+    if (type !== 'video' && !updateData.minutesToRead) {
+      const turkishContent = JSON.parse(updateData.turkishContent);
+      const wordCount = countWords(turkishContent);
+      updateData.minutesToRead = Math.ceil(wordCount / 200);
     }
 
     // Clean up the updateData
@@ -130,4 +135,21 @@ export async function PUT(
       { status: 500 }
     );
   }
+}
+
+// Helper function to count words in content
+function countWords(content: any[]): number {
+  let wordCount = 0;
+  
+  const countInNode = (node: any) => {
+    if (node.text) {
+      wordCount += node.text.trim().split(/\s+/).length;
+    }
+    if (node.children) {
+      node.children.forEach(countInNode);
+    }
+  };
+
+  content.forEach(countInNode);
+  return wordCount;
 } 

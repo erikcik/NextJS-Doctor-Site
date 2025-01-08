@@ -41,15 +41,34 @@ export const loginAttempts = createTable("login_attempts", {
   success: integer("success").notNull(), // 0 or 1
 });
 
-// Blog entries
+// Book entries (formerly blog entries)
+export const bookEntries = createTable("book_entries", {
+  id: uuid("id").primaryKey().$defaultFn(() => sql`gen_random_uuid()`),
+  turkishTitle: text("turkish_title").notNull(),
+  englishTitle: text("english_title").notNull(),
+  author: text("author").notNull(),
+  coverImage: text("cover_image").notNull(),
+  linkToBook: text("link_to_book").notNull(),
+  minutesToRead: integer("minutes_to_read").notNull(),
+  turkishContent: text("turkish_content").notNull(),
+  englishContent: text("english_content").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .default(sql`CURRENT_TIMESTAMP`)
+    .notNull(),
+  updatedAt: timestamp("updated_at", { withTimezone: true })
+    .default(sql`CURRENT_TIMESTAMP`)
+});
+
+// Blog entries (formerly announcement entries)
 export const blogEntries = createTable("blog_entries", {
   id: uuid("id").primaryKey().$defaultFn(() => sql`gen_random_uuid()`),
   turkishTitle: text("turkish_title").notNull(),
   englishTitle: text("english_title").notNull(),
   author: text("author").notNull(),
   coverImage: text("cover_image").notNull(),
-  linkToBook: text("link_to_book"),
-  minutesToRead: integer("minutes_to_read"),
+  category: text("category").notNull(),
+  keywords: text("keywords").notNull(),
+  minutesToRead: integer("minutes_to_read").notNull(),
   turkishContent: text("turkish_content").notNull(),
   englishContent: text("english_content").notNull(),
   createdAt: timestamp("created_at", { withTimezone: true })
@@ -98,6 +117,21 @@ export const announcementEntries = createTable("announcement_entries", {
   englishTitle: text("english_title").notNull(),
   turkishContent: text("turkish_content").notNull(),
   englishContent: text("english_content").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .default(sql`CURRENT_TIMESTAMP`)
+    .notNull(),
+  updatedAt: timestamp("updated_at", { withTimezone: true })
+    .default(sql`CURRENT_TIMESTAMP`)
+});
+
+export const videoEntries = createTable("video_entries", {
+  id: uuid("id").primaryKey().$defaultFn(() => sql`gen_random_uuid()`),
+  turkishTitle: text("turkish_title").notNull(),
+  englishTitle: text("english_title").notNull(),
+  turkishDescription: text("turkish_description").notNull(),
+  englishDescription: text("english_description").notNull(),
+  videoUrl: text("video_url").notNull(),
+  thumbnailUrl: text("thumbnail_url").notNull(),
   createdAt: timestamp("created_at", { withTimezone: true })
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),

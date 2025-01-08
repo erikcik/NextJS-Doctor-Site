@@ -22,10 +22,16 @@ export default function NewEntryPage() {
     englishTitle: "",
     author: "",
     coverImage: "",
+    category: "",
+    keywords: "",
     linkToBook: "",
     minutesToRead: "",
     turkishContent: "",
     englishContent: "",
+    turkishDescription: "",
+    englishDescription: "",
+    videoUrl: "",
+    thumbnailUrl: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -151,6 +157,44 @@ export default function NewEntryPage() {
     }
   };
 
+  const handleTranslateDescription = async () => {
+    if (!formData.turkishDescription) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Please enter a Turkish description first",
+      });
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/translate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: formData.turkishDescription }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Translation failed');
+      }
+
+      const { translation } = await response.json();
+      setFormData(prev => ({ ...prev, englishDescription: translation }));
+
+      toast({
+        title: "Success",
+        description: "Description translated successfully",
+      });
+    } catch (error) {
+      console.error('Translation error:', error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to translate description",
+      });
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -194,42 +238,43 @@ export default function NewEntryPage() {
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-3xl font-bold mb-8 sticky top-0 bg-background z-10 py-4 border-b">
-        Create New {entryType.charAt(0).toUpperCase() + entryType.slice(1)} Entry
+        Create New {entryType?.charAt(0).toUpperCase()}{entryType?.slice(1)} Entry
       </h1>
 
       <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl">
-        <div className="space-y-2">
-          <Label htmlFor="turkishTitle">Turkish Title</Label>
-          <Input
-            id="turkishTitle"
-            value={formData.turkishTitle}
-            onChange={(e) => setFormData(prev => ({ ...prev, turkishTitle: e.target.value }))}
-            required
-          />
-        </div>
-
-        <div className="flex justify-end">
-          <Button
-            type="button"
-            onClick={handleTranslateTitle}
-            className="mb-4"
-          >
-            Translate Title
-          </Button>
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="englishTitle">English Title</Label>
-          <Input
-            id="englishTitle"
-            value={formData.englishTitle}
-            onChange={(e) => setFormData(prev => ({ ...prev, englishTitle: e.target.value }))}
-            required
-          />
-        </div>
-
-        {(entryType === "blog" || entryType === "complementary" || entryType === "orthopedics") && (
+        {/* Book Entry Fields */}
+        {entryType === "book" && (
           <>
+            <div className="space-y-2">
+              <Label htmlFor="turkishTitle">Turkish Title</Label>
+              <Input
+                id="turkishTitle"
+                value={formData.turkishTitle}
+                onChange={(e) => setFormData(prev => ({ ...prev, turkishTitle: e.target.value }))}
+                required
+              />
+            </div>
+
+            <div className="flex justify-end">
+              <Button
+                type="button"
+                onClick={handleTranslateTitle}
+                className="mb-4"
+              >
+                Translate Title
+              </Button>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="englishTitle">English Title</Label>
+              <Input
+                id="englishTitle"
+                value={formData.englishTitle}
+                onChange={(e) => setFormData(prev => ({ ...prev, englishTitle: e.target.value }))}
+                required
+              />
+            </div>
+
             <div className="space-y-2">
               <Label htmlFor="author">Author</Label>
               <Input
@@ -245,74 +290,319 @@ export default function NewEntryPage() {
               <FileUpload
                 value={formData.coverImage}
                 onChange={(url) => setFormData(prev => ({ ...prev, coverImage: url }))}
+                accept="image/*"
               />
             </div>
-          </>
-        )}
 
-        {entryType === "blog" && (
-          <>
             <div className="space-y-2">
-              <Label htmlFor="linkToBook">Link to Book (Optional)</Label>
+              <Label htmlFor="linkToBook">Link to Book</Label>
               <Input
                 id="linkToBook"
                 value={formData.linkToBook}
                 onChange={(e) => setFormData(prev => ({ ...prev, linkToBook: e.target.value }))}
+                required
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="minutesToRead">Minutes to Read (Optional)</Label>
-              <Input
-                id="minutesToRead"
-                type="number"
-                value={formData.minutesToRead}
-                onChange={(e) => setFormData(prev => ({ ...prev, minutesToRead: e.target.value }))}
+              <Label>Turkish Content</Label>
+              <MarkdownEditor
+                initialValue={formData.turkishContent}
+                onChange={(value) => setFormData(prev => ({ ...prev, turkishContent: value }))}
               />
+            </div>
+
+            <div className="flex justify-end">
+              <Button
+                type="button"
+                onClick={handleTranslate}
+                disabled={isTranslating}
+                className="mb-4"
+              >
+                {isTranslating ? "Translating..." : "Translate Content"}
+              </Button>
+            </div>
+
+            <div className="space-y-2">
+              <Label>English Content</Label>
+              <div key={translationKey}>
+                <MarkdownEditor
+                  initialValue={formData.englishContent}
+                  onChange={(value) => setFormData(prev => ({ ...prev, englishContent: value }))}
+                />
+              </div>
             </div>
           </>
         )}
 
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <Label>Turkish Content</Label>
-            <Button
-              type="button"
-              variant="ghost"
-              size="sm"
-              className="flex items-center gap-1"
-              onClick={() => setShowEditorHelp(true)}
-            >
-              <HelpCircle className="h-4 w-4" />
-              Editor Help
-            </Button>
-          </div>
-          <MarkdownEditor
-            initialValue={formData.turkishContent}
-            onChange={(value) => setFormData(prev => ({ ...prev, turkishContent: value }))}
-          />
-        </div>
+        {/* Blog Entry Fields */}
+        {entryType === "blog" && (
+          <>
+            <div className="space-y-2">
+              <Label htmlFor="turkishTitle">Turkish Title</Label>
+              <Input
+                id="turkishTitle"
+                value={formData.turkishTitle}
+                onChange={(e) => setFormData(prev => ({ ...prev, turkishTitle: e.target.value }))}
+                required
+              />
+            </div>
 
-        <div className="flex justify-end">
-          <Button
-            type="button"
-            onClick={handleTranslate}
-            disabled={isTranslating}
-            className="mb-4"
-          >
-            {isTranslating ? "Translating..." : "Translate to English"}
-          </Button>
-        </div>
+            <div className="flex justify-end">
+              <Button
+                type="button"
+                onClick={handleTranslateTitle}
+                className="mb-4"
+              >
+                Translate Title
+              </Button>
+            </div>
 
-        <div className="space-y-2">
-          <Label>English Content</Label>
-          <div key={translationKey}>
-            <MarkdownEditor
-              initialValue={formData.englishContent}
-              onChange={(value) => setFormData(prev => ({ ...prev, englishContent: value }))}
-            />
-          </div>
-        </div>
+            <div className="space-y-2">
+              <Label htmlFor="englishTitle">English Title</Label>
+              <Input
+                id="englishTitle"
+                value={formData.englishTitle}
+                onChange={(e) => setFormData(prev => ({ ...prev, englishTitle: e.target.value }))}
+                required
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="author">Author</Label>
+              <Input
+                id="author"
+                value={formData.author}
+                onChange={(e) => setFormData(prev => ({ ...prev, author: e.target.value }))}
+                required
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="category">Category</Label>
+              <Input
+                id="category"
+                value={formData.category}
+                onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value }))}
+                required
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="keywords">Keywords (comma separated)</Label>
+              <Input
+                id="keywords"
+                value={formData.keywords}
+                onChange={(e) => setFormData(prev => ({ ...prev, keywords: e.target.value }))}
+                required
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="coverImage">Cover Image</Label>
+              <FileUpload
+                value={formData.coverImage}
+                onChange={(url) => setFormData(prev => ({ ...prev, coverImage: url }))}
+                accept="image/*"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label>Turkish Content</Label>
+              <MarkdownEditor
+                initialValue={formData.turkishContent}
+                onChange={(value) => setFormData(prev => ({ ...prev, turkishContent: value }))}
+              />
+            </div>
+
+            <div className="flex justify-end">
+              <Button
+                type="button"
+                onClick={handleTranslate}
+                disabled={isTranslating}
+                className="mb-4"
+              >
+                {isTranslating ? "Translating..." : "Translate Content"}
+              </Button>
+            </div>
+
+            <div className="space-y-2">
+              <Label>English Content</Label>
+              <div key={translationKey}>
+                <MarkdownEditor
+                  initialValue={formData.englishContent}
+                  onChange={(value) => setFormData(prev => ({ ...prev, englishContent: value }))}
+                />
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* Complementary and Orthopedics Entry Fields */}
+        {(entryType === "complementary" || entryType === "orthopedics") && (
+          <>
+            <div className="space-y-2">
+              <Label htmlFor="turkishTitle">Turkish Title</Label>
+              <Input
+                id="turkishTitle"
+                value={formData.turkishTitle}
+                onChange={(e) => setFormData(prev => ({ ...prev, turkishTitle: e.target.value }))}
+                required
+              />
+            </div>
+
+            <div className="flex justify-end">
+              <Button
+                type="button"
+                onClick={handleTranslateTitle}
+                className="mb-4"
+              >
+                Translate Title
+              </Button>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="englishTitle">English Title</Label>
+              <Input
+                id="englishTitle"
+                value={formData.englishTitle}
+                onChange={(e) => setFormData(prev => ({ ...prev, englishTitle: e.target.value }))}
+                required
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="author">Author</Label>
+              <Input
+                id="author"
+                value={formData.author}
+                onChange={(e) => setFormData(prev => ({ ...prev, author: e.target.value }))}
+                required
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="coverImage">Cover Image</Label>
+              <FileUpload
+                value={formData.coverImage}
+                onChange={(url) => setFormData(prev => ({ ...prev, coverImage: url }))}
+                accept="image/*"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label>Turkish Content</Label>
+              <MarkdownEditor
+                initialValue={formData.turkishContent}
+                onChange={(value) => setFormData(prev => ({ ...prev, turkishContent: value }))}
+              />
+            </div>
+
+            <div className="flex justify-end">
+              <Button
+                type="button"
+                onClick={handleTranslate}
+                disabled={isTranslating}
+                className="mb-4"
+              >
+                {isTranslating ? "Translating..." : "Translate Content"}
+              </Button>
+            </div>
+
+            <div className="space-y-2">
+              <Label>English Content</Label>
+              <div key={translationKey}>
+                <MarkdownEditor
+                  initialValue={formData.englishContent}
+                  onChange={(value) => setFormData(prev => ({ ...prev, englishContent: value }))}
+                />
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* Video Entry Fields */}
+        {entryType === "video" && (
+          <>
+            <div className="space-y-2">
+              <Label htmlFor="turkishTitle">Turkish Title</Label>
+              <Input
+                id="turkishTitle"
+                value={formData.turkishTitle}
+                onChange={(e) => setFormData(prev => ({ ...prev, turkishTitle: e.target.value }))}
+                required
+              />
+            </div>
+
+            <div className="flex justify-end">
+              <Button
+                type="button"
+                onClick={handleTranslateTitle}
+                className="mb-4"
+              >
+                Translate Title
+              </Button>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="englishTitle">English Title</Label>
+              <Input
+                id="englishTitle"
+                value={formData.englishTitle}
+                onChange={(e) => setFormData(prev => ({ ...prev, englishTitle: e.target.value }))}
+                required
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label>Turkish Description</Label>
+              <textarea
+                className="min-h-[100px] w-full rounded-md border border-input bg-background px-3 py-2"
+                value={formData.turkishDescription}
+                onChange={(e) => setFormData(prev => ({ ...prev, turkishDescription: e.target.value }))}
+                required
+              />
+            </div>
+
+            <div className="flex justify-end">
+              <Button
+                type="button"
+                onClick={handleTranslateDescription}
+                className="mb-4"
+              >
+                Translate Description
+              </Button>
+            </div>
+
+            <div className="space-y-2">
+              <Label>English Description</Label>
+              <textarea
+                className="min-h-[100px] w-full rounded-md border border-input bg-background px-3 py-2"
+                value={formData.englishDescription}
+                onChange={(e) => setFormData(prev => ({ ...prev, englishDescription: e.target.value }))}
+                required
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="video">Video Upload</Label>
+              <FileUpload
+                value={formData.videoUrl}
+                onChange={(url) => setFormData(prev => ({ ...prev, videoUrl: url }))}
+                accept="video/mp4,video/webm,video/ogg"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="thumbnail">Thumbnail Image</Label>
+              <FileUpload
+                value={formData.thumbnailUrl}
+                onChange={(url) => setFormData(prev => ({ ...prev, thumbnailUrl: url }))}
+                accept="image/jpeg,image/png,image/webp"
+              />
+            </div>
+          </>
+        )}
 
         <div className="flex gap-4">
           <Button type="submit" disabled={isSubmitting}>
@@ -328,7 +618,10 @@ export default function NewEntryPage() {
         </div>
       </form>
 
-      <EditorHelpDialog open={showEditorHelp} onOpenChange={setShowEditorHelp} />
+      {/* Show editor help dialog only for content types that use the markdown editor */}
+      {entryType !== "video" && (
+        <EditorHelpDialog open={showEditorHelp} onOpenChange={setShowEditorHelp} />
+      )}
     </div>
   );
 }

@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "~/server/db";
 import { 
+  bookEntries,
   blogEntries, 
   complementaryEntries, 
-  orthopedicsEntries, 
-  announcementEntries 
+  orthopedicsEntries,
+  videoEntries,
 } from "~/server/db/schema";
 import { cookies } from "next/headers";
 import { verifyAuth } from "~/server/auth";
@@ -12,16 +13,41 @@ import { verifyAuth } from "~/server/auth";
 // Helper function to get the appropriate table based on entry type
 const getTableForType = (type: string) => {
   switch (type) {
+    case "book":
+      return bookEntries;
     case "blog":
       return blogEntries;
     case "complementary":
       return complementaryEntries;
     case "orthopedics":
       return orthopedicsEntries;
-    case "announcement":
-      return announcementEntries;
+    case "video":
+      return videoEntries;
     default:
       throw new Error("Invalid entry type");
+  }
+};
+
+// Helper function to validate required fields based on entry type
+const validateRequiredFields = (type: string, data: any) => {
+  const commonFields = ["turkishTitle", "englishTitle"];
+  
+  const typeSpecificFields: Record<string, string[]> = {
+    book: [...commonFields, "author", "coverImage", "linkToBook", "turkishContent", "englishContent"],
+    blog: [...commonFields, "author", "coverImage", "category", "keywords", "turkishContent", "englishContent"],
+    complementary: [...commonFields, "author", "coverImage", "turkishContent", "englishContent"],
+    orthopedics: [...commonFields, "author", "coverImage", "turkishContent", "englishContent"],
+    video: [...commonFields, "turkishDescription", "englishDescription", "videoUrl", "thumbnailUrl"],
+  };
+
+  const requiredFields = typeSpecificFields[type];
+  if (!requiredFields) {
+    throw new Error("Invalid entry type");
+  }
+
+  const missingFields = requiredFields.filter(field => !data[field]);
+  if (missingFields.length > 0) {
+    throw new Error(`Missing required fields: ${missingFields.join(", ")}`);
   }
 };
 
@@ -46,23 +72,26 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate required fields based on entry type
-    const requiredFields = ["turkishTitle", "englishTitle", "turkishContent", "englishContent"];
-    if (type !== "announcement") {
-      requiredFields.push("author", "coverImage");
-    }
-
-    for (const field of requiredFields) {
-      if (!entryData[field]) {
-        return NextResponse.json(
-          { error: `${field} is required` },
-          { status: 400 }
-        );
-      }
+    // Validate required fields
+    try {
+      validateRequiredFields(type, entryData);
+    } catch (error) {
+      return NextResponse.json(
+        { error: error instanceof Error ? error.message : "Validation failed" },
+        { status: 400 }
+      );
     }
 
     const table = getTableForType(type);
     
+    // Calculate minutesToRead for content types that need it
+    if (type !== 'video' && !entryData.minutesToRead) {
+      const turkishContent = JSON.parse(entryData.turkishContent);
+      const wordCount = countWords(turkishContent);
+      entryData.minutesToRead = Math.ceil(wordCount / 200);
+    }
+
+    // Create the entry
     const [newEntry] = await db.insert(table).values({
       ...entryData,
       createdAt: new Date(),
@@ -106,4 +135,21 @@ export async function GET(request: NextRequest) {
       { status: 500 }
     );
   }
+}
+
+// Helper function to count words in content
+function countWords(content: any[]): number {
+  let wordCount = 0;
+  
+  const countInNode = (node: any) => {
+    if (node.text) {
+      wordCount += node.text.trim().split(/\s+/).length;
+    }
+    if (node.children) {
+      node.children.forEach(countInNode);
+    }
+  };
+
+  content.forEach(countInNode);
+  return wordCount;
 } 

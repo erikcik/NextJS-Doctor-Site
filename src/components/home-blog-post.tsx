@@ -2,13 +2,13 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Clock, Calendar, User, Book } from 'lucide-react'
 import { useParams } from "next/navigation"
 import { GlareCard } from "@/components/ui/glare-card"
 
-interface BlogPostProps {
+interface HomeBlogPostProps {
   title: React.ReactNode;
   description: {
     tr: string;
@@ -24,7 +24,7 @@ interface BlogPostProps {
   featured?: boolean;
 }
 
-export function BlogPost({
+export function HomeBlogPost({
   title,
   description,
   image,
@@ -35,27 +35,27 @@ export function BlogPost({
   author,
   linkToBook,
   featured = false
-}: BlogPostProps) {
+}: HomeBlogPostProps) {
   const params = useParams();
-  const locale = params?.locale as string;
-  const path = window.location.pathname;
-  const isBlogPage = path.includes('/blog');
+  const locale = (params?.locale ?? 'en') as keyof typeof description;
 
   return (
     <Link href={href}>
       <GlareCard className={`
-        ${featured && !isBlogPage ? 'lg:flex' : ''} 
-        ${isBlogPage ? 'flex md:flex-row ' : 'flex flex-col'}
+        ${featured ? 'lg:flex lg:flex-col ' : ''} 
+        flex flex-col aspect-[4/5]
+        transition-all duration-300 hover:scale-[1.02]
       `}>
         <div className={`
-          relative 
-          ${isBlogPage ? 'w-[40%] h-full' : 'w-full h-64'} 
+          relative
+          ${featured ? 'lg:h-1/2' : 'aspect-video'}
+          w-full
         `}>
           <Image
             src={image}
             alt={typeof title === 'string' ? title : 'Blog Image'}
             fill
-            className={`object-cover ${isBlogPage ? 'rounded-l-[var(--radius)]' : 'rounded-t-[var(--radius)]'}`}
+            className="object-cover rounded-t-[var(--radius)]"
             priority
           />
           <Badge 
@@ -64,23 +64,18 @@ export function BlogPost({
             {category}
           </Badge>
         </div>
+
         <div className={`
-          flex flex-col flex-1 p-6
-          ${isBlogPage ? 'w-[60%]' : 'w-full'}
+          flex flex-col flex-1
+          w-full p-6
         `}>
-          <CardHeader className="px-0 bg-gradient-to-r from-[#47afe2]/5 to-transparent">
-            <h3 className={`
-              ${isBlogPage ? 'text-2xl' : 'text-xl'}
-              font-semibold text-[#47afe2] hover:text-[#47afe2]/90 transition-colors line-clamp-2
-            `}>
+          <CardHeader className="px-0">
+            <h3 className="text-xl font-semibold text-[#47afe2] hover:text-[#47afe2]/90 transition-colors line-clamp-2">
               {title}
             </h3>
           </CardHeader>
           <CardContent className="px-0 space-y-4">
-            <p className={`
-              text-muted-foreground 
-              ${isBlogPage ? 'text-lg line-clamp-3' : 'line-clamp-2'}
-            `}>
+            <p className="text-muted-foreground line-clamp-2">
               {locale === 'tr' ? description.tr : description.en}
             </p>
             <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mt-auto">
@@ -116,5 +111,4 @@ export function BlogPost({
       </GlareCard>
     </Link>
   )
-}
-
+} 

@@ -1,22 +1,27 @@
 import { db } from "~/server/db";
 import { blogEntries } from "~/server/db/schema";
-import { eq, ne, desc } from "drizzle-orm";
+import { eq, ne, desc, and } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import { LocalizedTitle } from "~/components/localized-title";
 import MarkdownDisplay from "~/components/markdown-display";
-import { formatDate } from "~/lib/utils";
-import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import Image from "next/image";
+import { Clock, Tag, User, ChevronRight } from "lucide-react";
+import { Badge } from "~/components/ui/badge";
+import { Button } from "~/components/ui/button";
 import Link from "next/link";
-import { ChevronRight, Clock, Book } from "lucide-react";
-import { getExcerpt } from "~/utils/getExcerpt";
+import { cn } from "~/lib/utils";
+import { getTranslations } from "next-intl/server";
+import { unstable_setRequestLocale } from 'next-intl/server';
 
-export default async function BlogEntryPage({
+export default async function BlogPostPage({
   params,
 }: {
   params: { id: string; locale: string };
 }) {
-  // Fetch the current entry
+  unstable_setRequestLocale(params.locale);
+  const t = await getTranslations('BlogPostPage');
+
+  // Fetch the current blog post
   const [entry] = await db
     .select()
     .from(blogEntries)
@@ -26,199 +31,169 @@ export default async function BlogEntryPage({
     notFound();
   }
 
-  // Fetch other entries for the sidebar (excluding current entry)
-  const relatedEntries = await db
+  // Corrected query for related posts
+  const relatedPosts = await db
     .select()
     .from(blogEntries)
-    .where(ne(blogEntries.id, params.id))
+    .where(
+      and(
+        eq(blogEntries.category, entry.category),
+        ne(blogEntries.id, params.id)
+      )
+    )
     .orderBy(desc(blogEntries.createdAt))
     .limit(3);
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            "headline": params.locale === 'tr' ? entry.turkishTitle : entry.englishTitle,
-            "image": entry.coverImage,
-            "datePublished": entry.createdAt.toISOString(),
-            "dateModified": entry.updatedAt?.toISOString(),
-            "author": {
-              "@type": "Person",
-              "name": entry.author
-            },
-            "publisher": {
-              "@type": "Organization",
-              "name": "Dr. Cüneyt Tamam",
-              "logo": {
-                "@type": "ImageObject",
-                "url": "https://drcuneyttamam.com/logo.png"
-              }
-            },
-            "description": getExcerpt(entry.turkishContent, entry.englishContent)[params.locale as 'tr' | 'en'],
-            "articleBody": params.locale === 'tr' ? entry.turkishContent : entry.englishContent,
-            "wordCount": entry.minutesToRead! * 200, // Approximate words based on reading time
-            "timeRequired": `PT${entry.minutesToRead}M`,
-            ...(entry.linkToBook && {
-              "isBasedOn": {
-                "@type": "Book",
-                "url": entry.linkToBook
-              }
-            })
-          })
-        }}
-      />
-      
-      <div className="container mx-auto px-4 py-8">
-        <div className="">
-          {/* Hero Header Section */}
-          <div className="mb-12 grid grid-cols-1 gap-8 border-b pb-8 md:grid-cols-2 md:items-center">
-            {/* Text Content */}
-            <div className="order-2 text-center md:order-1 md:text-left">
-              <div className="mb-4 text-sm font-medium text-blue-600">Blog Post</div>
-              <h1 className="mb-6 text-3xl font-bold tracking-tight sm:text-4xl">
-                <LocalizedTitle
-                  turkishTitle={entry.turkishTitle}
-                  englishTitle={entry.englishTitle}
-                />
-              </h1>
-              
-              {/* Metadata row */}
-              <div className="flex flex-col items-center gap-4 md:items-start">
-                {/* Author info */}
-                <div className="flex items-center gap-3">
-                  <Avatar className="h-10 w-10">
-                    <AvatarImage 
-                      src={`https://api.dicebear.com/9.x/initials/svg?seed=${encodeURIComponent(entry.author)}`} 
-                      alt={entry.author} 
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-white">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* Main Content */}
+          <article className="lg:col-span-3">
+            {/* Header Section */}
+            <div className="relative bg-white rounded-xl overflow-hidden shadow-md mb-8">
+              {/* Title and Metadata Section - Moved above image */}
+              <div className="relative p-8">
+                <div className="relative mb-6">
+                  <h1 className="text-3xl md:text-4xl font-bold mb-4">
+                    <LocalizedTitle
+                      turkishTitle={entry.turkishTitle}
+                      englishTitle={entry.englishTitle}
                     />
-                    <AvatarFallback>
-                      {entry.author.split(" ").map(word => word[0]).join("")}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="flex flex-col text-left">
-                    <span className="font-medium text-foreground">{entry.author}</span>
-                    <time className="text-sm text-muted-foreground">{formatDate(entry.createdAt)}</time>
+                  </h1>
+                  <div className="absolute -left-4 top-0 bottom-0 w-1 bg-blue-600"/>
+                </div>
+
+                {/* Metadata */}
+                <div className="flex flex-wrap items-center gap-6 text-muted-foreground border-y border-gray-100 py-4">
+                  <div className="flex items-center gap-2">
+                    <User className="h-5 w-5 text-blue-600" />
+                    <span className="font-medium">{t('by')} {entry.author}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-5 w-5 text-blue-600" />
+                    <span>{entry.minutesToRead} {t('minutesToRead')}</span>
                   </div>
                 </div>
 
-                {/* Reading info */}
-                <div className="flex items-center divide-x divide-gray-200">
-                  {entry.minutesToRead && (
-                    <div className="flex items-center gap-2 pr-4">
-                      <Clock className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm text-muted-foreground">{entry.minutesToRead} min read</span>
-                    </div>
-                  )}
-                  {entry.linkToBook && (
-                    <a
-                      href={entry.linkToBook}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 pl-4 text-blue-600 hover:text-blue-700"
+                {/* Keywords */}
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {entry.keywords.split(',').map((keyword, index) => (
+                    <Badge 
+                      key={index} 
+                      variant="outline" 
+                      className="bg-transparent border-blue-600/20 text-blue-700"
                     >
-                      <Book className="h-4 w-4" />
-                      <span className="text-sm">View Book</span>
-                    </a>
-                  )}
+                      {keyword.trim()}
+                    </Badge>
+                  ))}
                 </div>
               </div>
-            </div>
 
-            {/* Featured Image */}
-            <div className="order-1 md:order-2">
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
+              {/* Hero Image - Adjusted aspect ratio */}
+              <div className="relative aspect-[21/9] w-full">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10"/>
                 <Image
                   src={entry.coverImage}
-                  alt={entry.turkishTitle}
+                  alt={params.locale === 'tr' ? entry.turkishTitle : entry.englishTitle}
                   fill
-                  className="object-cover rounded-lg"
+                  className="object-cover"
                   priority
                 />
+                {/* Category Badge */}
+                <Badge 
+                  variant="secondary" 
+                  className="absolute top-6 left-6 z-20 bg-white/90 backdrop-blur-sm"
+                >
+                  {entry.category}
+                </Badge>
               </div>
             </div>
-          </div>
 
-          {/* Main Content and Sidebar */}
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
             {/* Main Content */}
-            <div className="lg:col-span-3">
-              <article className="prose prose-slate max-w-none">
-                <div className="mt-8">
-                  <MarkdownDisplay
-                    turkishContent={entry.turkishContent}
-                    englishContent={entry.englishContent}
-                  />
-                </div>
-              </article>
+            <div className={cn(
+              "bg-white rounded-xl shadow-md p-8",
+              "prose prose-lg max-w-none",
+              "prose-headings:text-gray-900 prose-headings:font-bold",
+              "prose-p:text-gray-700",
+              "prose-a:text-blue-600 prose-a:no-underline hover:prose-a:text-blue-700",
+              "prose-strong:text-gray-900",
+              "prose-blockquote:border-blue-600 prose-blockquote:bg-blue-50/50 prose-blockquote:py-1 prose-blockquote:px-4 prose-blockquote:rounded-r-lg",
+              "prose-img:rounded-lg prose-img:shadow-md"
+            )}>
+              <MarkdownDisplay
+                turkishContent={entry.turkishContent}
+                englishContent={entry.englishContent}
+              />
             </div>
+          </article>
 
-            {/* Sidebar */}
-            <aside className="lg:col-span-1">
-              <div className="sticky top-24 space-y-6">
-                <div>
-                  <h2 className="mb-4 text-lg font-semibold">
-                    Related Articles
-                  </h2>
-                  <div className="space-y-4">
-                    {relatedEntries.map((relatedEntry) => (
-                      <Link
-                        key={relatedEntry.id}
-                        href={`/blog/${relatedEntry.id}`}
-                        className="group block"
-                      >
-                        <div className="flex items-start gap-4 rounded-lg p-2 transition-colors hover:bg-slate-50">
-                          <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md">
-                            <Image
-                              src={relatedEntry.coverImage}
-                              alt={relatedEntry.turkishTitle}
-                              fill
-                              className="object-cover"
-                            />
-                          </div>
-                          <div className="flex-1 space-y-1">
-                            <h3 className="line-clamp-2 font-medium group-hover:text-blue-600">
-                              <LocalizedTitle
-                                turkishTitle={relatedEntry.turkishTitle}
-                                englishTitle={relatedEntry.englishTitle}
-                              />
-                            </h3>
-                            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                              <span>{relatedEntry.author}</span>
-                              {relatedEntry.minutesToRead && (
-                                <>
-                                  <span>•</span>
-                                  <span>{relatedEntry.minutesToRead} min read</span>
-                                </>
-                              )}
-                            </div>
-                          </div>
-                          <ChevronRight className="h-5 w-5 flex-shrink-0 text-muted-foreground/50 transition-colors group-hover:text-blue-600" />
+          {/* Sidebar */}
+          <aside className="lg:col-span-1">
+            <div className="sticky top-8 space-y-8">
+              {/* Related Posts Section */}
+              <div className="bg-white rounded-xl shadow-md p-6">
+                <h2 className="text-xl font-bold mb-6 pb-2 border-b">
+                  {t('relatedPosts')}
+                </h2>
+                <div className="space-y-6">
+                  {relatedPosts.map((post) => (
+                    <Link
+                      key={post.id}
+                      href={`/${params.locale}/blog/${post.id}`}
+                      className="group block"
+                    >
+                      <div className="flex gap-4">
+                        {/* Thumbnail */}
+                        <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+                          <Image
+                            src={post.coverImage}
+                            alt={params.locale === 'tr' ? post.turkishTitle : post.englishTitle}
+                            fill
+                            className="object-cover transition-transform duration-300 group-hover:scale-110"
+                          />
                         </div>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="rounded-lg bg-slate-50 p-4">
-                  <h3 className="mb-2 font-medium">Cover Image</h3>
-                  <div className="relative aspect-video w-full overflow-hidden rounded-md">
-                    <Image
-                      src={entry.coverImage}
-                      alt={entry.turkishTitle}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
+                        {/* Post Info */}
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-medium text-sm line-clamp-2 group-hover:text-blue-600 transition-colors">
+                            <LocalizedTitle
+                              turkishTitle={post.turkishTitle}
+                              englishTitle={post.englishTitle}
+                            />
+                          </h3>
+                          <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
+                            <Clock className="h-3 w-3" />
+                            <span>{post.minutesToRead} {t('minutesToRead')}</span>
+                          </div>
+                        </div>
+                        <ChevronRight className="h-5 w-5 text-muted-foreground/50 transition-colors group-hover:text-blue-600" />
+                      </div>
+                    </Link>
+                  ))}
                 </div>
               </div>
-            </aside>
-          </div>
+
+              {/* Category Card */}
+              <div className="bg-white rounded-xl shadow-md p-6">
+                <h2 className="text-xl font-bold mb-4">{t('category')}</h2>
+                <Badge variant="secondary" className="text-sm">
+                  {entry.category}
+                </Badge>
+              </div>
+
+              {/* Share Section */}
+              <div className="bg-white rounded-xl shadow-md p-6">
+                <h2 className="text-xl font-bold mb-4">{t('share')}</h2>
+                <div className="flex gap-2">
+                  <Button variant="outline" size="sm" className="flex-1">
+                    {t('copyLink')}
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
-    </>
+    </div>
   );
 } 

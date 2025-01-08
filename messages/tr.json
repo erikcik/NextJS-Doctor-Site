@@ -25,6 +25,7 @@
     "about": "Hakkında",
     "orthopedics": "Ortopedi",
     "complementary_medicine": "Tamamlayıcı Tıp",
+    "books": "Kitaplar",
     "blog": "Blog",
     "contact": "İletişim"
   },
@@ -51,9 +52,10 @@
     "education": {
       "title": "Eğitim",
       "items": [
-        "Tarsus Amerikan Lisesi (1989)",
-        "Hacettepe Üniversitesi Tıp Fakültesi",
-        "Gülhane Askeri Tıp Akademisi (1995)"
+        "Toros Üniversitesi – Doçentlik – Mayıs 2019",
+        "Haydarpaşa GATA Eğitim Hastanesi – Ortopedi ve Travmatoloji Uzmanı – Ekim 1999-Mayıs 2003",
+        "Gülhane Askeri Tıp Akademisi Tıp Fakültesi – MD – Ekim 1989 - Ağustos 1996",
+        "Tarsus Amerikan Lisesi -1982-1989"
       ]
     },
     "specialization": {
@@ -68,8 +70,7 @@
       "title": "Ek Sertifikalar",
       "items": [
         "Nöral Terapi Sertifikası",
-        "İleri Akupunktur Eğitimi",
-        "Proloterapi Uzman Sertifikası"
+        "İleri Akupunktur ve Proloterapi Uzman Sertifikası"
       ]
     },
     "moreDetails": "Daha Fazla Bilgi"
@@ -240,11 +241,12 @@
   "Footer": {
     "about": {
       "title": "Hakkımda",
-      "description": "Ortopedi ve Travmatoloji Uzmanı, Tamamlayıcı Tıp Uygulayıcısı, Öğretim Üyesi"
+      "description": "Ortopedi ve Travmatoloji Uzmanı, Tamamlayıcı Tıp Uygulayıcısı"
     },
     "corporate": {
       "title": "Kurumsal",
       "about": "Hakkımda",
+      "books": "Kitaplar",
       "blog": "Blog",
       "contact": "İletişim",
       "privacy": "Gizlilik Politikası"
@@ -260,5 +262,102 @@
       "phone": "Telefon: +90 543 599 85 69",
       "email": "E-Posta: info@cuneyttamam.com"
     }
+  },
+  "BooksPage": {
+    "title": "Tıbbi Kitaplar",
+    "subtitle": "Dr. Cüneyt Tamam'ın yayınlanmış eserleri ve önerdiği okumalar",
+    "readMore": "Devamını Oku",
+    "viewBook": "Kitabı Görüntüle",
+    "minutesToRead": "dakika okuma"
+  },
+  "BlogPage": {
+    "title": "Tıbbi Blog",
+    "subtitle": "Ortopedi ve tamamlayıcı tıp alanında en son görüşler ve araştırmalar",
+    "categories": {
+      "orthopedics": "Ortopedi",
+      "complementary": "Tamamlayıcı Tıp",
+      "research": "Araştırma",
+      "treatment": "Tedavi Yöntemleri",
+      "wellness": "Sağlıklı Yaşam"
+    },
+    "readMore": "Devamını Oku",
+    "minutesToRead": "dakika okuma",
+    "author": "Yazar",
+    "relatedPosts": "İlgili Yazılar",
+    "searchPlaceholder": "Makalelerde ara..."
+  },
+  "BookPage": {
+    "backToBooks": "Kitaplara Dön",
+    "bookContent": "Kitap İçeriği",
+    "viewBook": "Kitabı Görüntüle",
+    "minutesToRead": "dakika okuma",
+    "preview": "Önizleme",
+    "fullContent": "Tam İçerik"
+  },
+  "BlogPostPage": {
+    "minutesToRead": "dakika okuma",
+    "relatedPosts": "İlgili Yazılar",
+    "category": "Kategori",
+    "share": "Paylaş",
+    "copyLink": "Bağlantıyı Kopyala",
+    "by": "Yazan"
+  },
+  "VideoReels": {
+    "title": "Video Reeller",
+    "subtitle": "En son tıbbi içgörülerimizi ve prosedürlerimizi izleyin",
+    "viewAll": "Tüm Videoları Görüntüle",
+    "watchVideo": "Videoyu izle",
+    "noVideos": "Henüz video bulunmamaktadır",
+    "minutesAgo": "dakika önce",
+    "hoursAgo": "saat önce",
+    "daysAgo": "gün önce"
+  },
+  "AdminVideo": {
+    "title": "Video Reeller",
+    "createNew": "Yeni Video Oluştur",
+    "edit": "Videoyu Düzenle",
+    "form": {
+      "turkishTitle": "Türkçe Başlık",
+      "englishTitle": "İngilizce Başlık",
+      "turkishDescription": "Türkçe Açıklama",
+      "englishDescription": "İngilizce Açıklama",
+      "videoUpload": "Video Yükle",
+      "thumbnailUpload": "Küçük Resim Yükle",
+      "translateTitle": "Başlığı Çevir",
+      "translateDescription": "Açıklamayı Çevir",
+      "save": "Değişiklikleri Kaydet",
+      "create": "Video Oluştur",
+      "cancel": "İptal",
+      "uploading": "Yükleniyor...",
+      "processing": "İşleniyor..."
+    },
+    "messages": {
+      "createSuccess": "Video başarıyla oluşturuldu",
+      "updateSuccess": "Video başarıyla güncellendi",
+      "deleteSuccess": "Video başarıyla silindi",
+      "error": {
+        "titleRequired": "Lütfen önce Türkçe başlık girin",
+        "descriptionRequired": "Lütfen önce Türkçe açıklama girin",
+        "videoRequired": "Lütfen bir video yükleyin",
+        "thumbnailRequired": "Lütfen bir küçük resim yükleyin",
+        "translationFailed": "Çeviri başarısız oldu",
+        "uploadFailed": "Yükleme başarısız oldu"
+      }
+    },
+    "placeholders": {
+      "turkishTitle": "Türkçe başlık girin",
+      "englishTitle": "İngilizce başlık girin",
+      "turkishDescription": "Türkçe açıklama girin",
+      "englishDescription": "İngilizce açıklama girin"
+    }
+  },
+  "Books": {
+    "title": "Tıbbi Kitaplar",
+    "subtitle": "Tıbbi yayınlarımızı ve önerilen okumalarımızı keşfedin",
+    "readMore": "Devamını Oku",
+    "viewBook": "Kitabı Görüntüle",
+    "viewAll": "Tüm Kitapları Görüntüle",
+    "minutesToRead": "dakika okuma",
+    "by": "Yazar"
   }
 } 

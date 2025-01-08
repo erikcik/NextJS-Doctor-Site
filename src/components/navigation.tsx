@@ -12,6 +12,7 @@ export function Navigation() {
     { key: "about", href: "/about" },
     { key: "orthopedics", href: "/orthopedics" },
     { key: "complementary_medicine", href: "/complementary-medicine" },
+    { key: "books", href: "/books" }, // Changed from blog
     { key: "blog", href: "/blog" },
     { key: "contact", href: "/contact" }
   ]

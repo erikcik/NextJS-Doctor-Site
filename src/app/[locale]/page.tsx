@@ -13,6 +13,8 @@ import {
   complementaryEntries,
   orthopedicsEntries,
   announcementEntries,
+  videoEntries,
+  bookEntries,
 } from "~/server/db/schema";
 import { desc } from "drizzle-orm";
 
@@ -21,8 +23,13 @@ import OrthopedicsShow from "~/components/orthopedics-show";
 import { LocalizedTitle } from "~/components/localized-title";
 import ComplementaryShow from "~/components/complementary-show";
 import { formatDate } from "~/lib/utils";
+import { Play, ChevronRight } from "lucide-react";
+import Image from "next/image";
+import { getTranslations } from "next-intl/server";
+import { BackgroundGradientAnimation } from "~/components/ui/background-gradient-animation";
+import { BookSection } from "~/components/book-section";
 
-export default async function Home() {
+export default async function Home({ params }: { params: { locale: string } }) {
   const allBlogEntries = await db
     .select()
     .from(blogEntries)
@@ -43,6 +50,18 @@ export default async function Home() {
     .from(announcementEntries)
     .orderBy(desc(announcementEntries.createdAt));
 
+  const allVideoEntries = await db
+    .select()
+    .from(videoEntries)
+    .orderBy(desc(videoEntries.createdAt));
+
+  const allBookEntries = await db
+    .select()
+    .from(bookEntries)
+    .orderBy(desc(bookEntries.createdAt));
+
+  const t = await getTranslations("VideoReels");
+
   return (
     <>
       <script
@@ -51,76 +70,77 @@ export default async function Home() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Physician",
-            "name": "Dr. Cüneyt Tamam",
+            name: "Dr. Cüneyt Tamam",
             "@id": "https://drcuneyttamam.com/#physician",
-            "url": "https://drcuneyttamam.com",
-            "image": "https://drcuneyttamam.com/doctor-image.jpg",
-            "medicalSpecialty": [
+            url: "https://drcuneyttamam.com",
+            image: "https://drcuneyttamam.com/doctor-image.jpg",
+            medicalSpecialty: [
               "Orthopedics",
               "Traumatology",
-              "Complementary Medicine"
+              "Complementary Medicine",
             ],
-            "availableService": [
+            availableService: [
               {
                 "@type": "MedicalProcedure",
-                "name": "Joint Replacement Surgery"
+                name: "Joint Replacement Surgery",
               },
               {
                 "@type": "MedicalTherapy",
-                "name": "Acupuncture"
+                name: "Acupuncture",
               },
               {
                 "@type": "MedicalTherapy",
-                "name": "Prolotherapy"
-              }
+                name: "Prolotherapy",
+              },
             ],
-            "memberOf": [
+            memberOf: [
               {
                 "@type": "Organization",
-                "name": "Turkish Medical Association"
-              }
+                name: "Turkish Medical Association",
+              },
             ],
-            "workLocation": {
+            workLocation: {
               "@type": "MedicalClinic",
-              "name": "Dr. Cüneyt Tamam Medical Practice",
-              "address": {
+              name: "Dr. Cüneyt Tamam Medical Practice",
+              address: {
                 "@type": "PostalAddress",
-                "streetAddress": "Your Street Address",
-                "addressLocality": "Mersin",
-                "addressRegion": "Mersin",
-                "postalCode": "33000",
-                "addressCountry": "TR"
-              }
+                streetAddress: "Your Street Address",
+                addressLocality: "Mersin",
+                addressRegion: "Mersin",
+                postalCode: "33000",
+                addressCountry: "TR",
+              },
             },
-            "hasOfferCatalog": {
+            hasOfferCatalog: {
               "@type": "OfferCatalog",
-              "name": "Medical Services",
-              "itemListElement": [
+              name: "Medical Services",
+              itemListElement: [
                 {
                   "@type": "Offer",
-                  "itemOffered": {
+                  itemOffered: {
                     "@type": "MedicalProcedure",
-                    "name": "Orthopedic Surgery",
-                    "description": "Comprehensive orthopedic surgical procedures"
-                  }
+                    name: "Orthopedic Surgery",
+                    description: "Comprehensive orthopedic surgical procedures",
+                  },
                 },
                 {
                   "@type": "Offer",
-                  "itemOffered": {
+                  itemOffered: {
                     "@type": "MedicalTherapy",
-                    "name": "Complementary Medicine",
-                    "description": "Alternative and complementary medical treatments"
-                  }
-                }
-              ]
-            }
-          })
+                    name: "Complementary Medicine",
+                    description:
+                      "Alternative and complementary medical treatments",
+                  },
+                },
+              ],
+            },
+          }),
         }}
       />
 
       <div className="min-h-screen">
         <CarouselComponent />
-        
+
         <main>
           <AboutSection />
 
@@ -128,49 +148,98 @@ export default async function Home() {
           <OrthopedicsShow entries={allOrthopedicsEntries} />
 
           {/* Complementary Medicine Section */}
+
           <ComplementaryShow entries={allComplementaryEntries} />
 
-          <TestimonialsAnnouncements />ok
-          <section className="mx-auto mt-12 w-full bg-[#47afe2] bg-opacity-50 px-4 py-8 lg:px-48">
-            <h2 className="mb-8 font-display text-3xl font-bold">
-              Announcements
-            </h2>
-            <div className="grid gap-6">
-              {allAnnouncementEntries.slice(0, 3).map((announcement) => (
-                <Card key={announcement.id} className="max-w-2xl">
-                  <CardHeader>
-                    <CardTitle className="text-xl text-red-600">
-                      <LocalizedTitle
-                        turkishTitle={announcement.turkishTitle}
-                        englishTitle={announcement.englishTitle}
+          <section className=" my-32 py-16">
+            <div className="container mx-auto px-4">
+              {/* Section Header */}
+              <div className="mb-12 text-center">
+                <h2 className="mb-4 text-3xl font-bold text-black md:text-4xl">
+                  {t("title")}
+                  <div className="mx-auto mt-2 h-1 w-24 bg-blue-600" />
+                </h2>
+                <p className="mx-auto max-w-2xl text-gray-400">
+                  {t("subtitle")}
+                </p>
+              </div>
+
+              {/* Video Grid */}
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {allVideoEntries.map((video) => (
+                  <div
+                    key={video.id}
+                    className="group relative overflow-hidden rounded-xl bg-gray-800"
+                  >
+                    {/* Thumbnail */}
+                    <div className="relative aspect-[9/16] w-full">
+                      <Image
+                        src={video.thumbnailUrl}
+                        alt={video.turkishTitle}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
                       />
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <div className="prose prose-slate max-w-none">
-                        <MarkdownDisplay
-                          turkishContent={announcement.turkishContent}
-                          englishContent={announcement.englishContent}
-                        />
+                      {/* Play Button Overlay */}
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/40 transition-colors group-hover:bg-black/50">
+                        <div className="flex h-16 w-16 transform items-center justify-center rounded-full bg-blue-600/90 transition-transform group-hover:scale-110">
+                          <Play className="h-8 w-8 text-white" />
+                        </div>
                       </div>
-                      <div className="flex items-center justify-between">
-                        <p className="text-sm text-muted-foreground">
-                          {formatDate(announcement.createdAt)}
-                        </p>
-                        <Button variant="outline" size="sm" asChild>
-                          <Link href={`/announcements/${announcement.id}`}>
-                            Learn More
-                          </Link>
-                        </Button>
-                      </div>
+                      {/* Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
                     </div>
-                  </CardContent>
-                </Card>
-              ))}
+
+                    {/* Video Info */}
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <h3 className="mb-2 text-xl font-semibold text-white">
+                        <LocalizedTitle
+                          turkishTitle={video.turkishTitle}
+                          englishTitle={video.englishTitle}
+                        />
+                      </h3>
+                      <p className="line-clamp-2 text-sm text-gray-300">
+                        {params.locale === "tr"
+                          ? video.turkishDescription
+                          : video.englishDescription}
+                      </p>
+                    </div>
+
+                    {/* Clickable Link */}
+                    <Link
+                      href={video.videoUrl}
+                      className="absolute inset-0 z-10"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span className="sr-only">Watch video</span>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+
+              {/* View All Button */}
+              {allVideoEntries.length > 6 && (
+                <div className="mt-12 text-center">
+                  <Button
+                    variant="outline"
+                    className="border-white bg-transparent text-white hover:bg-white hover:text-black"
+                    asChild
+                  >
+                    <Link href="/videos" className="flex items-center gap-2">
+                      {t("viewAll")}
+                      <ChevronRight className="h-4 w-4" />
+                    </Link>
+                  </Button>
+                </div>
+              )}
             </div>
           </section>
+
+          {/* Book Section */}
           <BlogSection entries={allBlogEntries} />
+          <BookSection entries={allBookEntries} />
+
+          {/* Video Reels Section */}
         </main>
       </div>
     </>
