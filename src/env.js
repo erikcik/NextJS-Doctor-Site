@@ -8,6 +8,13 @@ export const env = createEnv({
    */
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]),
+    RESEND_API_KEY: z.string(),
+    AUTH_SECRET: z.string(),
+    ADMIN_USERNAME: z.string(),
+    ADMIN_PASSWORD: z.string(),
+    UPLOADTHING_TOKEN: z.string(),
+    DEEPL_AUTH_KEY: z.string(),
+    
   },
 
   /**
@@ -25,6 +32,12 @@ export const env = createEnv({
    */
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
+    RESEND_API_KEY: process.env.RESEND_API_KEY,
+    AUTH_SECRET: process.env.AUTH_SECRET,
+    ADMIN_USERNAME: process.env.ADMIN_USERNAME,
+    ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
+    UPLOADTHING_TOKEN: process.env.UPLOADTHING_TOKEN,
+    DEEPL_AUTH_KEY: process.env.DEEPL_AUTH_KEY,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**

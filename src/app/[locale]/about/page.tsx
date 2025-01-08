@@ -11,52 +11,82 @@ import Image from "next/image";
 import { CanvasRevealEffect } from "~/components/ui/canvas-reveal-effect";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
+import { JsonLd } from "react-schemaorg";
 
 export default function AboutPage() {
   const t = useTranslations("About");
 
   return (
-    <div className="container mx-auto px-4 py-10">
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4">
-        <div className="md:col-span-3 lg:col-span-4">
-          <div className="relative h-[400px] w-full overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl">
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10" />
-            <Image
-              src="https://drcuneyttamam.com/wp-content/uploads/2023/02/hakkimda.png"
-              alt="Dr. John Doe"
-              layout="fill"
-              objectFit="contain"
-              className="rounded-xl transition-transform duration-700 hover:scale-105"
-              priority
-            />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: "Dr. Cüneyt Tamam",
+            jobTitle: "Orthopedics and Traumatology Specialist",
+            workLocation: {
+              "@type": "Place",
+              name: "Private Practice",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Mersin",
+                addressCountry: "Turkey"
+              }
+            },
+            description: "Orthopedics and Traumatology Specialist with expertise in complementary medicine",
+            url: "https://drcuneyttamam.com",
+            sameAs: [
+              "https://www.facebook.com/DocDrCuneytTamam/",
+              "https://www.instagram.com/doc.dr.cuneyttamam/",
+              "https://www.linkedin.com/in/cüneyt-tamam-2624a517/"
+            ]
+          })
+        }}
+      />
+      <div className="container mx-auto px-4 py-10">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4">
+          <div className="md:col-span-3 lg:col-span-4">
+            <div className="relative h-[400px] w-full overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10" />
+              <Image
+                src="https://drcuneyttamam.com/wp-content/uploads/2023/02/hakkimda.png"
+                alt="Dr. John Doe"
+                layout="fill"
+                objectFit="contain"
+                className="rounded-xl transition-transform duration-700 hover:scale-105"
+                priority
+              />
+            </div>
+            <div className="mt-8 text-center">
+              <h1 className="mb-3 text-4xl font-bold text-[#47afe2] transition-colors duration-300 hover:text-[#3890c0]">
+                {t("doctorName")}
+              </h1>
+              <p className="mb-2 text-xl font-medium text-muted-foreground">
+                {t("position")}
+              </p>
+              <p className="text-lg text-muted-foreground/80">
+                Orthopedic Surgery Specialist
+              </p>
+            </div>
           </div>
-          <div className="mt-8 text-center">
-            <h1 className="mb-3 text-4xl font-bold text-[#47afe2] transition-colors duration-300 hover:text-[#3890c0]">
-              {t("doctorName")}
-            </h1>
-            <p className="mb-2 text-xl font-medium text-muted-foreground">
-              {t("position")}
-            </p>
-            <p className="text-lg text-muted-foreground/80">
-              Orthopedic Surgery Specialist
-            </p>
-          </div>
-        </div>
 
-        <div className="md:col-span-2 lg:col-span-3">
-          <BiographySection />
-        </div>
-        <div className="md:col-span-1 lg:col-span-1">
-          <EducationSection />
-        </div>
-        <div className="md:col-span-3 lg:col-span-2">
-          <CoursesSection />
-        </div>
-        <div className="md:col-span-3 lg:col-span-2">
-          <AchievementsSection />
+          <div className="md:col-span-2 lg:col-span-3">
+            <BiographySection />
+          </div>
+          <div className="md:col-span-1 lg:col-span-1">
+            <EducationSection />
+          </div>
+          <div className="md:col-span-3 lg:col-span-2">
+            <CoursesSection />
+          </div>
+          <div className="md:col-span-3 lg:col-span-2">
+            <AchievementsSection />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

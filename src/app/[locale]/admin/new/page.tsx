@@ -8,6 +8,8 @@ import { Label } from "~/components/ui/label";
 import MarkdownEditor from "~/components/markdown-editor";
 import { useToast } from "~/hooks/use-toast";
 import { FileUpload } from "~/components/file-upload";
+import { HelpCircle, Bold, Italic, Link2, Heading1, List, Image as ImageIcon, Undo, Mail, ChevronRight, MousePointerClick, Keyboard, ArrowRightLeft, Maximize2, FileWarning } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "~/components/ui/dialog";
 
 export default function NewEntryPage() {
   const searchParams = useSearchParams();
@@ -29,6 +31,7 @@ export default function NewEntryPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isTranslating, setIsTranslating] = useState(false);
   const [translationKey, setTranslationKey] = useState(0);
+  const [showEditorHelp, setShowEditorHelp] = useState(false);
 
   if (!entryType) {
     router.push("/admin");
@@ -97,7 +100,7 @@ export default function NewEntryPage() {
       toast({
         title: "Success",
         description: "Content translated successfully",
-      });
+      }); 
     } catch (error) {
       console.error('Translation error:', error);
       toast({
@@ -271,7 +274,19 @@ export default function NewEntryPage() {
         )}
 
         <div className="space-y-2">
-          <Label>Turkish Content</Label>
+          <div className="flex items-center justify-between">
+            <Label>Turkish Content</Label>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              className="flex items-center gap-1"
+              onClick={() => setShowEditorHelp(true)}
+            >
+              <HelpCircle className="h-4 w-4" />
+              Editor Help
+            </Button>
+          </div>
           <MarkdownEditor
             initialValue={formData.turkishContent}
             onChange={(value) => setFormData(prev => ({ ...prev, turkishContent: value }))}
@@ -312,6 +327,151 @@ export default function NewEntryPage() {
           </Button>
         </div>
       </form>
+
+      <EditorHelpDialog open={showEditorHelp} onOpenChange={setShowEditorHelp} />
     </div>
+  );
+}
+
+function EditorHelpDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-w-3xl">
+        <DialogHeader>
+          <DialogTitle className="text-2xl font-bold mb-6">Editor Guide</DialogTitle>
+        </DialogHeader>
+        <div className="prose prose-slate max-h-[70vh] overflow-y-auto px-2">
+          {/* Text Formatting Section */}
+          <div className="space-y-6 mb-10">
+            <h3 className="flex items-center gap-2 text-xl font-semibold text-primary border-b pb-2">
+              <MousePointerClick className="h-5 w-5" />
+              Text Formatting
+            </h3>
+            <div className="space-y-4 pl-4">
+              <div className="flex items-start gap-3 group hover:bg-muted/50 p-2 rounded-lg transition-colors">
+                <Bold className="h-5 w-5 text-muted-foreground mt-0.5" />
+                <div>
+                  <strong className="text-base">Bold</strong>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Select text and click <kbd className="rounded border px-1.5 py-0.5 text-xs">B</kbd> to make text bold
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 group hover:bg-muted/50 p-2 rounded-lg transition-colors">
+                <Italic className="h-5 w-5 text-muted-foreground mt-0.5" />
+                <div>
+                  <strong className="text-base">Italic</strong>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Select text and click <kbd className="rounded border px-1.5 py-0.5 text-xs">I</kbd> to italicize text
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 group hover:bg-muted/50 p-2 rounded-lg transition-colors">
+                <Link2 className="h-5 w-5 text-muted-foreground mt-0.5" />
+                <div>
+                  <strong className="text-base">Links</strong>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Select text and click the link icon to add a URL
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Headings Section */}
+          <div className="space-y-6 mb-10">
+            <h3 className="flex items-center gap-2 text-xl font-semibold text-primary border-b pb-2">
+              <Heading1 className="h-5 w-5" />
+              Headings
+            </h3>
+            <div className="space-y-4 pl-4">
+              <div className="flex items-start gap-3 group hover:bg-muted/50 p-2 rounded-lg transition-colors">
+                <ChevronRight className="h-5 w-5 text-muted-foreground mt-0.5" />
+                <div>
+                  <p className="text-sm text-muted-foreground">
+                    Six levels of headings available (H1-H6)
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Lists Section */}
+          <div className="space-y-6 mb-10">
+            <h3 className="flex items-center gap-2 text-xl font-semibold text-primary border-b pb-2">
+              <List className="h-5 w-5" />
+              Lists
+            </h3>
+            <div className="space-y-4 pl-4">
+              <div className="flex items-start gap-3 group hover:bg-muted/50 p-2 rounded-lg transition-colors">
+                <ChevronRight className="h-5 w-5 text-muted-foreground mt-0.5" />
+                <div>
+                  <p className="text-sm text-muted-foreground">
+                    Create bulleted lists with different markers for each level:
+                  </p>
+                  <ul className="mt-2 space-y-1 text-sm text-muted-foreground">
+                    <li>• First level: disc</li>
+                    <li>○ Second level: circle</li>
+                    <li>■ Third level: square</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Images Section */}
+          <div className="space-y-6 mb-10">
+            <h3 className="flex items-center gap-2 text-xl font-semibold text-primary border-b pb-2">
+              <ImageIcon className="h-5 w-5" />
+              Images
+            </h3>
+            <div className="space-y-4 pl-4">
+              <div className="flex items-start gap-3 group hover:bg-muted/50 p-2 rounded-lg transition-colors">
+                <MousePointerClick className="h-5 w-5 text-muted-foreground mt-0.5" />
+                <div>
+                  <p className="text-sm text-muted-foreground">
+                    Click the image icon to upload images
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 group hover:bg-muted/50 p-2 rounded-lg transition-colors">
+                <Maximize2 className="h-5 w-5 text-muted-foreground mt-0.5" />
+                <div>
+                  <p className="text-sm text-muted-foreground">
+                    Resize images using the handle in the bottom-right corner
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Other Features Section */}
+          <div className="space-y-6">
+            <h3 className="flex items-center gap-2 text-xl font-semibold text-primary border-b pb-2">
+              <ArrowRightLeft className="h-5 w-5" />
+              Other Features
+            </h3>
+            <div className="space-y-4 pl-4">
+              <div className="flex items-start gap-3 group hover:bg-muted/50 p-2 rounded-lg transition-colors">
+                <Undo className="h-5 w-5 text-muted-foreground mt-0.5" />
+                <div>
+                  <p className="text-sm text-muted-foreground">
+                    Undo/Redo: Use the arrow buttons to undo or redo changes
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 group hover:bg-muted/50 p-2 rounded-lg transition-colors">
+                <Mail className="h-5 w-5 text-muted-foreground mt-0.5" />
+                <div>
+                  <p className="text-sm text-muted-foreground">
+                    Email addresses are automatically converted to clickable links
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 } 

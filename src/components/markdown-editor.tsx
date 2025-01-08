@@ -664,7 +664,10 @@ const MarkdownEditor = ({
         type="button"
         variant="ghost"
         size="sm"
-        className={cn("h-8 w-8 p-0")}
+        className={cn(
+          "h-8 w-8 p-0 text-white",
+          "hover:bg-white/20 hover:text-white"
+        )}
         onClick={() => editor.undo()}
         disabled={!editor.history?.undos?.length}
       >
@@ -681,7 +684,10 @@ const MarkdownEditor = ({
         type="button"
         variant="ghost"
         size="sm"
-        className={cn("h-8 w-8 p-0")}
+        className={cn(
+          "h-8 w-8 p-0 text-white",
+          "hover:bg-white/20 hover:text-white"
+        )}
         onClick={() => editor.redo()}
         disabled={!editor.history?.redos?.length}
       >
@@ -701,7 +707,11 @@ const MarkdownEditor = ({
             type="button"
             variant="ghost"
             size="sm"
-            className={cn("h-8 w-8 p-0", isActive && "bg-muted")}
+            className={cn(
+              "h-8 w-8 p-0 text-white",
+              "hover:bg-white/20 hover:text-white",
+              isActive && "bg-white/30"
+            )}
             onClick={() => {
               if (isActive) {
                 toggleLink(editor, null);
@@ -747,10 +757,10 @@ const MarkdownEditor = ({
   };
 
   return (
-    <div className="rounded-lg border p-4">
+    <div className="rounded-xl border p-4">
       <Slate editor={editor} initialValue={content} onChange={handleChange}>
         {!readOnly && (
-          <Toolbar className="sticky top-20 z-10 mb-2 bg-white">
+          <Toolbar className="sticky top-20 z-10 mb-2 bg-black text-white rounded-lg">
             <UndoButton />
             <RedoButton />
             <MarkButton format="bold" icon="B" />
@@ -767,7 +777,7 @@ const MarkdownEditor = ({
               type="button"
               variant="ghost"
               size="sm"
-              className="h-8 w-8 p-0"
+              className="h-8 w-8 p-0 text-white hover:bg-white/20 hover:text-white"
               onClick={() => insertImage(editor)}
             >
               <ImageIcon className="h-4 w-4" />
@@ -851,7 +861,11 @@ const MarkButton = ({ format, icon }: { format: string; icon: string }) => {
       type="button"
       variant="ghost"
       size="sm"
-      className={cn("h-8 w-8 p-0", isMarkActive(editor, format) && "bg-muted")}
+      className={cn(
+        "h-8 w-8 p-0 text-white",
+        "hover:bg-white/20 hover:text-white",
+        isMarkActive(editor, format) && "bg-white/30"
+      )}
       onMouseDown={(event) => {
         event.preventDefault();
         toggleMark(editor, format);
@@ -876,7 +890,11 @@ const BlockButton = ({
       type="button"
       variant="ghost"
       size="sm"
-      className={cn("h-8 w-8 p-0", isBlockActive(editor, format) && "bg-muted")}
+      className={cn(
+        "h-8 w-8 p-0 text-white",
+        "hover:bg-white/20 hover:text-white",
+        isBlockActive(editor, format) && "bg-white/30"
+      )}
       onMouseDown={(event) => {
         event.preventDefault();
         toggleBlock(editor, format);

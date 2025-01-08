@@ -45,6 +45,79 @@ export default async function Home() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Physician",
+            "name": "Dr. Cüneyt Tamam",
+            "@id": "https://drcuneyttamam.com/#physician",
+            "url": "https://drcuneyttamam.com",
+            "image": "https://drcuneyttamam.com/doctor-image.jpg",
+            "medicalSpecialty": [
+              "Orthopedics",
+              "Traumatology",
+              "Complementary Medicine"
+            ],
+            "availableService": [
+              {
+                "@type": "MedicalProcedure",
+                "name": "Joint Replacement Surgery"
+              },
+              {
+                "@type": "MedicalTherapy",
+                "name": "Acupuncture"
+              },
+              {
+                "@type": "MedicalTherapy",
+                "name": "Prolotherapy"
+              }
+            ],
+            "memberOf": [
+              {
+                "@type": "Organization",
+                "name": "Turkish Medical Association"
+              }
+            ],
+            "workLocation": {
+              "@type": "MedicalClinic",
+              "name": "Dr. Cüneyt Tamam Medical Practice",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Your Street Address",
+                "addressLocality": "Mersin",
+                "addressRegion": "Mersin",
+                "postalCode": "33000",
+                "addressCountry": "TR"
+              }
+            },
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Medical Services",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "MedicalProcedure",
+                    "name": "Orthopedic Surgery",
+                    "description": "Comprehensive orthopedic surgical procedures"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "MedicalTherapy",
+                    "name": "Complementary Medicine",
+                    "description": "Alternative and complementary medical treatments"
+                  }
+                }
+              ]
+            }
+          })
+        }}
+      />
+
       <div className="min-h-screen">
         <CarouselComponent />
         

@@ -11,6 +11,37 @@ import { desc } from "drizzle-orm";
 import { getExcerpt } from "~/utils/getExcerpt";
 import { formatDate } from "~/lib/utils";
 import { LocalizedTitle } from "~/components/localized-title";
+import { Metadata } from "next";
+
+export const generateMetadata = async ({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> => {
+  return {
+    title: locale === 'tr' ? 'Blog Yazıları | Ortopedi ve Travmatoloji' : 'Blog Posts | Orthopedics & Traumatology',
+    description: locale === 'tr' 
+      ? 'Ortopedi, travmatoloji ve tamamlayıcı tıp alanlarında en son araştırmalar ve bilgiler.'
+      : 'Latest research and insights in orthopedics, traumatology, and complementary medicine.',
+    alternates: {
+      canonical: '/blog',
+      languages: {
+        'tr': '/tr/blog',
+        'en': '/en/blog',
+      },
+    },
+    openGraph: {
+      title: locale === 'tr' ? 'Blog Yazıları' : 'Blog Posts',
+      description: locale === 'tr' 
+        ? 'Ortopedi ve tamamlayıcı tıp hakkında güncel bilgiler'
+        : 'Latest updates on orthopedics and complementary medicine',
+      images: [
+        {
+          url: '/og-blog.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'Blog Posts'
+        }
+      ],
+    }
+  };
+};
 
 export default async function BlogPage() {
   // Fetch all blog entries

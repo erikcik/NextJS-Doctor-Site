@@ -8,7 +8,7 @@ const Toolbar = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex flex-wrap items-center gap-1 rounded-md border bg-background p-1",
+      "flex flex-wrap items-center gap-1 rounded-md border bg-black p-1 text-white",
       className
     )}
     {...props}

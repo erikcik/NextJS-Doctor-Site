@@ -4,3 +4,6 @@ this is a example doctor site i have done with v0 and with mutlilang template an
     - what should i put the link to the books or is there going to be any links
     - how will the annoucment section is wanted, what should i add, what should be added to the schema of the announcment
     - the domain address is needed for resend api
+
+- to do 
+    - change the next public url to the real domain of the site
