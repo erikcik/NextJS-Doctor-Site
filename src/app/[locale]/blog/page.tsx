@@ -79,7 +79,7 @@ export default async function BlogPage() {
         </div>
 
         {/* Featured Posts */}
-        <div className="mb-16 grid gap-8 lg:grid-cols-2">
+        <div className="mb-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
           {featuredEntries.map((entry) => (
             <BlogPost
               key={entry.id}
@@ -107,7 +107,7 @@ export default async function BlogPage() {
           <h2 className="font-display mb-8 text-2xl font-semibold text-[#47afe2]">
             Recent Articles
           </h2>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {recentEntries.map((entry) => (
               <BlogPost
                 key={entry.id}

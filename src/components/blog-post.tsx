@@ -38,38 +38,52 @@ export function BlogPost({
 }: BlogPostProps) {
   const params = useParams();
   const locale = params?.locale as string;
+  const path = window.location.pathname;
+  const isBlogPage = path.includes('/blog');
 
   return (
     <Link href={href}>
-      <GlareCard className={`${featured ? 'lg:flex' : ''}`}>
-        <div className={`relative ${featured ? 'lg:w-1/2' : ''}`}>
-          <div className={`relative ${featured ? 'h-full min-h-[300px]' : 'h-48'}`}>
-            <Image
-              src={image}
-              alt={typeof title === 'string' ? title : 'Blog Image'}
-              fill
-              className="object-cover"
-            />
-          </div>
+      <GlareCard className={`
+        ${featured && !isBlogPage ? 'lg:flex' : ''} 
+        ${isBlogPage ? 'flex md:flex-row ' : 'flex flex-col'}
+      `}>
+        <div className={`
+          relative 
+          ${isBlogPage ? 'w-[40%] h-full' : 'w-full h-64'} 
+        `}>
+          <Image
+            src={image}
+            alt={typeof title === 'string' ? title : 'Blog Image'}
+            fill
+            className={`object-cover ${isBlogPage ? 'rounded-l-[var(--radius)]' : 'rounded-t-[var(--radius)]'}`}
+            priority
+          />
           <Badge 
             className="absolute top-4 left-4 bg-[#47afe2] hover:bg-[#47afe2]/90"
           >
             {category}
           </Badge>
         </div>
-        <div className={featured ? 'lg:w-1/2' : ''}>
-          <CardHeader className="bg-gradient-to-r from-[#47afe2]/5 to-transparent">
-            <h3 className={`${
-              featured ? 'text-2xl' : 'text-xl'
-            } font-semibold text-[#47afe2] hover:text-[#47afe2]/90 transition-colors`}>
+        <div className={`
+          flex flex-col flex-1 p-6
+          ${isBlogPage ? 'w-[60%]' : 'w-full'}
+        `}>
+          <CardHeader className="px-0 bg-gradient-to-r from-[#47afe2]/5 to-transparent">
+            <h3 className={`
+              ${isBlogPage ? 'text-2xl' : 'text-xl'}
+              font-semibold text-[#47afe2] hover:text-[#47afe2]/90 transition-colors line-clamp-2
+            `}>
               {title}
             </h3>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <p className="text-muted-foreground line-clamp-3">
+          <CardContent className="px-0 space-y-4">
+            <p className={`
+              text-muted-foreground 
+              ${isBlogPage ? 'text-lg line-clamp-3' : 'line-clamp-2'}
+            `}>
               {locale === 'tr' ? description.tr : description.en}
             </p>
-            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mt-auto">
               <div className="flex items-center gap-1">
                 <Calendar className="w-4 h-4" />
                 <span>{date}</span>

@@ -292,7 +292,7 @@ function AchievementsSection() {
             <AccordionContent className="">
               <p>{t("clickToSeePublications")}</p>
               <a
-                href="#"
+                href="http://drcuneyttamam.com/wp-content/uploads/2023/04/Yayinlar.pdf"
                 className="mt-2 inline-block text-[#ffd700] hover:text-[#ffd700]/80 hover:underline transition-colors"
               >
                 {t("viewCompleteListOfPublications")}
