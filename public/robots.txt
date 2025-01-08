@@ -1,0 +1,66 @@
+# www.robotstxt.org
+
+User-agent: *
+Allow: /
+
+# Main Pages
+Allow: /about
+Allow: /contact
+Allow: /blog
+Allow: /orthopedics
+Allow: /complementary-medicine
+Allow: /announcements
+
+# Localized Routes
+Allow: /tr
+Allow: /tr/about
+Allow: /tr/contact
+Allow: /tr/blog
+Allow: /tr/orthopedics
+Allow: /tr/complementary-medicine
+Allow: /tr/announcements
+
+Allow: /en
+Allow: /en/about
+Allow: /en/contact
+Allow: /en/blog
+Allow: /en/orthopedics
+Allow: /en/complementary-medicine
+Allow: /en/announcements
+
+# Dynamic Routes
+Allow: /blog/*
+Allow: /tr/blog/*
+Allow: /en/blog/*
+
+Allow: /orthopedics/*
+Allow: /tr/orthopedics/*
+Allow: /en/orthopedics/*
+
+Allow: /complementary-medicine/*
+Allow: /tr/complementary-medicine/*
+Allow: /en/complementary-medicine/*
+
+Allow: /announcements/*
+Allow: /tr/announcements/*
+Allow: /en/announcements/*
+
+# Media and Assets
+Allow: /images/
+Allow: /assets/
+Allow: /favicon.ico
+Allow: /logo.png
+Allow: /sitemap.xml
+
+# Disallow admin and API routes
+Disallow: /api/*
+Disallow: /admin/*
+Disallow: /dashboard/*
+Disallow: /_next/*
+Disallow: /*?*
+
+# Crawl-delay directive (optional)
+Crawl-delay: 1
+
+# Sitemaps
+Sitemap: https://drcuneyttamam.com/sitemap.xml 

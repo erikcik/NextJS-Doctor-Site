@@ -3,7 +3,9 @@ import { db } from "~/server/db";
 import { blogEntries, announcementEntries } from "~/server/db/schema";
 import { desc } from "drizzle-orm";
 
-export const generateMetadata = async ({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> => {
+export const generateMetadata = async ({ params }: { params: { locale: string } }): Promise<Metadata> => {
+  const locale = params.locale;
+  
   // Fetch latest blog and announcement for dynamic meta description
   const [latestBlog] = await db
     .select()
