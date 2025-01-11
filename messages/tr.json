@@ -27,7 +27,8 @@
     "complementary_medicine": "Tamamlayıcı Tıp",
     "books": "Kitaplar",
     "blog": "Blog",
-    "contact": "İletişim"
+    "contact": "İletişim",
+    "warning": "UYARI: Bu web sitesinde yazılan bilgi tavsiye amaçlıdır. Sağlık için doktorunuzla danışın."
   },
   "Carousel": {
     "slides": {
@@ -278,7 +279,8 @@
       "complementary": "Tamamlayıcı Tıp",
       "research": "Araştırma",
       "treatment": "Tedavi Yöntemleri",
-      "wellness": "Sağlıklı Yaşam"
+      "wellness": "Sağlıklı Yaşam",
+      "warning": "UYARI: Bu web sitesinde yazılan bilgi tavsiye amaçlıdır. Sağlık için doktorunuzla danışın."
     },
     "readMore": "Devamını Oku",
     "minutesToRead": "dakika okuma",

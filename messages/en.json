@@ -27,7 +27,9 @@
     "complementary_medicine": "Complementary Medicine",
     "books": "Books",
     "blog": "Blog",
-    "contact": "Contact"
+    "contact": "Contact",
+    "warning": "WARNING: The information written on this website is advisory. Consult your doctor for your health."
+
   },
   "Carousel": {
     "slides": {
@@ -340,4 +342,6 @@
     "complementaryMedicine": "Complementary Medicine Treatments",
     "orthopedics": "Orthopedics Treatments"
   }
+
+  
 } 

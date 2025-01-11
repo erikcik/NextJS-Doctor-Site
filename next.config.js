@@ -18,6 +18,10 @@ const nextConfig = {
                 protocol: "https",
                 hostname: "utfs.io",
             },
+            {
+                protocol: "https",
+                hostname: "nik46ye8e1.ufs.sh",
+            },
         ],
 
     },
@@ -26,7 +30,19 @@ const nextConfig = {
     },
     eslint: {
         ignoreDuringBuilds: true
-    }
+    },
+    webpack: (config, { isServer }) => {
+        if (!isServer) {
+            config.resolve.fallback = {
+                ...config.resolve.fallback,
+                fs: false,
+                net: false,
+                tls: false,
+                crypto: false,
+            };
+        }
+        return config;
+    },
 };
  
 export default withNextIntl(nextConfig);
