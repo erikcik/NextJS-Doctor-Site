@@ -12,7 +12,7 @@ export function Navigation() {
     { key: "about", href: "/about" },
     { key: "orthopedics", href: "/orthopedics" },
     { key: "complementary_medicine", href: "/complementary-medicine" },
-    { key: "books", href: "/books" }, // Changed from blog
+    { key: "books", href: "/books" },
     { key: "blog", href: "/blog" },
     { key: "contact", href: "/contact" }
   ]
@@ -40,7 +40,7 @@ export function Navigation() {
   }, [isOpen])
 
   return (
-    <nav className="top-0 w-full border-b bg-white shadow-sm z-[100]">
+    <nav className="relative top-0 w-full border-b bg-white shadow-sm z-[100]">
       <div className="container mx-auto flex justify-between items-center py-4 px-4">
         <Link href="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
           <Image 
@@ -89,6 +89,15 @@ export function Navigation() {
               </Link>
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* Warning Banner */}
+      <div className="bg-red-50 overflow-hidden py-2 border-t border-red-100">
+        <div className="animate-marquee whitespace-nowrap">
+          <span className="text-red-600">
+            {t('warning')}
+          </span>
         </div>
       </div>
     </nav>

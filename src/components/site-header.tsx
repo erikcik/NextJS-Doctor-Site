@@ -23,7 +23,7 @@ export function SiteHeader() {
   };
 
   return (
-    <header className="site-header">
+    <header className="site-header z-[110]">
       <div className="site-header-container">
         <div className="site-header-content">
           <div className="header-left">
@@ -80,7 +80,7 @@ export function SiteHeader() {
                 <Globe className="h-3.5 w-3.5" />
                 <span>Language</span>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="min-w-[150px]">
+              <DropdownMenuContent align="end" className="min-w-[150px] z-[120]">
                 <DropdownMenuItem 
                   onClick={() => handleLanguageChange('en')}
                   className="cursor-pointer"
