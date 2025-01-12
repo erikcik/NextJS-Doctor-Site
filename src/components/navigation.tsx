@@ -14,6 +14,7 @@ export function Navigation() {
     { key: "complementary_medicine", href: "/complementary-medicine" },
     { key: "books", href: "/books" },
     { key: "blog", href: "/blog" },
+    { key: "reels", href: "/reels" },
     { key: "contact", href: "/contact" }
   ]
 

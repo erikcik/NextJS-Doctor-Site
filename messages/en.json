@@ -28,8 +28,8 @@
     "books": "Books",
     "blog": "Blog",
     "contact": "Contact",
-    "warning": "WARNING: The information written on this website is advisory. Consult your doctor for your health."
-
+    "warning": "WARNING: The information written on this website is advisory. Consult your doctor for your health.",
+    "reels": "Video Reels"
   },
   "Carousel": {
     "slides": {

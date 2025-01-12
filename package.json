@@ -43,6 +43,7 @@
     "@uploadthing/react": "^7.1.5",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
     "drizzle-kit": "^0.30.1",
     "drizzle-orm": "^0.38.3",
     "embla-carousel-autoplay": "^8.5.1",
