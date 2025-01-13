@@ -4,15 +4,22 @@ import { TreatmentCard } from "@/components/treatment-card"
 import Footer from "~/components/footer";
 import { db } from "~/server/db";
 import { complementaryEntries } from "~/server/db/schema";
-import { desc } from "drizzle-orm";
+import { desc, inArray } from "drizzle-orm";
 import { LocalizedTitle } from "~/components/localized-title";
 import { getExcerpt } from "~/utils/getExcerpt";
 
 export default async function ComplementaryMedicinePage() {
-  // Fetch all complementary medicine entries
+  // Specific IDs we want to show
+  const specificIds = [
+    '737a2b2d-fd2c-4fd1-98ec-6921ea3901ea',
+    'da0108b9-c8b6-4662-abdc-c0d30c858af9'
+  ];
+
+  // Fetch only the specific complementary medicine entries
   const entries = await db
     .select()
     .from(complementaryEntries)
+    .where(inArray(complementaryEntries.id, specificIds))
     .orderBy(desc(complementaryEntries.createdAt));
 
   return (

@@ -30,6 +30,14 @@ const ComplementaryShow = ({ entries }: ComplementaryShowProps) => {
   const params = useParams();
   const locale = params?.locale as string;
 
+  // Filter for specific IDs
+  const specificIds = [
+    '737a2b2d-fd2c-4fd1-98ec-6921ea3901ea',
+    'da0108b9-c8b6-4662-abdc-c0d30c858af9'
+  ];
+  
+  const filteredEntries = entries.filter(entry => specificIds.includes(entry.id));
+
   return (
     <div className="relative my-8 sm:my-12 md:my-16 w-full">
       <div className="absolute inset-0 w-full h-full">
@@ -64,7 +72,7 @@ const ComplementaryShow = ({ entries }: ComplementaryShowProps) => {
           </motion.h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-            {entries.slice(0, 3).map((entry) => (
+            {filteredEntries.map((entry) => (
               <motion.div
                 key={entry.id}
                 initial={{ opacity: 0, y: 20 }}
