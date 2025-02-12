@@ -11,7 +11,7 @@ export function Navigation() {
   const navigationItems = [
     { key: "about", href: "/about" },
     { key: "orthopedics", href: "/orthopedics" },
-    { key: "complementary_medicine", href: "/complementary-medicine" },
+    // { key: "complementary_medicine", href: "/complementary-medicine" },
     { key: "books", href: "/books" },
     { key: "blog", href: "/blog" },
     { key: "reels", href: "/reels" },
