@@ -19,11 +19,12 @@ const slides = [
     translationKey: 'orthopedic',
     href: '/orthopedics'
   },
-  {
-    url: 'https://images.unsplash.com/photo-1666214280557-f1b5022eb634?auto=format&fit=crop&q=80&w=2070',
-    translationKey: 'complementary',
-    href: '/complementary-medicine'
-  },
+  // Commented out complementary medicine slide
+  // {
+  //   url: 'https://images.unsplash.com/photo-1666214280557-f1b5022eb634?auto=format&fit=crop&q=80&w=2070',
+  //   translationKey: 'complementary',
+  //   href: '/complementary-medicine'
+  // },
   {
     url: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=2070',
     translationKey: 'personalized',

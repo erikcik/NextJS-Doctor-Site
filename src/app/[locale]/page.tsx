@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { db } from "~/server/db";
 import {
   blogEntries,
-  complementaryEntries,
+  // complementaryEntries,  // Commented out
   orthopedicsEntries,
   announcementEntries,
   videoEntries,
@@ -21,7 +21,7 @@ import { desc } from "drizzle-orm";
 import MarkdownDisplay from "~/components/markdown-display";
 import OrthopedicsShow from "~/components/orthopedics-show";
 import { LocalizedTitle } from "~/components/localized-title";
-import ComplementaryShow from "~/components/complementary-show";
+// import ComplementaryShow from "~/components/complementary-show";  // Commented out
 import { formatDate } from "~/lib/utils";
 import { Play, ChevronRight } from "lucide-react";
 import Image from "next/image";
@@ -35,10 +35,11 @@ export default async function Home({ params }: { params: { locale: string } }) {
     .from(blogEntries)
     .orderBy(desc(blogEntries.createdAt));
 
-  const allComplementaryEntries = await db
-    .select()
-    .from(complementaryEntries)
-    .orderBy(desc(complementaryEntries.createdAt));
+  // Commented out complementary entries fetch
+  // const allComplementaryEntries = await db
+  //   .select()
+  //   .from(complementaryEntries)
+  //   .orderBy(desc(complementaryEntries.createdAt));
 
   const allOrthopedicsEntries = await db
     .select()
@@ -77,21 +78,22 @@ export default async function Home({ params }: { params: { locale: string } }) {
             medicalSpecialty: [
               "Orthopedics",
               "Traumatology",
-              "Complementary Medicine",
+              // "Complementary Medicine",  // Commented out
             ],
             availableService: [
               {
                 "@type": "MedicalProcedure",
                 name: "Joint Replacement Surgery",
               },
-              {
-                "@type": "MedicalTherapy",
-                name: "Acupuncture",
-              },
-              {
-                "@type": "MedicalTherapy",
-                name: "Prolotherapy",
-              },
+              // Commented out complementary medicine services
+              // {
+              //   "@type": "MedicalTherapy",
+              //   name: "Acupuncture",
+              // },
+              // {
+              //   "@type": "MedicalTherapy",
+              //   name: "Prolotherapy",
+              // },
             ],
             memberOf: [
               {
@@ -123,15 +125,16 @@ export default async function Home({ params }: { params: { locale: string } }) {
                     description: "Comprehensive orthopedic surgical procedures",
                   },
                 },
-                {
-                  "@type": "Offer",
-                  itemOffered: {
-                    "@type": "MedicalTherapy",
-                    name: "Complementary Medicine",
-                    description:
-                      "Alternative and complementary medical treatments",
-                  },
-                },
+                // Commented out complementary medicine offer
+                // {
+                //   "@type": "Offer",
+                //   itemOffered: {
+                //     "@type": "MedicalTherapy",
+                //     name: "Complementary Medicine",
+                //     description:
+                //       "Alternative and complementary medical treatments",
+                //   },
+                // },
               ],
             },
           }),
@@ -147,9 +150,8 @@ export default async function Home({ params }: { params: { locale: string } }) {
           {/* Orthopedics Section */}
           <OrthopedicsShow entries={allOrthopedicsEntries} />
 
-          {/* Complementary Medicine Section */}
-
-          <ComplementaryShow entries={allComplementaryEntries} />
+          {/* Complementary Medicine Section - Commented out */}
+          {/* <ComplementaryShow entries={allComplementaryEntries} /> */}
 
           <section className=" my-32 mb-16 py-16">
             <div className="container mx-auto px-4">
