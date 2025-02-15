@@ -35,6 +35,16 @@ function getCurrentLocale(pathname: string): string {
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
 
+  // Temporary block for complementary-medicine routes
+  if (pathname.includes('complementary-medicine')) {
+    const currentLocale = getCurrentLocale(pathname);
+    const notFoundPath = getPathname({
+      locale: currentLocale,
+      href: '/404'
+    })
+    return NextResponse.redirect(new URL(notFoundPath, request.url))
+  }
+
   // Handle root path redirect
   if (pathname === '/') {
     const country = getCountryFromIP(request)
